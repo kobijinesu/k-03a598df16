@@ -186,7 +186,11 @@ async function load() {
     const q = "?t=" + Date.now();
     D = await (await fetch("data/today.json" + q, { cache: "no-store" })).json();
     try { H = await (await fetch("data/history.json" + q, { cache: "no-store" })).json(); } catch { H = []; }
-    $("#meta").textContent = `${D.date_ja} ・ 更新 ${D.generated.slice(11, 16)} ・ 判定 締切${D.decision_min}分前`;
+    const age = (Date.now() - new Date(D.generated.replace(" ", "T") + ":00+09:00")) / 60000;   // 予想係は動いている間10分おきに更新する
+    const today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+    const stale = D.date === today && age > 20 && new Date().getUTCHours() + 9 < 18;
+    $("#meta").textContent = `${D.date_ja} ・ 更新 ${D.generated.slice(11, 16)} ・ 判定 締切${D.decision_min}分前` + (stale ? ` ・ ⚠ ${Math.round(age)}分間更新なし` : "");
+    $("#meta").style.color = stale ? "#d33" : "";
     const s = $("#sample"); s.hidden = !D.sample; s.textContent = D.sample || "";
     render();
   } catch (e) { $("#meta").textContent = "データを読み込めませんでした（電波を確認）"; }
