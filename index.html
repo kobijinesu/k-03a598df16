@@ -148,12 +148,25 @@ function paceBox(r) {
   const sc = ["high", "slow", "inner", "outer", "chaos"].filter(k => v.scen[k] && v.scen[k].diff > 0.02)
     .map(k => `<li>${lab[k]}：<b>${v.scen[k].no}番 ${esc(v.scen[k].name)}</b>（3着以内 ${pct(v.scen[k].t3)}、ふだんより +${(v.scen[k].diff * 100).toFixed(0)}pt）</li>`).join("");
   const tri = v.trifecta[0], trio = v.trio[0];
+  let today = "";
+  if (v.today) {
+    const t_ = v.today, words = [];
+    if (t_.front === "front") words.push("前に行った馬が残っています");
+    if (t_.front === "back") words.push("後ろからの差しが決まっています");
+    if (t_.gate === "inner") words.push("内枠が来ています");
+    if (t_.gate === "outer") words.push("外枠が来ています");
+    const pk = t_.pick && v.scen[t_.pick];
+    today = words.length
+      ? `<div style="margin:6px 0;padding:8px;border-radius:8px;background:var(--accent2)">🏟 <b>今日の馬場：${words.join("・")}</b><span class="sub">（この場の前の${t_.n}レースから。同じ傾向が続くのは6割ほど）</span>${pk ? `<br>→ この馬場なら：<b>${pk.no}番 ${esc(pk.name)}</b>（3着以内 ${pct(pk.t3)}、ふだんより +${(pk.diff * 100).toFixed(0)}pt）` : ""}</div>`
+      : `<div class="sub" style="margin:6px 0">🏟 今日の馬場：${t_.n ? `前の${t_.n}レースでは、はっきりした偏りは見えません` : "この場の最初のレースなので、まだ分かりません"}</div>`;
+  }
   const hit = res ? (res.tri_rank ? `<span class="badge hit">3連単 的中！</span>` : res.trio_rank ? `<span class="badge hit">3連複 的中（${res.trio_rank}番目）</span>` : `<span class="badge miss">決着 ${esc(res.trio)}</span>`) : "";
   return `<details style="margin-top:8px"><summary class="sub">▼ 🎬 展開予想 ${hit}</summary>
     <div style="padding:6px 2px">
       ${v.front && v.front.length ? `<div>前に行きそう：${v.front.map(h => `${h.no}番 ${esc(h.name)}`).join("・")}　／　後ろから：${v.back.map(h => `${h.no}番`).join("・")}</div>` : ""}
       <div style="margin-top:6px">いちばん起きやすい決着：<b>3連単 ${esc(tri.kumi)}</b>（10万回なら約${Math.round(tri.p * 100000).toLocaleString()}回）、<b>3連複 ${esc(trio.kumi)}</b>（約${Math.round(trio.p * 100000).toLocaleString()}回）</div>
-      ${sc ? `<ul style="margin:6px 0 0 18px;padding:0">${sc}</ul>` : ""}
+      ${today}
+      ${sc ? `<div class="sub" style="margin-top:6px">もしもの展開：</div><ul style="margin:2px 0 0 18px;padding:0">${sc}</ul>` : ""}
       <div class="note">ペース・馬場の内外・荒れ具合で「まとめて動く」ことを入れて全通りを計算（10万回のシミュレーションを無限回まわしたのと同じ）。過去の確認で、今の計算より1〜3着の当たり方がわずかに良い。</div>
     </div></details>`;
 }

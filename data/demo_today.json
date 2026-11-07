@@ -1,7 +1,7 @@
 {
  "date": "2026-11-07",
  "date_ja": "11/7（土）",
- "generated": "2026-11-08 00:48",
+ "generated": "2026-11-08 01:09",
  "decision_min": 8,
  "sample": "【デモ】11/7（土）15:05 の時点を再現したテスト表示です（京都9Rの🔮推しは見本）。本番は URL の ?demo=1 を外して開いてください",
  "races": [
@@ -783,7 +783,13 @@
       "no": 1,
       "name": "サクラアドリア"
      }
-    ]
+    ],
+    "today": {
+     "n": 4,
+     "front": "front",
+     "gate": null,
+     "pick": "slow"
+    }
    },
    "pace_res": {
     "trio": "4-5-9",
@@ -1164,7 +1170,13 @@
       "no": 10,
       "name": "ストロングエース"
      }
-    ]
+    ],
+    "today": {
+     "n": 4,
+     "front": "back",
+     "gate": null,
+     "pick": "high"
+    }
    },
    "pace_res": {
     "trio": "6-13-14",
@@ -1524,7 +1536,13 @@
       "no": 4,
       "name": "リカントロポ"
      }
-    ]
+    ],
+    "today": {
+     "n": 3,
+     "front": "back",
+     "gate": null,
+     "pick": "high"
+    }
    },
    "pace_res": {
     "trio": "4-5-9",
@@ -1789,7 +1807,13 @@
       "no": 13,
       "name": "ラスティングスノー"
      }
-    ]
+    ],
+    "today": {
+     "n": 5,
+     "front": "front",
+     "gate": null,
+     "pick": "slow"
+    }
    },
    "pace_res": {
     "trio": "8-13-16",
@@ -2000,7 +2024,13 @@
       "no": 4,
       "name": "ロードガレリア"
      }
-    ]
+    ],
+    "today": {
+     "n": 4,
+     "front": "back",
+     "gate": null,
+     "pick": "high"
+    }
    },
    "pace_res": {
     "trio": "2-8-10",
@@ -2264,7 +2294,13 @@
       "no": 3,
       "name": "ジャーヴィス"
      }
-    ]
+    ],
+    "today": {
+     "n": 4,
+     "front": "front",
+     "gate": null,
+     "pick": "slow"
+    }
    },
    "asobi": [
     {
