@@ -173,7 +173,7 @@ function paceBox(r) {
       ? `<div class="line">🏟 <b>今日の馬場：${words.join("・")}</b>${pk ? `<br>→ この馬場なら <b>${pk.no}番 ${esc(pk.name)}</b>（3着以内 ${pct(pk.t3)}）` : ""}<div class="sub">この場の前の${t_.n}レースから自動で判断（同じ傾向が続くのは6割ほど）</div></div>`
       : `<div class="line mute">🏟 今日の馬場：${t_.n ? "はっきりした偏りはまだ見えない" : "この場の最初のレースなので、まだ分からない"}</div>`;
   }
-  const hit = res ? (res.tri_rank ? `<span class="badge hit">3連単 的中！</span>` : res.trio_rank ? `<span class="badge hit">3連複 的中</span>` : `<span class="badge miss">決着 ${esc(res.trio)}</span>`) : "";
+  const hit = res ? (res.tri_rank ? `<span class="badge hit">3連単 的中！</span>` : res.trio_rank ? `<span class="badge hit">3連複 的中</span>` : `<span class="badge miss">外れ（${esc(res.trio)}）</span>`) : "";
   return `${today}
     <details class="sec"><summary><span>🎬 起きやすい決着 <b>3連複 ${esc(trio.kumi)}</b></span>${hit || '<span class="sub">くわしく ▼</span>'}</summary>
     <div style="padding:6px 0 8px">
@@ -230,16 +230,29 @@ function viewNext() {
   const n = now();
   const up = D.races.filter(r => r.state !== "out" && t(r.post) > n).sort((a, b) => t(a.post) - t(b.post));
   if (!up.length) return `<div class="card"><p class="race-title">本日のレースは終了しました</p><div class="sub">結果は「結果」タブで見られます。</div></div>`;
-  const r = up[0], cl = t(r.close), left = Math.max(0, Math.floor((cl - n) / 1000));
+  const r = up[0], cl = t(r.close)
+  const sb = scoreBar(), left = Math.max(0, Math.floor((cl - n) / 1000));
   const mm = Math.floor(left / 60), ss = String(left % 60).padStart(2, "0");
   const [s, cls] = status(r);
-  let html = `<div class="card"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
+  let html = sb + `<div class="card"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
       <div class="sub">${[r.name && r.name !== r.venue ? esc(r.name) : "", `発走 ${r.post}`].filter(Boolean).join(" ・ ")}</div></div>
       <div style="text-align:right"><div class="sub">締切まで</div><div class="count" id="cd" data-close="${cl.toISOString()}">${mm}:${ss}</div></div></div>
     ${raceDetail(r, { noHead: true })}</div>`;
   const after = up.slice(1, 4);
   if (after.length) html += `<div class="card"><div class="sub" style="margin-bottom:4px">このあとのレース</div>${after.map(x => rowHtml(x, true)).join("")}</div>`;
   return html;
+}
+
+function scoreBar() {   // 次のレースの上: 今日ここまでの当たり（結果が1つも無ければ出さない）
+  const od = D.races.filter(r => r.oshi_res), pr = D.races.filter(r => r.pace_res);
+  const bets = D.races.filter(r => r.result && r.state === "decided" && buysOf(r).length);
+  const parts = [];
+  if (od.length) parts.push(`🔮 推し <b>${od.filter(r => r.oshi_res.hit).length}/${od.length}</b> 3着内`);
+  if (bets.length) { const sp = bets.reduce((a, r) => a + 100 * buysOf(r).length, 0), rt = bets.reduce((a, r) => a + retOf(r), 0);
+    parts.push(`💴 単勝 <b>${bets.filter(r => retOf(r) > 0).length}/${bets.length}</b>（<b style="color:${rt - sp >= 0 ? "var(--hit)" : "var(--buy)"}">${rt - sp >= 0 ? "+" : ""}${yen(rt - sp)}</b>）`); }
+  if (pr.length) parts.push(`🎬 決着 <b>${pr.filter(r => r.pace_res.trio_rank).length}/${pr.length}</b>`);
+  if (!parts.length) return "";
+  return `<div class="sub" style="margin:0 2px 8px;line-height:1.8">今日ここまで　${parts.map(x => `<span style="white-space:nowrap">${x}</span>`).join("　")}</div>`;
 }
 
 function opt_id(r) {   // 今日のレースで、次に締切が来るレースの行に印（開いた時にそこまで動かす）
@@ -252,8 +265,8 @@ function rowHtml(r, showVenue) {
   const bs = (r.state === "decided") ? buysOf(r) : [];
   const tags = [];
   if (r.oshi) tags.push(`🔮${r.oshi.no}番${r.oshi_res ? (r.oshi_res.hit ? "✅" : "") : ""}`);
-  if (bs.length) tags.push(`💴${bs.map(b => b.no).join("・")}`);
-  if (r.result) tags.push(`🏁${r.result.first.join("・")}番`);
+  if (bs.length) tags.push(`💴${bs.map(b => b.no).join("・")}${r.result && retOf(r) > 0 ? "✅" : ""}`);
+  if (r.result) tags.push(`<span style="color:var(--sub)">1着${r.result.first.join("・")}番</span>`);
   return `<details class="rrow-wrap"${opt_id(r)}><summary class="rrow"><div class="rno">${r.R}R</div>
     <div class="rmid"><div class="n">${showVenue ? esc(r.venue) + " " : ""}${esc(r.name && r.name !== r.venue ? r.name : "")}</div><div class="sub">発走 ${r.post}${tags.map(x => `　<span style="white-space:nowrap">${x}</span>`).join("")}</div></div>
     <span class="badge ${cls}">${s}</span></summary><div style="padding:4px 0 12px">${raceDetail(r, { noHead: true })}</div></details>`;
