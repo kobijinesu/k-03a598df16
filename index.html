@@ -18,6 +18,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,B
 header{position:sticky;top:0;z-index:5;background:var(--accent);color:#fff;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px}
 header h1{margin:0;font-size:17px;font-weight:700}
 header .meta{font-size:12px;opacity:.85;margin-top:2px}
+.src{display:flex;gap:6px;margin-top:6px}.src button{border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;border-radius:999px;padding:3px 12px;font-size:13px}.src button.on{background:#fff;color:var(--accent);font-weight:700}
 main{padding:12px 16px calc(84px + env(safe-area-inset-bottom))}
 nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:5}
 nav button{flex:1;border:0;background:none;color:var(--sub);font-size:12px;padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px}
@@ -66,7 +67,7 @@ details>summary::-webkit-details-marker{display:none}
 </style>
 </head>
 <body>
-<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div></header>
+<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div><div class="src"><button data-src="jra">中央</button><button data-src="nar">地方（検証中）</button></div></header>
 <div class="sample" id="sample" hidden></div>
 <main id="view"></main>
 <nav>
@@ -75,7 +76,8 @@ details>summary::-webkit-details-marker{display:none}
   <button data-tab="result"><span class="ic">📊</span>結果</button>
 </nav>
 <script>
-let D = null, H = [], tab = localStorage.getItem("tab") || "next", venue = null;
+let D = null, H = [], tab = localStorage.getItem("tab") || "next", venue = null, src = localStorage.getItem("src") || "jra";
+const lbl = () => D.decision_label || `締切${D.decision_min}分前`;
 const $ = s => document.querySelector(s);
 const yen = v => (v ?? 0).toLocaleString("ja-JP") + "円";
 const pct = v => v == null ? "—" : (v * 100).toFixed(1) + "%";
@@ -112,9 +114,9 @@ function raceDetail(r) {
     if (r.exo && r.exo.length) html += `<details style="margin-top:6px"><summary class="sub">▼ 参考：組合せ馬券（検証中・成績は未確認）</summary>
       <table><tr><th>券種</th><th>組番</th><th>オッズ</th><th>期待値</th></tr>${r.exo.map(e => `<tr><td>${esc(e.type)}</td><td>${esc(e.kumi)}</td><td>${e.odds.toFixed(1)}</td><td>${e.ev.toFixed(2)}</td></tr>`).join("")}</table>
       <div class="note">単勝モデルの勝率から計算した組合せの確率 × 判定時のオッズ（ワイドは下限）。期待値1.3以上の上位3組まで（ワイド100倍・3連複500倍・3連単3000倍以下）。過去の検証では基準に届いていないため、記録用の参考です。</div></details>`;
-    html += `<div class="note">オッズは判定時（締切${D.decision_min}分前）の値。買う条件: 単勝10〜50倍 かつ 期待値1.15以上。</div>`;
+    html += `<div class="note">${D.rule_note ? esc(D.rule_note) : `オッズは判定時（締切${D.decision_min}分前）の値。買う条件: 単勝10〜50倍 かつ 期待値1.15以上。`}</div>`;
   } else {
-    html += `<div class="none">予想は 締切${D.decision_min}分前（${r.decide}）に出ます</div>`;
+    html += `<div class="none">予想は ${lbl()}（${r.decide}ごろ）に出ます</div>`;
   }
   if (r.result) {
     html += `<div class="note">結果: 1着 ${r.result.first.join("・")}番 ${esc(r.result.first_name || "")}　単勝 ${yen(r.result.tan)}${r.buys.length ? ` ／ このレースの収支 ${yen(r.result.ret - r.result.bet)}` : ""}</div>`;
@@ -184,17 +186,20 @@ function render() {
 async function load() {
   try {
     const q = "?t=" + Date.now();
-    D = await (await fetch("data/today.json" + q, { cache: "no-store" })).json();
-    try { H = await (await fetch("data/history.json" + q, { cache: "no-store" })).json(); } catch { H = []; }
+    const pre = src === "nar" ? "nar_" : "";
+    D = await (await fetch(`data/${pre}today.json` + q, { cache: "no-store" })).json();
+    try { H = await (await fetch(`data/${pre}history.json` + q, { cache: "no-store" })).json(); } catch { H = []; }
+    document.querySelectorAll(".src button").forEach(b => b.classList.toggle("on", b.dataset.src === src));
     const age = (Date.now() - new Date(D.generated.replace(" ", "T") + ":00+09:00")) / 60000;   // 予想係は動いている間10分おきに更新する
     const today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
-    const stale = D.date === today && age > 20 && new Date().getUTCHours() + 9 < 18;
-    $("#meta").textContent = `${D.date_ja} ・ 更新 ${D.generated.slice(11, 16)} ・ 判定 締切${D.decision_min}分前` + (stale ? ` ・ ⚠ ${Math.round(age)}分間更新なし` : "");
+    const stale = D.date === today && age > 20 && (new Date().getUTCHours() + 9) % 24 < (src === "nar" ? 22 : 18);
+    $("#meta").textContent = `${D.date_ja} ・ 更新 ${D.generated.slice(11, 16)} ・ 判定 ${lbl()}` + (stale ? ` ・ ⚠ ${Math.round(age)}分間更新なし` : "");
     $("#meta").style.color = stale ? "#d33" : "";
     const s = $("#sample"); s.hidden = !D.sample; s.textContent = D.sample || "";
     render();
-  } catch (e) { $("#meta").textContent = "データを読み込めませんでした（電波を確認）"; }
+  } catch (e) { $("#meta").textContent = src === "nar" ? "地方のデータはまだありません" : "データを読み込めませんでした（電波を確認）"; document.querySelectorAll(".src button").forEach(b => b.classList.toggle("on", b.dataset.src === src)); if (src === "nar") { D = null; $("#view").innerHTML = ""; } }
 }
+document.querySelectorAll(".src button").forEach(b => b.onclick = () => { src = b.dataset.src; localStorage.setItem("src", src); venue = null; load(); });
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => { tab = b.dataset.tab; localStorage.setItem("tab", tab); render(); window.scrollTo(0, 0); });
 setInterval(() => { const c = $("#cd"); if (c) { const left = Math.max(0, Math.floor((new Date(c.dataset.close) - now()) / 1000)); c.textContent = Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0"); } }, 1000);
 setInterval(load, 60000);
