@@ -18,6 +18,9 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,B
 header{position:sticky;top:0;z-index:5;background:var(--accent);color:#fff;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px}
 header h1{margin:0;font-size:17px;font-weight:700}
 header .meta{font-size:12px;opacity:.85;margin-top:2px}
+.sosb{margin-left:auto;border:1px solid #fff !important;background:#b91c1c !important;color:#fff !important;font-weight:700}
+#sos{margin:10px 16px 0;padding:12px;border-radius:12px;background:var(--card);border:2px solid #b91c1c;font-size:14px;line-height:1.5}
+#sos .it{padding:6px 0;border-top:1px solid var(--line)}#sos .ng{color:#b91c1c;font-weight:700}#sos .ok{color:var(--hit)}#sos .x{float:right;border:0;background:none;color:var(--sub);font-size:18px}
 .src{display:flex;gap:6px;margin-top:6px}.src button{border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;border-radius:999px;padding:3px 12px;font-size:13px}.src button.on{background:#fff;color:var(--accent);font-weight:700}
 main{padding:12px 16px calc(84px + env(safe-area-inset-bottom))}
 nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:5}
@@ -67,7 +70,8 @@ details>summary::-webkit-details-marker{display:none}
 </style>
 </head>
 <body>
-<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div><div class="src"><button data-src="jra">中央</button><button data-src="nar">地方（検証中）</button></div></header>
+<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div><div class="src"><button data-src="jra">中央</button><button data-src="nar">地方（検証中）</button><button class="sosb" id="sosb">🆘 緊急チェック</button></div></header>
+<div id="sos" hidden></div>
 <div class="sample" id="sample" hidden></div>
 <main id="view"></main>
 <nav>
@@ -205,6 +209,29 @@ setInterval(() => { const c = $("#cd"); if (c) { const left = Math.max(0, Math.f
 setInterval(load, 60000);
 document.addEventListener("visibilitychange", () => { if (!document.hidden) load(); });
 load();
+// 緊急チェック: 中継サービス ntfy.sh の合言葉チャンネルに合図 → PC の緊急チェック係（code\musu_sos.py）が点検・修正し data/sos.json に結果を出す
+const SOS_TOPIC = "musu-sos-6f1873a77b020c2b";
+function sosShow(h) { const b = $("#sos"); b.hidden = false; b.innerHTML = `<button class="x" onclick="$('#sos').hidden=true">×</button>` + h; }
+function sosRes(j) {
+  return `<b>${j.ok ? "✅ 問題なし" : "⚠ 問題あり（直せるものは直しました）"}</b><div class="sub">点検 ${j.checked.slice(11, 16)}</div>` +
+    j.items.map(x => `<div class="it"><span class="${x.ok ? "ok" : "ng"}">${x.ok ? "○" : "×"} ${x.name}</span>：${x.msg}${x.fix ? `<br>→ ${x.fix}` : ""}</div>`).join("");
+}
+$("#sosb").onclick = async () => {
+  if (!confirm("PC に緊急チェック（止まっていないかの点検と修正）を頼みますか？")) return;
+  const t0 = Date.now();
+  try { await fetch(`https://ntfy.sh/${SOS_TOPIC}`, { method: "POST", body: "check" }); }
+  catch { sosShow("合図を送れませんでした（電波を確認）"); return; }
+  sosShow("PC に合図を送りました。点検中です（1〜3分）…");
+  for (let i = 0; i < 28; i++) {
+    await new Promise(r => setTimeout(r, 15000));
+    try {
+      const j = await (await fetch("data/sos.json?t=" + Date.now(), { cache: "no-store" })).json();
+      if (new Date(j.asked + "+09:00") >= t0 - 60000) { sosShow(sosRes(j)); load(); return; }
+    } catch {}
+    sosShow(`PC に合図を送りました。点検中です…（${Math.round((Date.now() - t0) / 60000)}分経過）`);
+  }
+  sosShow("PC から返事がありません。PC の電源・ネット接続か、緊急チェック係（タスク musu_sos）が動いていない可能性があります。");
+};
 </script>
 </body>
 </html>
