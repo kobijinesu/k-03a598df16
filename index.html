@@ -213,20 +213,21 @@ load();
 const SOS_TOPIC = "musu-sos-6f1873a77b020c2b";
 function sosShow(h) { const b = $("#sos"); b.hidden = false; b.innerHTML = `<button class="x" onclick="$('#sos').hidden=true">×</button>` + h; }
 function sosRes(j) {
-  return `<b>${j.ok ? "✅ 問題なし" : "⚠ 問題あり（直せるものは直しました）"}</b><div class="sub">点検 ${j.checked.slice(11, 16)}</div>` +
+  const head = j.phase === "fixing" ? "🔧 直しています…" : j.ok ? "✅ 正常に動いています" : "⚠ 直りきっていません";
+  return `<b>${head}</b>${j.note ? `<div>${j.note}</div>` : ""}<div class="sub">点検 ${j.checked.slice(11, 16)}</div>` +
     j.items.map(x => `<div class="it"><span class="${x.ok ? "ok" : "ng"}">${x.ok ? "○" : "×"} ${x.name}</span>：${x.msg}${x.fix ? `<br>→ ${x.fix}` : ""}</div>`).join("");
 }
 $("#sosb").onclick = async () => {
-  if (!confirm("PC に緊急チェック（止まっていないかの点検と修正）を頼みますか？")) return;
+  if (!confirm("PC に緊急チェックを頼みますか？（点検して、直るところまで直します）")) return;
   const t0 = Date.now();
   try { await fetch(`https://ntfy.sh/${SOS_TOPIC}`, { method: "POST", body: "check" }); }
   catch { sosShow("合図を送れませんでした（電波を確認）"); return; }
   sosShow("PC に合図を送りました。点検中です（1〜3分）…");
-  for (let i = 0; i < 28; i++) {
+  for (let i = 0; i < 60; i++) {   // 直して確かめるのを最大3回くり返すので、最長15分ほど待つ
     await new Promise(r => setTimeout(r, 15000));
     try {
       const j = await (await fetch("data/sos.json?t=" + Date.now(), { cache: "no-store" })).json();
-      if (new Date(j.asked + "+09:00") >= t0 - 60000) { sosShow(sosRes(j)); load(); return; }
+      if (new Date(j.asked + "+09:00") >= t0 - 60000) { sosShow(sosRes(j)); if (j.phase !== "fixing") { load(); return; } continue; }
     } catch {}
     sosShow(`PC に合図を送りました。点検中です…（${Math.round((Date.now() - t0) / 60000)}分経過）`);
   }
