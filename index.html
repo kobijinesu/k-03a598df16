@@ -85,7 +85,9 @@ function now() { return D && D.now_override ? new Date(D.now_override) : new Dat
 function t(hm) { const [h, m] = hm.split(":").map(Number); const d = new Date(D.date + "T00:00:00+09:00"); d.setHours(h, m, 0, 0); return d; }
 
 function status(r) {
-  if (r.result) return r.buys.length ? (r.result.hit ? ["的中", "hit"] : ["外れ", "miss"]) : ["見送り", "miss"];
+  if (r.state === "out") return ["対象外", "miss"];
+  if (r.result && r.state === "decided") return r.buys.length ? (r.result.hit ? ["的中", "hit"] : ["外れ", "miss"]) : ["見送り", "miss"];
+  if (r.state === "missed") return ["予想なし", "miss"];
   if (r.state === "decided") return r.buys.length ? [`買い ${r.buys.length}頭`, "buy"] : ["見送り", ""];
   return ["予想前", ""];
 }
@@ -100,11 +102,16 @@ function raceDetail(r) {
   const [s, cls] = status(r);
   let html = `<div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
     <div class="sub">${[r.name ? esc(r.name) : "", `発走 ${r.post}`, `締切 ${r.close}`].filter(Boolean).join(" ・ ")}</div></div><span class="badge ${cls}">${s}</span></div>`;
-  if (r.state === "decided" || r.result) {
+  if (r.state === "out" || r.state === "missed") {
+    html += `<div class="none">${esc(r.note || "予想の対象外")}</div>`;
+  } else if (r.state === "decided" || r.result) {
     html += r.buys.length
       ? `<div class="buy-box"><h3>単勝で買う（各100円）</h3>${horseRows(r.buys, true)}</div>`
-      : `<div class="none">このレースは見送り（条件に合う馬なし）</div>`;
+      : `<div class="none">${r.note ? "予想できませんでした（" + esc(r.note) + "）" : "このレースは見送り（条件に合う馬なし）"}</div>`;
     if (r.top && r.top.length) html += `<details style="margin-top:10px"><summary class="sub">▼ 勝率の高い順（参考）</summary>${horseRows(r.top, false)}</details>`;
+    if (r.exo && r.exo.length) html += `<details style="margin-top:6px"><summary class="sub">▼ 参考：組合せ馬券（検証中・成績は未確認）</summary>
+      <table><tr><th>券種</th><th>組番</th><th>オッズ</th><th>期待値</th></tr>${r.exo.map(e => `<tr><td>${esc(e.type)}</td><td>${esc(e.kumi)}</td><td>${e.odds.toFixed(1)}</td><td>${e.ev.toFixed(2)}</td></tr>`).join("")}</table>
+      <div class="note">単勝モデルの勝率から計算した組合せの確率 × 判定時のオッズ（ワイドは下限）。期待値1.3以上の上位3組まで（ワイド100倍・3連複500倍・3連単3000倍以下）。過去の検証では基準に届いていないため、記録用の参考です。</div></details>`;
     html += `<div class="note">オッズは判定時（締切${D.decision_min}分前）の値。買う条件: 単勝10〜50倍 かつ 期待値1.15以上。</div>`;
   } else {
     html += `<div class="none">予想は 締切${D.decision_min}分前（${r.decide}）に出ます</div>`;
@@ -117,7 +124,7 @@ function raceDetail(r) {
 
 function viewNext() {
   const n = now();
-  const up = D.races.filter(r => t(r.post) > n).sort((a, b) => t(a.post) - t(b.post));
+  const up = D.races.filter(r => r.state !== "out" && t(r.post) > n).sort((a, b) => t(a.post) - t(b.post));
   if (!up.length) return `<div class="card"><p class="race-title">本日のレースは終了しました</p><div class="sub">結果は「結果」タブで見られます。</div></div>`;
   const r = up[0], cl = t(r.close), left = Math.max(0, Math.floor((cl - n) / 1000));
   const mm = Math.floor(left / 60), ss = String(left % 60).padStart(2, "0");
@@ -144,7 +151,7 @@ function viewToday() {
 }
 
 function viewResult() {
-  const done = D.races.filter(r => r.result);
+  const done = D.races.filter(r => r.result && r.state === "decided");
   const bets = done.filter(r => r.buys.length);
   const spent = bets.reduce((a, r) => a + r.result.bet, 0), ret = bets.reduce((a, r) => a + r.result.ret, 0);
   const hits = bets.filter(r => r.result.hit).length;
