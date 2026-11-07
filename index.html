@@ -102,14 +102,15 @@ function t(hm) { const [h, m] = hm.split(":").map(Number); const d = new Date(D.
 
 // 単勝の型の切り替え（1=合格版、2=拡大版、3=広め。2・3は検証中）。中央のみ
 let modeSel = "1", mode = "1";   // modeSel=選んだ型、mode=今の表示に使う型（地方は常に合格版の扱い）
-try { modeSel = localStorage.getItem("mode") || "1"; } catch {}
-const MODES = { "1": "合格版", "2": "拡大版", "3": "広め", "4": "合格版＋馬主" };
-const TIERTAG = { 2: "拡大", 3: "広め", 4: "＋馬主" };
-function buysOf(r) { return mode === "1" || !r.buys_ext ? r.buys : r.buys.concat(r.buys_ext.filter(b => mode === "4" ? b.tier === 4 : b.tier <= +mode)); }
-function retOf(r) { return mode === "1" || !r.ext_res || !r.ext_res[mode] ? r.result.ret : r.ext_res[mode].ret; }
+try { modeSel = localStorage.getItem("mode") || "1"; if (!["1", "2", "3"].includes(modeSel)) modeSel = "1"; } catch {}
+const MODES = { "1": "標準", "2": "拡大", "3": "広め" };   // 標準＝合格モデル＋馬主モデル（2026-11-08 から）
+const TIERTAG = { 2: "拡大", 3: "広め", 4: "馬主モデルのみ" };
+// 単勝の買い: 標準＝合格モデルの買い＋馬主モデルだけの買い（tier 4）。拡大・広めはさらに tier 2・3 を足す
+function buysOf(r) { const ex = r.buys_ext || []; return r.buys.concat(ex.filter(b => b.tier === 4 || (mode !== "1" && b.tier <= +mode))); }
+function retOf(r) { if (!r.result) return 0; const w = new Set(r.result.first); return buysOf(r).filter(b => w.has(b.no)).length * (r.result.tan || 0); }
 function modeBar() {
   if (src !== "jra") return "";
-  const L = { "1": "合格版", "4": "＋馬主", "2": "拡大", "3": "広め" };
+  const L = { "1": "標準", "2": "拡大", "3": "広め" };
   return `<div class="modebar">単勝の範囲 ${Object.entries(L).map(([k, v]) => `<button data-mode="${k}" class="${k === mode ? "on" : ""}">${v}</button>`).join("")}<span>${mode === "1" ? "" : "（試験中）"}</span></div>`;
 }
 
@@ -135,7 +136,7 @@ function axisBox(r) {
 
 function horseRows(list, withEv) {
   return list.map(h => `<div class="horse"><div class="num">${h.no}</div>
-    <div><div class="hname">${h.both ? `<span class="badge hit" title="合格版と馬主入りの両方が買い">★両方</span> ` : ""}${h.tier ? `<span class="badge">${TIERTAG[h.tier]}</span> ` : ""}${esc(h.name)}</div><div class="sub">勝率 ${pct(h.p)}${withEv ? ` ・ 期待値 ${h.ev.toFixed(2)}` : ` ・ 必要オッズ ${h.need.toFixed(1)}倍`}</div></div>
+    <div><div class="hname">${h.both === true ? `<span class="badge hit">★両方</span> ` : h.both === false ? `<span class="badge">合格モデルのみ</span> ` : ""}${h.tier ? `<span class="badge">${TIERTAG[h.tier]}</span> ` : ""}${esc(h.name)}</div><div class="sub">勝率 ${pct(h.p)}${withEv ? ` ・ 期待値 ${h.ev.toFixed(2)}` : ` ・ 必要オッズ ${h.need.toFixed(1)}倍`}</div></div>
     <div class="right"><div class="big">${h.odds.toFixed(1)}<span class="sub">倍</span></div></div></div>`).join("");
 }
 
@@ -206,7 +207,7 @@ function raceDetail(r, opt = {}) {
     html += paceBox(r);
     const bs = buysOf(r);
     html += bs.length
-      ? `<div class="buy-box"><h3>💴 単勝で買う（各100円${mode === "1" ? "" : "・" + MODES[mode] + "を含む"}）</h3>${horseRows(bs, true)}</div>`
+      ? `<div class="buy-box"><h3>💴 単勝で買う（各100円${mode === "1" ? "" : "・" + MODES[mode] + "を含む"}）</h3>${horseRows(bs, true)}${bs.some(b => b.both !== undefined || b.tier === 4) ? `<div class="note">★両方＝合格モデルと馬主モデルの両方が「買い」（いちばん信頼できる）。「〜のみ」は片方だけが「買い」。</div>` : ""}</div>`
       : `<div class="line mute">💴 単勝：${r.note ? "予想できませんでした（" + esc(r.note) + "）" : "今回は見送り（条件に合う馬なし）"}</div>`;
     html += axisBox(r);
     if (r.asobi) html += asobiBox(r);
@@ -299,7 +300,8 @@ function viewResult() {
     <div class="note">各100円で買った場合。🧲・🎉・拡大・広めは試験中の買い方です。</div></div>`;
   // 通算
   const tot = [];
-  if (H.length) { const S = H.reduce((a, h) => ({ spent: a.spent + h.spent, ret: a.ret + h.ret }), { spent: 0, ret: 0 }); if (S.spent) tot.push(["💴 単勝（合格版）", `${pctS(S.ret, S.spent)}　${pm(S.ret - S.spent)}`]); }
+  const hs = h => (h.ext && h.ext["4"] && h.ext["4"].spent) ? h.ext["4"] : { spent: h.spent, ret: h.ret };   // 標準（合格＋馬主）。古い日は合格モデルだけ
+  if (H.length) { const S = H.reduce((a, h) => ({ spent: a.spent + hs(h).spent, ret: a.ret + hs(h).ret }), { spent: 0, ret: 0 }); if (S.spent) tot.push(["💴 単勝（標準）", `${pctS(S.ret, S.spent)}　${pm(S.ret - S.spent)}`]); }
   const HE = H.filter(h => h.ext && h.ext[mode] && h.ext[mode].spent);
   if (mode !== "1" && HE.length) { const s_ = HE.reduce((a, h) => a + h.ext[mode].spent, 0), r_ = HE.reduce((a, h) => a + h.ext[mode].ret, 0); tot.push([`💴 単勝（${MODES[mode]}）`, `${pctS(r_, s_)}　${pm(r_ - s_)}`]); }
   const HO = H.filter(h => h.oshi && h.oshi.n); if (HO.length) { const n_ = HO.reduce((a, h) => a + h.oshi.n, 0), h_ = HO.reduce((a, h) => a + h.oshi.hit, 0); tot.push(["🔮 推し", `${h_}/${n_}頭（${pctS(h_, n_)}）が3着以内`]); }
