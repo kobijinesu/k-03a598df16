@@ -103,13 +103,13 @@ function t(hm) { const [h, m] = hm.split(":").map(Number); const d = new Date(D.
 // 単勝の型の切り替え（1=合格版、2=拡大版、3=広め。2・3は検証中）。中央のみ
 let modeSel = "1", mode = "1";   // modeSel=選んだ型、mode=今の表示に使う型（地方は常に合格版の扱い）
 try { modeSel = localStorage.getItem("mode") || "1"; } catch {}
-const MODES = { "1": "合格版", "2": "拡大版", "3": "広め" };
-const TIERTAG = { 2: "拡大", 3: "広め" };
-function buysOf(r) { return mode === "1" || !r.buys_ext ? r.buys : r.buys.concat(r.buys_ext.filter(b => b.tier <= +mode)); }
-function retOf(r) { return mode === "1" || !r.ext_res ? r.result.ret : r.ext_res[mode].ret; }
+const MODES = { "1": "合格版", "2": "拡大版", "3": "広め", "4": "合格版＋馬主" };
+const TIERTAG = { 2: "拡大", 3: "広め", 4: "＋馬主" };
+function buysOf(r) { return mode === "1" || !r.buys_ext ? r.buys : r.buys.concat(r.buys_ext.filter(b => mode === "4" ? b.tier === 4 : b.tier <= +mode)); }
+function retOf(r) { return mode === "1" || !r.ext_res || !r.ext_res[mode] ? r.result.ret : r.ext_res[mode].ret; }
 function modeBar() {
   if (src !== "jra") return "";
-  const L = { "1": "合格版", "2": "拡大", "3": "広め" };
+  const L = { "1": "合格版", "4": "＋馬主", "2": "拡大", "3": "広め" };
   return `<div class="modebar">単勝の範囲 ${Object.entries(L).map(([k, v]) => `<button data-mode="${k}" class="${k === mode ? "on" : ""}">${v}</button>`).join("")}<span>${mode === "1" ? "" : "（試験中）"}</span></div>`;
 }
 
@@ -124,7 +124,7 @@ function status(r) {
 
 function axisBox(r) {
   // 単勝の買い馬（選択中の型）を1着に固定した3連単（検証中）
-  const list = (r.axis || {})[mode] || [], res = (r.axis_res || {})[mode];
+  const am = mode === "4" ? "1" : mode, list = (r.axis || {})[am] || [], res = (r.axis_res || {})[am];
   if (!list.length) return "";
   const hit = new Set(res ? res.hits : []);
   const badge = res ? `<span class="badge ${res.ret ? "hit" : "miss"}">${res.ret ? "的中 " + yen(res.ret) : "外れ"}</span>` : `<span class="sub">${list.length}点・${yen(100 * list.length)}</span>`;
@@ -135,7 +135,7 @@ function axisBox(r) {
 
 function horseRows(list, withEv) {
   return list.map(h => `<div class="horse"><div class="num">${h.no}</div>
-    <div><div class="hname">${h.tier ? `<span class="badge">${TIERTAG[h.tier]}</span> ` : ""}${esc(h.name)}</div><div class="sub">勝率 ${pct(h.p)}${withEv ? ` ・ 期待値 ${h.ev.toFixed(2)}` : ` ・ 必要オッズ ${h.need.toFixed(1)}倍`}</div></div>
+    <div><div class="hname">${h.both ? `<span class="badge hit" title="合格版と馬主入りの両方が買い">★両方</span> ` : ""}${h.tier ? `<span class="badge">${TIERTAG[h.tier]}</span> ` : ""}${esc(h.name)}</div><div class="sub">勝率 ${pct(h.p)}${withEv ? ` ・ 期待値 ${h.ev.toFixed(2)}` : ` ・ 必要オッズ ${h.need.toFixed(1)}倍`}</div></div>
     <div class="right"><div class="big">${h.odds.toFixed(1)}<span class="sub">倍</span></div></div></div>`).join("");
 }
 
