@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#105e3e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="musu競馬">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>musu 競馬予想</title>
+<style>
+:root{--bg:#f4f6f5;--card:#fff;--text:#16201b;--sub:#5d6b64;--line:#e2e8e5;--accent:#105e3e;--accent2:#e6f2ec;--buy:#c2410c;--buybg:#fff1e8;--hit:#15803d;--miss:#9aa5a0}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1412;--card:#18201c;--text:#e8efeb;--sub:#97a69e;--line:#26302b;--accent:#3fbf86;--accent2:#1b2c24;--buy:#fb923c;--buybg:#2a1d14;--hit:#4ade80;--miss:#6b7770}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;font-size:16px;-webkit-text-size-adjust:100%}
+header{position:sticky;top:0;z-index:5;background:var(--accent);color:#fff;padding:calc(env(safe-area-inset-top) + 10px) 16px 10px}
+header h1{margin:0;font-size:17px;font-weight:700}
+header .meta{font-size:12px;opacity:.85;margin-top:2px}
+main{padding:12px 16px calc(84px + env(safe-area-inset-bottom))}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+nav button{flex:1;border:0;background:none;color:var(--sub);font-size:12px;padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button .ic{font-size:20px;line-height:1}
+nav button.on{color:var(--accent);font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.race-title{font-size:20px;font-weight:800;margin:0}
+.sub{color:var(--sub);font-size:13px}
+.row{display:flex;align-items:center;gap:10px}
+.between{justify-content:space-between}
+.count{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--accent2);color:var(--accent);white-space:nowrap}
+.badge.buy{background:var(--buybg);color:var(--buy)}
+.badge.hit{background:var(--hit);color:#fff}
+.badge.miss{background:transparent;color:var(--miss);border:1px solid var(--line)}
+.buy-box{background:var(--buybg);border-radius:12px;padding:12px;margin-top:12px}
+.buy-box h3{margin:0 0 8px;font-size:14px;color:var(--buy)}
+.horse{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+.horse:first-of-type{border-top:0}
+.num{flex:0 0 40px;height:40px;border-radius:10px;background:var(--accent);color:#fff;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.buy-box .num{background:var(--buy)}
+.hname{font-size:17px;font-weight:700}
+.right{margin-left:auto;text-align:right;font-variant-numeric:tabular-nums}
+.big{font-size:20px;font-weight:800}
+.none{padding:14px;text-align:center;color:var(--sub);background:var(--accent2);border-radius:12px;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 4px;border-top:1px solid var(--line);text-align:right}
+th{color:var(--sub);font-weight:600;font-size:12px}
+td:first-child,th:first-child{text-align:left}
+.chips{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px}
+.chips button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:8px 16px;font-size:15px;white-space:nowrap}
+.chips button.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.rrow{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
+.rrow:first-child{border-top:0}
+.rno{flex:0 0 44px;font-size:18px;font-weight:800}
+.rmid{flex:1;min-width:0}
+.rmid .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+details>summary{list-style:none;cursor:pointer}
+details>summary::-webkit-details-marker{display:none}
+.kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.kpi div{background:var(--accent2);border-radius:10px;padding:10px}
+.kpi b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:var(--sub)}
+.note{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.5}
+.sample{background:#fde68a;color:#713f12;font-size:12px;font-weight:700;padding:6px 16px}
+</style>
+</head>
+<body>
+<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div></header>
+<div class="sample" id="sample" hidden></div>
+<main id="view"></main>
+<nav>
+  <button data-tab="next" class="on"><span class="ic">⏱</span>次のレース</button>
+  <button data-tab="today"><span class="ic">📋</span>今日のレース</button>
+  <button data-tab="result"><span class="ic">📊</span>結果</button>
+</nav>
+<script>
+let D = null, H = [], tab = localStorage.getItem("tab") || "next", venue = null;
+const $ = s => document.querySelector(s);
+const yen = v => (v ?? 0).toLocaleString("ja-JP") + "円";
+const pct = v => v == null ? "—" : (v * 100).toFixed(1) + "%";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function now() { return D && D.now_override ? new Date(D.now_override) : new Date(); }
+function t(hm) { const [h, m] = hm.split(":").map(Number); const d = new Date(D.date + "T00:00:00+09:00"); d.setHours(h, m, 0, 0); return d; }
+
+function status(r) {
+  if (r.result) return r.buys.length ? (r.result.hit ? ["的中", "hit"] : ["外れ", "miss"]) : ["見送り", "miss"];
+  if (r.state === "decided") return r.buys.length ? [`買い ${r.buys.length}頭`, "buy"] : ["見送り", ""];
+  return ["予想前", ""];
+}
+
+function horseRows(list, withEv) {
+  return list.map(h => `<div class="horse"><div class="num">${h.no}</div>
+    <div><div class="hname">${esc(h.name)}</div><div class="sub">勝率 ${pct(h.p)}${withEv ? ` ・ 期待値 ${h.ev.toFixed(2)}` : ` ・ 必要オッズ ${h.need.toFixed(1)}倍`}</div></div>
+    <div class="right"><div class="big">${h.odds.toFixed(1)}<span class="sub">倍</span></div></div></div>`).join("");
+}
+
+function raceDetail(r) {
+  const [s, cls] = status(r);
+  let html = `<div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
+    <div class="sub">${[r.name ? esc(r.name) : "", `発走 ${r.post}`, `締切 ${r.close}`].filter(Boolean).join(" ・ ")}</div></div><span class="badge ${cls}">${s}</span></div>`;
+  if (r.state === "decided" || r.result) {
+    html += r.buys.length
+      ? `<div class="buy-box"><h3>単勝で買う（各100円）</h3>${horseRows(r.buys, true)}</div>`
+      : `<div class="none">このレースは見送り（条件に合う馬なし）</div>`;
+    if (r.top && r.top.length) html += `<details style="margin-top:10px"><summary class="sub">▼ 勝率の高い順（参考）</summary>${horseRows(r.top, false)}</details>`;
+    html += `<div class="note">オッズは判定時（締切${D.decision_min}分前）の値。買う条件: 単勝10〜50倍 かつ 期待値1.15以上。</div>`;
+  } else {
+    html += `<div class="none">予想は 締切${D.decision_min}分前（${r.decide}）に出ます</div>`;
+  }
+  if (r.result) {
+    html += `<div class="note">結果: 1着 ${r.result.first.join("・")}番 ${esc(r.result.first_name || "")}　単勝 ${yen(r.result.tan)}${r.buys.length ? ` ／ このレースの収支 ${yen(r.result.ret - r.result.bet)}` : ""}</div>`;
+  }
+  return html;
+}
+
+function viewNext() {
+  const n = now();
+  const up = D.races.filter(r => t(r.post) > n).sort((a, b) => t(a.post) - t(b.post));
+  if (!up.length) return `<div class="card"><p class="race-title">本日のレースは終了しました</p><div class="sub">結果は「結果」タブで見られます。</div></div>`;
+  const r = up[0], cl = t(r.close), left = Math.max(0, Math.floor((cl - n) / 1000));
+  const mm = Math.floor(left / 60), ss = String(left % 60).padStart(2, "0");
+  let html = `<div class="card"><div class="row between"><span class="sub">締切まで</span><span class="count" id="cd" data-close="${cl.toISOString()}">${mm}:${ss}</span></div></div>`;
+  html += `<div class="card">${raceDetail(r)}</div>`;
+  const after = up.slice(1, 4);
+  if (after.length) html += `<div class="card"><div class="sub" style="margin-bottom:4px">このあとのレース</div>${after.map(rowHtml).join("")}</div>`;
+  return html;
+}
+
+function rowHtml(r) {
+  const [s, cls] = status(r);
+  return `<details class="rrow-wrap"><summary class="rrow"><div class="rno">${r.R}R</div>
+    <div class="rmid"><div class="n">${esc(r.venue)} ${esc(r.name || "")}</div><div class="sub">発走 ${r.post}</div></div>
+    <span class="badge ${cls}">${s}</span></summary><div style="padding:4px 0 12px">${raceDetail(r)}</div></details>`;
+}
+
+function viewToday() {
+  const venues = [...new Set(D.races.map(r => r.venue))];
+  if (!venue || !venues.includes(venue)) venue = venues[0];
+  const chips = `<div class="chips">${venues.map(v => `<button data-v="${esc(v)}" class="${v === venue ? "on" : ""}">${esc(v)}</button>`).join("")}</div>`;
+  const list = D.races.filter(r => r.venue === venue).sort((a, b) => a.R - b.R);
+  return chips + `<div class="card">${list.map(rowHtml).join("")}</div>`;
+}
+
+function viewResult() {
+  const done = D.races.filter(r => r.result);
+  const bets = done.filter(r => r.buys.length);
+  const spent = bets.reduce((a, r) => a + r.result.bet, 0), ret = bets.reduce((a, r) => a + r.result.ret, 0);
+  const hits = bets.filter(r => r.result.hit).length;
+  let html = `<div class="card"><div class="sub" style="margin-bottom:8px">今日 ${D.date_ja} の成績　確定 ${done.length}/${D.races.length}レース</div>
+    <div class="kpi"><div><b>${spent ? ((ret / spent) * 100).toFixed(0) + "%" : "—"}</b><span>回収率</span></div>
+    <div><b>${yen(ret - spent)}</b><span>収支</span></div>
+    <div><b>${hits}/${bets.length}</b><span>的中/買ったレース</span></div>
+    <div><b>${yen(spent)}</b><span>投資（各100円）</span></div></div></div>`;
+  html += `<div class="card"><table><tr><th>レース</th><th>買い</th><th>1着</th><th>払戻</th></tr>${done.map(r =>
+    `<tr><td>${esc(r.venue)}${r.R}R</td><td>${r.buys.map(b => b.no).join("・") || "—"}</td><td>${r.result.first.join("・")}</td><td>${r.buys.length ? (r.result.ret ? `<b style="color:var(--hit)">${yen(r.result.ret)}</b>` : "0円") : "—"}</td></tr>`).join("")}</table></div>`;
+  if (H.length) {
+    const S = H.reduce((a, h) => ({ spent: a.spent + h.spent, ret: a.ret + h.ret, bets: a.bets + h.bets, hits: a.hits + h.hits }), { spent: 0, ret: 0, bets: 0, hits: 0 });
+    html += `<div class="card"><div class="sub" style="margin-bottom:8px">これまでの通算（${H.length}日）</div>
+      <div class="kpi"><div><b>${S.spent ? ((S.ret / S.spent) * 100).toFixed(0) + "%" : "—"}</b><span>回収率</span></div><div><b>${yen(S.ret - S.spent)}</b><span>収支</span></div></div>
+      <table style="margin-top:8px"><tr><th>日付</th><th>買い</th><th>的中</th><th>回収率</th></tr>${[...H].reverse().map(h =>
+        `<tr><td>${esc(h.date_ja)}</td><td>${h.bets}</td><td>${h.hits}</td><td>${h.spent ? ((h.ret / h.spent) * 100).toFixed(0) + "%" : "—"}</td></tr>`).join("")}</table></div>`;
+  }
+  return html;
+}
+
+function render() {
+  if (!D) return;
+  document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
+  const open = [...document.querySelectorAll("details[open] summary .rno")].map(e => e.textContent);
+  $("#view").innerHTML = tab === "next" ? viewNext() : tab === "today" ? viewToday() : viewResult();
+  document.querySelectorAll(".chips button").forEach(b => b.onclick = () => { venue = b.dataset.v; render(); });
+  document.querySelectorAll("details").forEach(d => { const k = d.querySelector(".rno"); if (k && open.includes(k.textContent)) d.open = true; });
+}
+
+async function load() {
+  try {
+    const q = "?t=" + Date.now();
+    D = await (await fetch("data/today.json" + q, { cache: "no-store" })).json();
+    try { H = await (await fetch("data/history.json" + q, { cache: "no-store" })).json(); } catch { H = []; }
+    $("#meta").textContent = `${D.date_ja} ・ 更新 ${D.generated.slice(11, 16)} ・ 判定 締切${D.decision_min}分前`;
+    const s = $("#sample"); s.hidden = !D.sample; s.textContent = D.sample || "";
+    render();
+  } catch (e) { $("#meta").textContent = "データを読み込めませんでした（電波を確認）"; }
+}
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => { tab = b.dataset.tab; localStorage.setItem("tab", tab); render(); window.scrollTo(0, 0); });
+setInterval(() => { const c = $("#cd"); if (c) { const left = Math.max(0, Math.floor((new Date(c.dataset.close) - now()) / 1000)); c.textContent = Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0"); } }, 1000);
+setInterval(load, 60000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) load(); });
+load();
+</script>
+</body>
+</html>
