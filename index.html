@@ -117,9 +117,9 @@ function modeBar() {
 function status(r) {
   if (r.state === "out") return ["対象外", "miss"];
   const bs = buysOf(r);
-  if (r.result && r.state === "decided") return bs.length ? (retOf(r) > 0 ? ["的中", "hit"] : ["外れ", "miss"]) : ["見送り", "miss"];
-  if (r.state === "missed") return ["予想なし", "miss"];
-  if (r.state === "decided") return bs.length ? [`買い ${bs.length}頭`, "buy"] : ["見送り", ""];
+  if (r.result && r.state === "decided") return bs.length ? (retOf(r) > 0 ? ["単勝 的中", "hit"] : ["単勝 外れ", "miss"]) : ["単勝 見送り", "miss"];
+  if (r.state === "missed") return ["単勝 判定なし", "miss"];
+  if (r.state === "decided") return bs.length ? [`単勝 ${bs.length}頭`, "buy"] : ["単勝 見送り", ""];
   return ["予想前", ""];
 }
 
