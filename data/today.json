@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "date_ja": "11/8（日）",
- "generated": "2026-11-08 13:49",
+ "generated": "2026-11-08 13:58",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -9451,6 +9451,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -9470,6 +9484,10 @@
      "血統（父・母の父）がこの条件に強い",
      "締切前にオッズが下がってきている（買われている）"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -9775,7 +9793,23 @@
      "pick": "high"
     }
    },
-   "asobi": []
+   "pace_res": {
+    "trio": "5-7-14",
+    "trifecta": "7→5→14",
+    "trio_rank": 2,
+    "tri_rank": 0
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "ラインジーク",
+    "tan": 520,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611080808",
