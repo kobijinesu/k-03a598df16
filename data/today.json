@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "date_ja": "11/8（日）",
- "generated": "2026-11-08 10:44",
+ "generated": "2026-11-08 10:53",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -2515,6 +2515,20 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 100,
+     "ret": 0
+    },
+    "3": {
+     "bet": 500,
+     "ret": 900
+    },
+    "4": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -2812,7 +2826,23 @@
      "pick": null
     }
    },
-   "asobi": []
+   "pace_res": {
+    "trio": "2-10-13",
+    "trifecta": "13→2→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     13
+    ],
+    "first_name": "エリーニック",
+    "tan": 900,
+    "bet": 100,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611080503",
