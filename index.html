@@ -114,8 +114,7 @@ function buysOf(r) {   // 同じ馬が「拡大」と「馬主モデルのみ」
   return r.buys.concat(ex.filter(b => b.tier === 4 || (mode !== "1" && b.tier <= +mode))).filter(b => !seen.has(b.no) && seen.add(b.no));
 }
 function retOf(r) { if (!r.result) return 0; const w = new Set(r.result.first); return buysOf(r).filter(b => w.has(b.no)).length * (r.result.tan || 0); }
-function modeBar() {
-  if (src !== "jra") return "";
+function modeBar() {   // 地方も切り替えあり（2026-11-08）
   const L = { "1": "標準", "2": "拡大", "3": "広め" };
   return `<div class="modebar">単勝の範囲 ${Object.entries(L).map(([k, v]) => `<button data-mode="${k}" class="${k === mode ? "on" : ""}">${v}</button>`).join("")}<span>${mode === "1" ? "" : "（試験中）"}</span></div>`;
 }
