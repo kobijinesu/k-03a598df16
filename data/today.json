@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "date_ja": "11/8（日）",
- "generated": "2026-11-08 16:30",
+ "generated": "2026-11-08 16:35",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -15667,6 +15667,20 @@
      "tier": 4
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 200,
+     "ret": 0
+    },
+    "3": {
+     "bet": 300,
+     "ret": 0
+    },
+    "4": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -16005,7 +16019,23 @@
      "pick": "high"
     }
    },
-   "asobi": []
+   "pace_res": {
+    "trio": "5-12-18",
+    "trifecta": "12→18→5",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     12
+    ],
+    "first_name": "ジャンヌローサ",
+    "tan": 5730,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   }
  ]
 }
