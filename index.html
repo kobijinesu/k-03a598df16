@@ -252,7 +252,7 @@ function viewNext() {
   const sb = scoreBar(), left = Math.max(0, Math.floor((cl - n) / 1000));
   const mm = Math.floor(left / 60), ss = String(left % 60).padStart(2, "0");
   const [s, cls] = status(r);
-  let html = sb + `<div class="card"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
+  let html = sb + `<div class="card" data-k="n${r.id}"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
       <div class="sub">${[r.name && r.name !== r.venue ? esc(r.name) : "", `発走 ${r.post}`].filter(Boolean).join(" ・ ")}</div></div>
       <div style="text-align:right"><div class="sub">発走まで</div><div class="count" id="cd" data-close="${cl.toISOString()}">${mm}:${ss}</div></div></div>
     ${raceDetail(r, { noHead: true })}</div>`;
@@ -285,7 +285,7 @@ function rowHtml(r, showVenue) {
   if (r.oshi) tags.push(`🔮${r.oshi.no}番${r.oshi_res ? (r.oshi_res.hit ? "✅" : "") : ""}`);
   if (bs.length) tags.push(`💴${bs.map(b => b.no).join("・")}${r.result && retOf(r) > 0 ? "✅" : ""}`);
   if (r.result) tags.push(`<span style="color:var(--sub)">1着${r.result.first.join("・")}番</span>`);
-  return `<details class="rrow-wrap"${opt_id(r)}><summary class="rrow"><div class="rno">${r.R}R</div>
+  return `<details class="rrow-wrap" data-k="r${r.id}"${opt_id(r)}><summary class="rrow"><div class="rno">${r.R}R</div>
     <div class="rmid"><div class="n">${showVenue ? esc(r.venue) + " " : ""}${esc(r.name && r.name !== r.venue ? r.name : "")}</div><div class="sub">発走 ${r.post}${tags.map(x => `　<span style="white-space:nowrap">${x}</span>`).join("")}</div></div>
     <span class="badge ${cls}">${s}</span></summary><div style="padding:4px 0 12px">${raceDetail(r, { noHead: true })}</div></details>`;
 }
@@ -351,11 +351,22 @@ function render() {
   if (!D) return;
   mode = src === "jra" ? modeSel : "1";
   document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
-  const open = [...document.querySelectorAll("details[open] summary .rno")].map(e => e.textContent);
+  // 描き直しても、開いていた所（レース・🎬・10万回の中身など）と画面の位置はそのまま
+  const open = new Set([...document.querySelectorAll("#view details[open]")].map(dkey)), y = window.scrollY, same = lastTab === tab;
   $("#view").innerHTML = modeBar() + (tab === "next" ? viewNext() : tab === "today" ? viewToday() : viewResult());
   document.querySelectorAll(".chips button[data-v]").forEach(b => b.onclick = () => { venue = b.dataset.v; render(); });
   document.querySelectorAll("button[data-mode]").forEach(b => b.onclick = () => { modeSel = b.dataset.mode; try { localStorage.setItem("mode", modeSel); } catch {} render(); });
-  document.querySelectorAll("details").forEach(d => { const k = d.querySelector(".rno"); if (k && open.includes(k.textContent)) d.open = true; });
+  document.querySelectorAll("#view details").forEach(d => { if (open.has(dkey(d))) d.open = true; });
+  if (same) window.scrollTo(0, y);
+  lastTab = tab;
+}
+
+let lastTab = null;
+function dkey(d) {   // 開閉を覚えるための名前: レース（data-k）＋見出しの文字（数字や結果で変わる部分は除く）
+  if (d.dataset.k) return tab + d.dataset.k;
+  const root = d.parentElement.closest("[data-k]");
+  const sm = d.querySelector(":scope > summary"), sp = sm && (sm.querySelector(":scope > span") || sm);
+  return tab + (root ? root.dataset.k : "v") + "|" + (sp ? sp.textContent.replace(/[0-9０-９,.\-→・:：%円（）()]+/g, "").trim().slice(0, 24) : "");
 }
 
 async function load() {
