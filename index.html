@@ -178,8 +178,12 @@ function paceBox(r) {
   // 🎬 展開予想（検証中）
   const v = r.pace; if (!v) return "";
   const res = r.pace_res, lab = { high: "ハイペースなら", slow: "スローなら", inner: "内が伸びる馬場なら", outer: "外が伸びる馬場なら", chaos: "荒れるなら", calm: "堅く決まるなら" };
-  const sc = ["high", "slow", "inner", "outer", "chaos"].filter(k => v.scen[k] && v.scen[k].diff > 0.02)
-    .map(k => `<li>${lab[k]}：<b>${v.scen[k].no}番 ${esc(v.scen[k].name)}</b>（3着以内 ${pct(v.scen[k].t3)}、+${(v.scen[k].diff * 100).toFixed(0)}pt）</li>`).join("");
+  // もしもの展開: 展開ごとに「⬆浮く馬」と「⬇沈む人気馬（勝率の上位3頭のうち、いちばん下がる馬）」を1行に（2026-11-08 見やすく）
+  const lab2 = { high: "ハイペース", slow: "スロー", inner: "内が有利", outer: "外が有利", chaos: "荒れる" };
+  const cell = (h, up) => h ? `<b>${h.no}</b> <span style="font-size:11px">${esc(h.name || "")}</span><div class="sub" style="font-size:10.5px">3着内 ${pct(h.t3)}（<span style="color:${up ? "var(--hit)" : "var(--buy)"}">${up ? "+" : ""}${(h.diff * 100).toFixed(0)}pt</span>）</div>` : `<span class="sub">—</span>`;
+  const sr = ["high", "slow", "inner", "outer", "chaos"].filter(k => v.scen[k] && (v.scen[k].diff > 0.02 || v.scen[k].down))
+    .map(k => `<tr><td style="text-align:left;white-space:nowrap;font-size:11px">${lab2[k]}</td><td style="text-align:left;white-space:normal">${v.scen[k].diff > 0.02 ? cell(v.scen[k], true) : cell(null)}</td><td style="text-align:left;white-space:normal">${cell(v.scen[k].down, false)}</td></tr>`).join("");
+  const sc = sr ? `<table class="sim" style="table-layout:fixed"><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><tr><th style="text-align:left">もしも〜なら</th><th style="text-align:left">⬆ 浮く馬</th><th style="text-align:left">⬇ 沈む人気馬</th></tr>${sr}</table>` : "";
   const tri = v.trifecta[0], trio = v.trio[0];
   let today = "";
   if (v.today) {
@@ -199,7 +203,7 @@ function paceBox(r) {
     <div style="padding:6px 0 8px">
       ${v.front && v.front.length ? `<div>前に行きそう：<b>${v.front.map(h => `${h.no}番`).join("・")}</b>　後ろから：${v.back.map(h => `${h.no}番`).join("・")}</div>` : ""}
       <div style="margin-top:4px">10万回走らせると：3連単 <b>${esc(tri.kumi)}</b> が約${Math.round(tri.p * 100000).toLocaleString()}回、3連複 <b>${esc(trio.kumi)}</b> が約${Math.round(trio.p * 100000).toLocaleString()}回（いちばん多い決着）</div>
-      ${sc ? `<div class="sub" style="margin-top:6px">もしもの展開</div><ul style="margin:2px 0 0 18px;padding:0">${sc}</ul>` : ""}
+      ${sc ? `<div class="sub" style="margin-top:6px">もしもの展開（3着以内の確率が、ふつうの見立てから何pt動くか）</div>${sc}` : ""}
       ${simMore(v, res, r)}
       <details class="info"><summary>ℹ 展開予想について</summary><div class="note">ペース・馬場の内外・荒れ具合で馬が「まとめて動く」ことを入れて全通りを計算（10万回のシミュレーションを無限回まわしたのと同じ）。過去の確認で、今の計算より1〜3着の当たり方がわずかに良い。（検証中）</div></details>
     </div></details>`;
