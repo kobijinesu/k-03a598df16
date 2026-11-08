@@ -6,17 +6,17 @@
   "hits": 0,
   "spent": 0,
   "ret": 0,
-  "a_races": 5,
-  "a_hits": 0,
-  "a_spent": 2200,
-  "a_ret": 0,
+  "a_races": 6,
+  "a_hits": 1,
+  "a_spent": 3000,
+  "a_ret": 3280,
   "ext": {
    "2": {
     "spent": 200,
     "ret": 0
    },
    "3": {
-    "spent": 300,
+    "spent": 400,
     "ret": 0
    },
    "4": {
@@ -25,7 +25,7 @@
    }
   },
   "oshi": {
-   "n": 0,
+   "n": 1,
    "hit": 0,
    "win": 0
   },
