@@ -157,14 +157,15 @@ function oshiBox(r) {
   </div>`;
 }
 
-function simMore(v, res) {   // 🎬 の中の「▼ 10万回の中身」: 上位10の決着と馬ごとの着順（開いた時だけ）
+function simMore(v, res, r) {   // 🎬 の中の「▼ 10万回の中身」: 上位10の決着と馬ごとの着順（開いた時だけ）
   if (!v.horses && !v.trio10) return "";
   const k = x => Math.round(x * 100000).toLocaleString();
   const mark = (list, hit) => (list || []).map((x, i) => `<tr${hit && x.kumi === hit ? ' style="background:var(--buybg);font-weight:700"' : ""}><td>${i + 1}</td><td style="text-align:left">${esc(x.kumi)}${hit && x.kumi === hit ? " ✅" : ""}</td><td>${k(x.p)}回</td></tr>`).join("");
-  const hs = (v.horses || []).map(h => `<tr><td style="text-align:left"><b>${h.no}</b><div class="sub" style="font-size:10px;max-width:4.2em;overflow:hidden;text-overflow:ellipsis">${esc(h.name || "")}</div></td>
+  const od = {}; ((r && r.top) || []).forEach(x => { od[x.no] = x.odds; });   // 判定した時点の単勝オッズ
+  const hs = (v.horses || []).map(h => `<tr><td style="text-align:left"><b>${h.no}</b>${od[h.no] ? `<span class="sub" style="font-size:10px"> ${od[h.no]}倍</span>` : ""}<div class="sub" style="font-size:10px;max-width:4.2em;overflow:hidden;text-overflow:ellipsis">${esc(h.name || "")}</div></td>
       <td>${k(h.p1)}</td><td>${k(h.p2)}</td><td>${k(h.p3)}</td><td><b>${pct(h.p1)}</b></td><td>${pct(h.p1 + h.p2)}</td><td>${pct(h.p1 + h.p2 + h.p3)}</td></tr>`).join("");
   return `<details class="info" style="margin-top:8px"><summary>▼ 10万回の中身（上位10の決着・馬ごとの着順）</summary>
-    ${hs ? `<div class="sub" style="margin:6px 0 2px">馬ごと（10万回のうち何回その着順か）</div>
+    ${hs ? `<div class="sub" style="margin:6px 0 2px">馬ごと（10万回のうち何回その着順か。倍＝判定した時点の単勝オッズ）</div>
     <div style="overflow-x:auto"><table class="sim"><tr><th style="text-align:left">馬</th><th>1着</th><th>2着</th><th>3着</th><th>勝率</th><th>連対</th><th>複勝</th></tr>${hs}</table></div>` : ""}
     ${v.trio10 ? `<div class="sub" style="margin:8px 0 2px">3連複 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th></tr>${mark(v.trio10, res && res.trio)}</table>` : ""}
     ${v.tri10 ? `<div class="sub" style="margin:8px 0 2px">3連単 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th></tr>${mark(v.tri10, res && res.trifecta)}</table>` : ""}
@@ -197,7 +198,7 @@ function paceBox(r) {
       ${v.front && v.front.length ? `<div>前に行きそう：<b>${v.front.map(h => `${h.no}番`).join("・")}</b>　後ろから：${v.back.map(h => `${h.no}番`).join("・")}</div>` : ""}
       <div style="margin-top:4px">10万回走らせると：3連単 <b>${esc(tri.kumi)}</b> が約${Math.round(tri.p * 100000).toLocaleString()}回、3連複 <b>${esc(trio.kumi)}</b> が約${Math.round(trio.p * 100000).toLocaleString()}回（いちばん多い決着）</div>
       ${sc ? `<div class="sub" style="margin-top:6px">もしもの展開</div><ul style="margin:2px 0 0 18px;padding:0">${sc}</ul>` : ""}
-      ${simMore(v, res)}
+      ${simMore(v, res, r)}
       <details class="info"><summary>ℹ 展開予想について</summary><div class="note">ペース・馬場の内外・荒れ具合で馬が「まとめて動く」ことを入れて全通りを計算（10万回のシミュレーションを無限回まわしたのと同じ）。過去の確認で、今の計算より1〜3着の当たり方がわずかに良い。（検証中）</div></details>
     </div></details>`;
 }
@@ -239,7 +240,7 @@ function raceDetail(r, opt = {}) {
     html += `<div class="line mute">予想は ${lbl()}（${r.decide}ごろ）に出ます</div>`;
   }
   if (r.result) {
-    html += `<div class="note" style="margin-top:8px">🏁 結果：1着 <b>${r.result.first.join("・")}番</b> ${esc(r.result.first_name || "")}　単勝 ${yen(r.result.tan)}${buysOf(r).length ? `　／　単勝の収支 ${yen(retOf(r) - 100 * buysOf(r).length)}` : ""}</div>`;
+    html += `<div class="note" style="margin-top:8px">🏁 結果：1着 <b>${r.result.first.join("・")}番</b> ${esc(r.result.first_name || "")}　単勝 ${yen(r.result.tan)}${r.result.tan ? `（${(r.result.tan / 100).toFixed(1)}倍）` : ""}${buysOf(r).length ? `　／　単勝の収支 ${yen(retOf(r) - 100 * buysOf(r).length)}` : ""}</div>`;
   }
   return html;
 }
@@ -284,7 +285,7 @@ function rowHtml(r, showVenue) {
   const tags = [];
   if (r.oshi) tags.push(`🔮${r.oshi.no}番${r.oshi_res ? (r.oshi_res.hit ? "✅" : "") : ""}`);
   if (bs.length) tags.push(`💴${bs.map(b => b.no).join("・")}${r.result && retOf(r) > 0 ? "✅" : ""}`);
-  if (r.result) tags.push(`<span style="color:var(--sub)">1着${r.result.first.join("・")}番</span>`);
+  if (r.result) tags.push(`<span style="color:var(--sub)">1着${r.result.first.join("・")}番${r.result.tan ? ` ${(r.result.tan / 100).toFixed(1)}倍` : ""}</span>`);
   return `<details class="rrow-wrap" data-k="r${r.id}"${opt_id(r)}><summary class="rrow"><div class="rno">${r.R}R</div>
     <div class="rmid"><div class="n">${showVenue ? esc(r.venue) + " " : ""}${esc(r.name && r.name !== r.venue ? r.name : "")}</div><div class="sub">発走 ${r.post}${tags.map(x => `　<span style="white-space:nowrap">${x}</span>`).join("")}</div></div>
     <span class="badge ${cls}">${s}</span></summary><div style="padding:4px 0 12px">${raceDetail(r, { noHead: true })}</div></details>`;
