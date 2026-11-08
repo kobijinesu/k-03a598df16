@@ -76,6 +76,9 @@ details>summary::-webkit-details-marker{display:none}
 .kpi b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
 .kpi span{font-size:12px;color:var(--sub)}
 .note{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.5}
+table.sim{width:100%;border-collapse:collapse;font-size:11.5px;font-variant-numeric:tabular-nums}
+table.sim th,table.sim td{padding:3px 3px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+table.sim th{color:var(--sub);font-weight:600}
 .sample{background:#fde68a;color:#713f12;font-size:12px;font-weight:700;padding:6px 16px}
 </style>
 </head>
@@ -154,6 +157,20 @@ function oshiBox(r) {
   </div>`;
 }
 
+function simMore(v, res) {   // 🎬 の中の「▼ 10万回の中身」: 上位10の決着と馬ごとの着順（開いた時だけ）
+  if (!v.horses && !v.trio10) return "";
+  const k = x => Math.round(x * 100000).toLocaleString();
+  const mark = (list, hit) => (list || []).map((x, i) => `<tr${hit && x.kumi === hit ? ' style="background:var(--buybg);font-weight:700"' : ""}><td>${i + 1}</td><td style="text-align:left">${esc(x.kumi)}${hit && x.kumi === hit ? " ✅" : ""}</td><td>${k(x.p)}回</td></tr>`).join("");
+  const hs = (v.horses || []).map(h => `<tr><td style="text-align:left"><b>${h.no}</b><div class="sub" style="font-size:10px;max-width:5.5em;overflow:hidden;text-overflow:ellipsis">${esc(h.name || "")}</div></td>
+      <td>${k(h.p1)}</td><td>${k(h.p2)}</td><td>${k(h.p3)}</td><td><b>${pct(h.p1)}</b></td><td>${pct(h.p1 + h.p2)}</td><td>${pct(h.p1 + h.p2 + h.p3)}</td></tr>`).join("");
+  return `<details class="info" style="margin-top:8px"><summary>▼ 10万回の中身（上位10の決着・馬ごとの着順）</summary>
+    ${hs ? `<div class="sub" style="margin:6px 0 2px">馬ごと（10万回のうち何回その着順か）</div>
+    <div style="overflow-x:auto"><table class="sim"><tr><th style="text-align:left">馬</th><th>1着</th><th>2着</th><th>3着</th><th>勝率</th><th>連対</th><th>複勝</th></tr>${hs}</table></div>` : ""}
+    ${v.trio10 ? `<div class="sub" style="margin:8px 0 2px">3連複 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th></tr>${mark(v.trio10, res && res.trio)}</table>` : ""}
+    ${v.tri10 ? `<div class="sub" style="margin:8px 0 2px">3連単 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th></tr>${mark(v.tri10, res && res.trifecta)}</table>` : ""}
+  </details>`;
+}
+
 function paceBox(r) {
   // 🎬 展開予想（検証中）
   const v = r.pace; if (!v) return "";
@@ -173,13 +190,14 @@ function paceBox(r) {
       ? `<div class="line">🏟 <b>今日の馬場：${words.join("・")}</b>${pk ? `<br>→ この馬場なら <b>${pk.no}番 ${esc(pk.name)}</b>（3着以内 ${pct(pk.t3)}）` : ""}<div class="sub">この場の前の${t_.n}レースから自動で判断（同じ傾向が続くのは6割ほど）</div></div>`
       : `<div class="line mute">🏟 今日の馬場：${t_.n ? "はっきりした偏りはまだ見えない" : "この場の最初のレースなので、まだ分からない"}</div>`;
   }
-  const hit = res ? (res.tri_rank ? `<span class="badge hit">3連単 的中！</span>` : res.trio_rank ? `<span class="badge hit">3連複 的中</span>` : `<span class="badge miss">外れ（${esc(res.trio)}）</span>`) : "";
+  const hit = res ? (res.tri_rank ? `<span class="badge hit">3連単 的中！</span>` : res.trio_rank ? `<span class="badge hit">3連複 的中</span>` : `<span class="badge miss">外れ（${esc(res.trio)}${(() => { const i = (v.trio10 || []).findIndex(x => x.kumi === res.trio); return i >= 0 ? `・${i + 1}番目` : ""; })()}）</span>`) : "";
   return `${today}
     <details class="sec"><summary><span>🎬 起きやすい決着 <b>3連複 ${esc(trio.kumi)}</b></span>${hit || '<span class="sub">くわしく ▼</span>'}</summary>
     <div style="padding:6px 0 8px">
       ${v.front && v.front.length ? `<div>前に行きそう：<b>${v.front.map(h => `${h.no}番`).join("・")}</b>　後ろから：${v.back.map(h => `${h.no}番`).join("・")}</div>` : ""}
       <div style="margin-top:4px">10万回走らせると：3連単 <b>${esc(tri.kumi)}</b> が約${Math.round(tri.p * 100000).toLocaleString()}回、3連複 <b>${esc(trio.kumi)}</b> が約${Math.round(trio.p * 100000).toLocaleString()}回（いちばん多い決着）</div>
       ${sc ? `<div class="sub" style="margin-top:6px">もしもの展開</div><ul style="margin:2px 0 0 18px;padding:0">${sc}</ul>` : ""}
+      ${simMore(v, res)}
       <details class="info"><summary>ℹ 展開予想について</summary><div class="note">ペース・馬場の内外・荒れ具合で馬が「まとめて動く」ことを入れて全通りを計算（10万回のシミュレーションを無限回まわしたのと同じ）。過去の確認で、今の計算より1〜3着の当たり方がわずかに良い。（検証中）</div></details>
     </div></details>`;
 }
@@ -230,13 +248,13 @@ function viewNext() {
   const n = now();
   const up = D.races.filter(r => r.state !== "out" && t(r.post) > n).sort((a, b) => t(a.post) - t(b.post));
   if (!up.length) return `<div class="card"><p class="race-title">本日のレースは終了しました</p><div class="sub">結果は「結果」タブで見られます。</div></div>`;
-  const r = up[0], cl = t(r.close)
+  const r = up[0], cl = t(r.post)
   const sb = scoreBar(), left = Math.max(0, Math.floor((cl - n) / 1000));
   const mm = Math.floor(left / 60), ss = String(left % 60).padStart(2, "0");
   const [s, cls] = status(r);
   let html = sb + `<div class="card"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
       <div class="sub">${[r.name && r.name !== r.venue ? esc(r.name) : "", `発走 ${r.post}`].filter(Boolean).join(" ・ ")}</div></div>
-      <div style="text-align:right"><div class="sub">締切まで</div><div class="count" id="cd" data-close="${cl.toISOString()}">${mm}:${ss}</div></div></div>
+      <div style="text-align:right"><div class="sub">発走まで</div><div class="count" id="cd" data-close="${cl.toISOString()}">${mm}:${ss}</div></div></div>
     ${raceDetail(r, { noHead: true })}</div>`;
   const after = up.slice(1, 4);
   if (after.length) html += `<div class="card"><div class="sub" style="margin-bottom:4px">このあとのレース</div>${after.map(x => rowHtml(x, true)).join("")}</div>`;
