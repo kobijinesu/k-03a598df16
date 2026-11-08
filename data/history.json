@@ -2,25 +2,25 @@
  {
   "date": "20261108",
   "date_ja": "11/8（日）",
-  "bets": 1,
+  "bets": 3,
   "hits": 0,
-  "spent": 100,
+  "spent": 300,
   "ret": 0,
-  "a_races": 14,
+  "a_races": 15,
   "a_hits": 3,
-  "a_spent": 5800,
+  "a_spent": 6100,
   "a_ret": 12780,
   "ext": {
    "2": {
-    "spent": 500,
+    "spent": 700,
     "ret": 1780
    },
    "3": {
-    "spent": 1700,
+    "spent": 2000,
     "ret": 2680
    },
    "4": {
-    "spent": 300,
+    "spent": 500,
     "ret": 0
    }
   },
