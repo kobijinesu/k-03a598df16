@@ -256,7 +256,7 @@ function viewNext() {
   const sb = scoreBar(), left = Math.max(0, Math.floor((cl - n) / 1000));
   const mm = Math.floor(left / 60), ss = String(left % 60).padStart(2, "0");
   const [s, cls] = status(r);
-  let html = sb + `<div class="card" data-k="n${r.id}"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
+  let html = sb + win5Box() + `<div class="card" data-k="n${r.id}"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
       <div class="sub">${[r.name && r.name !== r.venue ? esc(r.name) : "", `発走 ${r.post}`].filter(Boolean).join(" ・ ")}</div></div>
       <div style="text-align:right"><div class="sub">発走まで</div><div class="count" id="cd" data-close="${cl.toISOString()}">${mm}:${ss}</div></div></div>
     ${raceDetail(r, { noHead: true })}</div>`;
@@ -275,6 +275,29 @@ function scoreBar() {   // 次のレースの上: 今日ここまでの当たり
   if (pr.length) parts.push(`🎬 決着 <b>${pr.filter(r => r.pace_res.trio_rank).length}/${pr.length}</b>`);
   if (!parts.length) return "";
   return `<div class="sub" style="margin:0 2px 8px;line-height:1.8">今日ここまで　${parts.map(x => `<span style="white-space:nowrap">${x}</span>`).join("　")}</div>`;
+}
+
+function win5Box() {   // 🎯 WIN5（試験中）: 対象5レース、買い目（フォーメーション）、結果
+  const w = D.win5; if (!w || src !== "jra") return "";
+  const R_ = id => D.races.find(r => r.id === id) || {};
+  const nm = id => { const r = R_(id); return r.venue ? `${esc(r.venue)}${r.R}R` : id.slice(-4); };
+  let body = "";
+  if (w.note) body = `<div class="sub">${esc(w.note)}</div>`;
+  else if (w.pending) body = `<div class="sub">対象：${w.legs.map(nm).join("・")}<br>買い目は1レース目（${nm(w.legs[0])}）の発走10分前に出します。</div>`;
+  else {
+    const ff = w.forms || [];
+    const head = `<tr><th style="text-align:left">レース</th>${ff.map((f, i) => `<th>買い目${i + 1}</th>`).join("")}</tr>`;
+    const rows = w.legs.map((id, k) => { const win = R_(id).result ? new Set(R_(id).result.first) : null;
+      return `<tr><td style="text-align:left;white-space:nowrap">${k + 1}. ${nm(id)}</td>${ff.map(f => `<td style="text-align:left">${f[k].map(n => win && win.has(n) ? `<b style="color:var(--hit)">${n}</b>` : n).join("・")}</td>`).join("")}</tr>`; }).join("");
+    const pts = ff.map(f => f.reduce((a, s) => a * s.length, 1));
+    const res = w.res ? (w.res.hit ? `<span class="badge hit">的中 ${yen(w.res.pay)}</span>` : `<span class="badge miss">外れ</span>`) : "";
+    body = `<div class="row between" style="margin-bottom:6px"><div class="sub">合計 <b>${w.pts}点（${yen(100 * w.pts)}）</b>・${w.at}判定</div>${res}</div>
+      <div style="overflow-x:auto"><table class="sim">${head}${rows}<tr><td style="text-align:left" class="sub">点数</td>${pts.map(p => `<td class="sub">${p}点</td>`).join("")}</tr></table></div>
+      <div class="note">即PATの「フォーメーション」で、買い目ごとに各レースの馬を選んで入れます（買い目どうしの重なりは合計から除いています）。少なく買うなら買い目1から順に。</div>
+      ${(w.top || []).length ? `<details class="info"><summary>▼ 期待値の高い組（上位${w.top.length}）</summary><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>起きる確率</th></tr>${w.top.map((x, i) => `<tr><td>${i + 1}</td><td style="text-align:left">${x.kumi.join("-")}</td><td>${(x.p * 100).toFixed(3)}%</td></tr>`).join("")}</table></details>` : ""}`;
+  }
+  return `<div class="card"><details class="sec" data-k="w5" open><summary><span>🎯 <b>WIN5</b>（試験中）</span><span class="sub">${w.legs.map(nm).join("・")}</span></summary><div style="padding:6px 0">${body}
+    <details class="info"><summary>ℹ この買い方について</summary><div class="note">5レースの勝率と「世間の WIN5 の票の入り方（人気馬に偏る）」から、当たれば配当が大きい割に起きやすい組を選びます。過去（2023-26、256回）は1回1000点で約140%、的中は10回に1回ほど。市場だけで同じことをすると約66%。外れが何週も続くのが普通の買い方です。まだ確かめ中なので、紙の上の記録を続けています。</div></details></div></details></div>`;
 }
 
 function opt_id(r) {   // 今日のレースで、次に締切が来るレースの行に印（開いた時にそこまで動かす）
@@ -302,7 +325,7 @@ function viewToday() {
   }
   const chips = `<div class="chips">${venues.map(v => `<button data-v="${esc(v)}" class="${v === venue ? "on" : ""}">${esc(v)}</button>`).join("")}</div>`;
   const list = D.races.filter(r => r.venue === venue).sort((a, b) => a.R - b.R);
-  return chips + `<div class="card">${list.map(r => rowHtml(r, false)).join("")}</div>`;
+  return win5Box() + chips + `<div class="card">${list.map(r => rowHtml(r, false)).join("")}</div>`;
 }
 
 function viewResult() {
@@ -316,7 +339,7 @@ function viewResult() {
   const spent = bets.reduce((a, r) => a + 100 * buysOf(r).length, 0), ret = bets.reduce((a, r) => a + retOf(r), 0);
   // 収支の欄: 買った額 → 払戻 → 差し引き・回収率 を全部書く（どれか1つだけだと誤解されるため）
   const money = (r_, s_) => `<div class="sub">買い ${yen(s_)}<br>→ 払戻 ${yen(r_)}</div>${pm(r_ - s_)}<span class="sub">・回収率 <b>${pctS(r_, s_)}</b></span>`;
-  rows.push([`💴 単勝${src === "jra" && mode !== "1" ? `（${MODES[mode]}）` : ""}`, bets.length ? `${bets.filter(r => retOf(r) > 0).length}/${bets.length}<div class="sub" style="font-size:10px">${bets.reduce((a, r) => a + buysOf(r).length, 0)}頭</div>` : "—", spent ? money(ret, spent) : `<span class="sub">買いなし</span>`]);
+  rows.push([`💴 単勝${mode !== "1" ? `（${MODES[mode]}）` : ""}`, bets.length ? `${bets.filter(r => retOf(r) > 0).length}/${bets.length}<div class="sub" style="font-size:10px">${bets.reduce((a, r) => a + buysOf(r).length, 0)}頭</div>` : "—", spent ? money(ret, spent) : `<span class="sub">買いなし</span>`]);
   // 推し
   const od = D.races.filter(r => r.oshi_res);
   if (D.races.some(r => r.oshi)) rows.push(["🔮 推し", `${od.filter(r => r.oshi_res.hit).length}/${od.length}`, `<span class="sub">3着以内に来た数${od.filter(r => r.oshi_res.win).length ? `（1着 ${od.filter(r => r.oshi_res.win).length}）` : ""}</span>`]);
@@ -329,6 +352,7 @@ function viewResult() {
     rows.push(["🧲 3連単", `${xd.filter(r => r.axis_res[mode].ret).length}/${xd.length}`, money(xr, xs)]); }
   // 🎉
   const ad = D.races.filter(r => r.asobi_res);
+  if (src === "jra" && D.win5 && D.win5.res) { const w = D.win5.res; rows.push(["🎯 WIN5", w.hit ? "1/1" : "0/1", money(w.pay, w.bet)]); }
   if (ad.length) { const as = ad.reduce((a, r) => a + r.asobi_res.bet, 0), ar = ad.reduce((a, r) => a + r.asobi_res.ret, 0);
     rows.push(["🎉 お楽しみ", `${ad.filter(r => r.asobi_res.hits.length).length}/${ad.length}`, money(ar, as)]); }
   let html = `<div class="card"><div class="sub" style="margin-bottom:6px">今日 ${D.date_ja} のまとめ（結果が出た ${done.length}/${D.races.filter(r => r.state !== "out").length}レース）</div>
@@ -342,6 +366,7 @@ function viewResult() {
   if (mode !== "1" && HE.length) { const s_ = HE.reduce((a, h) => a + h.ext[mode].spent, 0), r_ = HE.reduce((a, h) => a + h.ext[mode].ret, 0); tot.push([`💴 単勝（${MODES[mode]}）`, money(r_, s_)]); }
   const HO = H.filter(h => h.oshi && h.oshi.n); if (HO.length) { const n_ = HO.reduce((a, h) => a + h.oshi.n, 0), h_ = HO.reduce((a, h) => a + h.oshi.hit, 0); tot.push(["🔮 推し", `${h_}/${n_}頭（${pctS(h_, n_)}）が3着以内`]); }
   const HX = H.filter(h => h.axis && h.axis[mode] && h.axis[mode].spent); if (HX.length) { const s_ = HX.reduce((a, h) => a + h.axis[mode].spent, 0), r_ = HX.reduce((a, h) => a + h.axis[mode].ret, 0); tot.push(["🧲 3連単（1着固定）", money(r_, s_)]); }
+  const HW = H.filter(h => h.w5 && h.w5.spent); if (HW.length) { const s_ = HW.reduce((a, h) => a + h.w5.spent, 0), r_ = HW.reduce((a, h) => a + h.w5.ret, 0); tot.push([`🎯 WIN5（${HW.filter(h => h.w5.hit).length}/${HW.length}回）`, money(r_, s_)]); }
   const HA = H.filter(h => h.a_spent); if (HA.length) { const s_ = HA.reduce((a, h) => a + h.a_spent, 0), r_ = HA.reduce((a, h) => a + h.a_ret, 0); tot.push(["🎉 お楽しみ", money(r_, s_)]); }
   if (tot.length) html += `<div class="card"><div class="sub" style="margin-bottom:6px">これまでの通算（${H.length}日）</div><table>${tot.map(r => `<tr><td style="text-align:left">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div>`;
   // 細かい表
@@ -354,7 +379,7 @@ function viewResult() {
 
 function render() {
   if (!D) return;
-  mode = src === "jra" ? modeSel : "1";
+  mode = modeSel;   // 地方も切り替えあり（2026-11-08）
   document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
   // 描き直しても、開いていた所（レース・🎬・10万回の中身など）と画面の位置はそのまま
   const open = new Set([...document.querySelectorAll("#view details[open]")].map(dkey)), y = window.scrollY, same = lastTab === tab;
