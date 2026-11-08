@@ -109,7 +109,10 @@ try { modeSel = localStorage.getItem("mode") || "1"; if (!["1", "2", "3"].includ
 const MODES = { "1": "標準", "2": "拡大", "3": "広め" };   // 標準＝合格モデル＋馬主モデル（2026-11-08 から）
 const TIERTAG = { 2: "拡大", 3: "広め", 4: "馬主モデルのみ" };
 // 単勝の買い: 標準＝合格モデルの買い＋馬主モデルだけの買い（tier 4）。拡大・広めはさらに tier 2・3 を足す
-function buysOf(r) { const ex = r.buys_ext || []; return r.buys.concat(ex.filter(b => b.tier === 4 || (mode !== "1" && b.tier <= +mode))); }
+function buysOf(r) {   // 同じ馬が「拡大」と「馬主モデルのみ」の両方に入っていても1頭として数える（2026-11-08 直し）
+  const ex = r.buys_ext || [], seen = new Set();
+  return r.buys.concat(ex.filter(b => b.tier === 4 || (mode !== "1" && b.tier <= +mode))).filter(b => !seen.has(b.no) && seen.add(b.no));
+}
 function retOf(r) { if (!r.result) return 0; const w = new Set(r.result.first); return buysOf(r).filter(b => w.has(b.no)).length * (r.result.tan || 0); }
 function modeBar() {
   if (src !== "jra") return "";
@@ -328,8 +331,8 @@ function viewResult() {
   if (ad.length) { const as = ad.reduce((a, r) => a + r.asobi_res.bet, 0), ar = ad.reduce((a, r) => a + r.asobi_res.ret, 0);
     rows.push(["🎉 お楽しみ", `${ad.filter(r => r.asobi_res.hits.length).length}/${ad.length}`, money(ar, as)]); }
   let html = `<div class="card"><div class="sub" style="margin-bottom:6px">今日 ${D.date_ja} のまとめ（結果が出た ${done.length}/${D.races.filter(r => r.state !== "out").length}レース）</div>
-    <table><tr><th style="text-align:left">種類</th><th>的中</th><th>収支</th></tr>${rows.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td style="white-space:nowrap">${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>
-    <div class="note">各100円で買った場合。🧲・🎉・拡大・広めは試験中の買い方です。</div></div>`;
+    <table><tr><th style="text-align:left">種類</th><th>的中<div style="font-weight:400;font-size:10px">当たり/買ったレース</div></th><th>収支</th></tr>${rows.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td style="white-space:nowrap">${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>
+    <div class="note">各100円で買った場合。回収率＝払戻÷買った額（100%で元が戻る）。🧲・🎉・拡大・広めは試験中の買い方です。</div></div>`;
   // 通算
   const tot = [];
   const hs = h => (h.ext && h.ext["4"] && h.ext["4"].spent) ? h.ext["4"] : { spent: h.spent, ret: h.ret };   // 標準（合格＋馬主）。古い日は合格モデルだけ
