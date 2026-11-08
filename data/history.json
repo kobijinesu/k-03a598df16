@@ -6,9 +6,9 @@
   "hits": 0,
   "spent": 300,
   "ret": 0,
-  "a_races": 17,
+  "a_races": 18,
   "a_hits": 3,
-  "a_spent": 7400,
+  "a_spent": 7700,
   "a_ret": 12780,
   "ext": {
    "2": {
@@ -16,8 +16,8 @@
     "ret": 1780
    },
    "3": {
-    "spent": 2200,
-    "ret": 2680
+    "spent": 2400,
+    "ret": 3110
    },
    "4": {
     "spent": 500,
