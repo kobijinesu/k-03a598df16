@@ -361,6 +361,19 @@ function viewResult() {
   let html = `<div class="card"><div class="sub" style="margin-bottom:6px">今日 ${D.date_ja} のまとめ（結果が出た ${done.length}/${D.races.filter(r => r.state !== "out").length}レース）</div>
     <table><tr><th style="text-align:left">種類</th><th style="white-space:nowrap">的中</th><th>収支</th></tr>${rows.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td style="white-space:nowrap">${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>
     <div class="note">各100円で買った場合。的中＝当たったレース数/買ったレース数。回収率＝払戻÷買った額（100%で元が戻る）。🧲・🎉・拡大・広めは試験中の買い方です。</div></div>`;
+  // 地方: 結果は翌朝に入るので、今日のまとめは夜まで空。いちばん新しい日（たいてい昨日）のまとめを出す（2026-11-09）
+  if (src === "nar") {
+    const last = H.length ? H[H.length - 1] : null;
+    let y = `<div class="note" style="margin:0 0 6px">地方の結果は、翌朝（8:30ごろ）のデータで入ります。今日のレースは明日の朝に、ここと下の通算に反映されます。</div>`;
+    if (last) {
+      const yr = [];
+      const e_ = mode !== "1" && last.ext && last.ext[mode] ? last.ext[mode] : { spent: last.spent, ret: last.ret };
+      yr.push([`💴 単勝${mode !== "1" ? `（${MODES[mode]}）` : ""}`, e_.spent ? money(e_.ret, e_.spent) : `<span class="sub">買いなし</span>`]);
+      if (last.oshi && last.oshi.n) yr.push(["🔮 推し", `${last.oshi.hit}/${last.oshi.n}頭（${pctS(last.oshi.hit, last.oshi.n)}）が3着以内${last.oshi.win ? `（1着 ${last.oshi.win}）` : ""}`]);
+      y += `<div class="sub" style="margin-bottom:6px">${esc(last.date_ja)} のまとめ（地方）</div><table>${yr.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>`;
+    }
+    html = `<div class="card">${y}</div>` + html;   // 地方は今日のまとめが夜まで空なので、最新の日のまとめを上に
+  }
   // 通算
   const tot = [];
   const hs = h => (h.ext && h.ext["4"] && h.ext["4"].spent) ? h.ext["4"] : { spent: h.spent, ret: h.ret };   // 標準（合格＋馬主）。古い日は合格モデルだけ
