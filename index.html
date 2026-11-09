@@ -162,15 +162,15 @@ function oshiBox(r) {
 function simMore(v, res, r) {   // 🎬 の中の「▼ 10万回の中身」: 上位10の決着と馬ごとの着順（開いた時だけ）
   if (!v.horses && !v.trio10) return "";
   const k = x => Math.round(x * 100000).toLocaleString();
-  const mark = (list, hit) => (list || []).map((x, i) => `<tr${hit && x.kumi === hit ? ' style="background:var(--buybg);font-weight:700"' : ""}><td>${i + 1}</td><td style="text-align:left">${esc(x.kumi)}${hit && x.kumi === hit ? " ✅" : ""}</td><td>${k(x.p)}回</td><td>${x.odds ? x.odds.toLocaleString() + "倍" : ""}</td></tr>`).join("");
+  const mark = (list, hit) => (list || []).map((x, i) => `<tr${hit && x.kumi === hit ? ' style="background:var(--buybg);font-weight:700"' : ""}><td>${i + 1}</td><td style="text-align:left">${esc(x.kumi)}${hit && x.kumi === hit ? " ✅" : ""}</td><td>${k(x.p)}回</td>${(list || []).some(y => y.odds) ? `<td>${x.odds ? x.odds.toLocaleString() + "倍" : ""}</td>` : ""}</tr>`).join("");
   const od = {}; ((r && r.top) || []).forEach(x => { od[x.no] = x.odds; });   // 判定した時点の単勝オッズ
   const hs = (v.horses || []).map(h => `<tr><td style="text-align:left"><b>${h.no}</b>${od[h.no] ? `<span class="sub" style="font-size:10px"> ${od[h.no]}倍</span>` : ""}<div class="sub" style="font-size:10px;max-width:4.2em;overflow:hidden;text-overflow:ellipsis">${esc(h.name || "")}</div></td>
       <td>${k(h.p1)}</td><td>${k(h.p2)}</td><td>${k(h.p3)}</td><td><b>${pct(h.p1)}</b></td><td>${pct(h.p1 + h.p2)}</td><td>${pct(h.p1 + h.p2 + h.p3)}</td></tr>`).join("");
   return `<details class="info" style="margin-top:8px"><summary>▼ 10万回の中身（上位10の決着・馬ごとの着順）</summary>
     ${hs ? `<div class="sub" style="margin:6px 0 2px">馬ごと（10万回のうち何回その着順か。倍＝判定した時点の単勝オッズ）</div>
     <div style="overflow-x:auto"><table class="sim"><tr><th style="text-align:left">馬</th><th>1着</th><th>2着</th><th>3着</th><th>勝率</th><th>連対</th><th>複勝</th></tr>${hs}</table></div>` : ""}
-    ${v.trio10 ? `<div class="sub" style="margin:8px 0 2px">3連複 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th><th>オッズ</th></tr>${mark(v.trio10, res && res.trio)}</table>` : ""}
-    ${v.tri10 ? `<div class="sub" style="margin:8px 0 2px">3連単 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th><th>オッズ</th></tr>${mark(v.tri10, res && res.trifecta)}</table>` : ""}
+    ${v.trio10 ? `<div class="sub" style="margin:8px 0 2px">3連複 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th>${v.trio10.some(y => y.odds) ? "<th>オッズ</th>" : ""}</tr>${mark(v.trio10, res && res.trio)}</table>` : ""}
+    ${v.tri10 ? `<div class="sub" style="margin:8px 0 2px">3連単 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th>${v.tri10.some(y => y.odds) ? "<th>オッズ</th>" : ""}</tr>${mark(v.tri10, res && res.trifecta)}</table>` : ""}
   </details>`;
 }
 
