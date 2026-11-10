@@ -159,6 +159,26 @@ function oshiBox(r) {
   </div>`;
 }
 
+function myomiBox(r) {
+  // 🎯 妙味ワイド（地方・試験中）: 買われ足りない人気馬を軸に、誰も見ていない穴へ。買われすぎの人気馬は切る
+  const m = r.myomi; if (!m) return "";
+  const res = r.myomi_res, hit = new Set(res ? res.hits : []);
+  const badge = res ? (res.ret ? `<span class="badge hit">的中 ${yen(res.ret)}</span>` : `<span class="badge miss">外れ</span>`) : `<span class="sub">${m.bets.length}点・${yen(m.total)}</span>`;
+  const why = h => h.why && h.why.length ? `<div class="sub" style="font-size:11px">なぜ？ ${h.why.map(esc).join("／")}</div>` : "";
+  const hl = (h, tag, note) => `<div style="margin:6px 0"><b>${tag}</b> <b>${h.no}番</b> ${esc(h.name)} <span class="sub">${h.ninki}番人気・${h.odds.toFixed(1)}倍</span>
+    <div class="sub" style="font-size:11px">${note}</div>${why(h)}</div>`;
+  const TN = { wide: "ワイド", umaren: "馬連" };
+  return `<details class="sec" data-k="myomi"><summary><span>🎯 <b>妙味ワイド</b> <span class="sub">軸 ${m.axis.no}番 × 穴 ${m.ana.map(h => h.no + "番").join("・")}</span></span>${badge}</summary>
+    <div style="padding:4px 0 8px">
+      ${hl(m.axis, "軸", `人気なのに、まだ買われ足りない（モデルの勝率は世間の ${m.axis.r.toFixed(2)} 倍）`)}
+      ${m.ana.map(h => hl(h, "穴", `ほとんど誰も見ていないが、モデルは世間の ${h.r.toFixed(2)} 倍来ると見る`)).join("")}
+      ${m.ate ? hl(m.ate, "当て役", "的中を増やすための1点（この1点だけでは少し負ける）") : ""}
+      ${m.cut.length ? `<div style="margin:6px 0"><b>✂ 切る</b> ${m.cut.map(h => `<b>${h.no}番</b> ${esc(h.name)} <span class="sub">${h.ninki}番人気（買われすぎ：世間の ${h.r.toFixed(2)} 倍）</span>`).join("、")}</div>` : ""}
+      <table><tr><th>券種</th><th>組</th><th>役</th><th>金額</th></tr>${m.bets.map(b => `<tr${hit.has(b.type + " " + b.kumi) ? ' style="background:var(--buybg);font-weight:700"' : ""}><td>${TN[b.type]}</td><td>${hit.has(b.type + " " + b.kumi) ? "🎯 " : ""}${esc(b.kumi)}</td><td>${b.role}</td><td>${yen(b.amt)}</td></tr>`).join("")}</table>
+      <details class="info"><summary>ℹ 妙味ワイドについて</summary><div class="note">軸＝1〜3番人気でモデルが「世間より1.2倍以上来る」と見る馬。穴＝5番人気以下・10倍以上で「1.3倍以上来る」と見る馬（最大2頭）。1〜3番人気でモデルが買われすぎと見る馬（0.85倍未満）は相手から外します。軸の見落としが大きい（1.3倍以上）レースは穴の金額を倍に。過去（2023〜2026年の地方）では1日約4.6レース、的中約4割、回収率107〜114%。もうけは穴の組から出て、当て役は的中を増やすための費用です。試験中（記録だけ）。</div></details>
+    </div></details>`;
+}
+
 function simMore(v, res, r) {   // 🎬 の中の「▼ 10万回の中身」: 上位10の決着と馬ごとの着順（開いた時だけ）
   if (!v.horses && !v.trio10) return "";
   const k = x => Math.round(x * 100000).toLocaleString();
@@ -229,6 +249,7 @@ function raceDetail(r, opt = {}) {
     html += `<div class="line mute">${esc(r.note || "予想の対象外")}</div>`;
   } else if (r.state === "decided" || r.result) {
     html += oshiBox(r);
+    html += myomiBox(r);
     html += paceBox(r);
     const bs = buysOf(r);
     html += bs.length
@@ -312,6 +333,7 @@ function rowHtml(r, showVenue) {
   const [s, cls] = status(r);
   const bs = (r.state === "decided") ? buysOf(r) : [];
   const tags = [];
+  if (r.myomi) tags.push(`🎯${r.myomi.axis.no}×${r.myomi.ana.map(h => h.no).join("・")}${r.myomi_res ? (r.myomi_res.ret ? "✅" : "") : ""}`);
   if (r.oshi) tags.push(`🔮${r.oshi.no}番${r.oshi_res ? (r.oshi_res.hit ? "✅" : "") : ""}`);
   if (bs.length) tags.push(`💴${bs.map(b => b.no).join("・")}${r.result && retOf(r) > 0 ? "✅" : ""}`);
   if (r.result) tags.push(`<span style="color:var(--sub)">1着${r.result.first.join("・")}番${r.result.tan ? ` ${(r.result.tan / 100).toFixed(1)}倍` : ""}</span>`);
@@ -346,6 +368,10 @@ function viewResult() {
   // 推し
   const od = D.races.filter(r => r.oshi_res);
   if (D.races.some(r => r.oshi)) rows.push(["🔮 推し", `${od.filter(r => r.oshi_res.hit).length}/${od.length}`, `<span class="sub">3着以内に来た数${od.filter(r => r.oshi_res.win).length ? `（1着 ${od.filter(r => r.oshi_res.win).length}）` : ""}</span>`]);
+  // 妙味ワイド
+  const md = D.races.filter(r => r.myomi_res);
+  if (md.length) { const ms = md.reduce((a, r) => a + r.myomi_res.bet, 0), mr = md.reduce((a, r) => a + r.myomi_res.ret, 0);
+    rows.push(["🎯 妙味ワイド", `${md.filter(r => r.myomi_res.ret).length}/${md.length}`, money(mr, ms)]); }
   // 展開予想
   const pr = D.races.filter(r => r.pace_res);
   if (pr.length) rows.push(["🎬 決着予想", `${pr.filter(r => r.pace_res.trio_rank).length}/${pr.length}`, `<span class="sub">3連複が上位3つに入った数</span>`]);
@@ -369,6 +395,7 @@ function viewResult() {
       const yr = [];
       const e_ = mode !== "1" && last.ext && last.ext[mode] ? last.ext[mode] : { spent: last.spent, ret: last.ret };
       yr.push([`💴 単勝${mode !== "1" ? `（${MODES[mode]}）` : ""}`, e_.spent ? money(e_.ret, e_.spent) : `<span class="sub">買いなし</span>`]);
+      if (last.myomi && last.myomi.n) yr.push([`🎯 妙味ワイド（${last.myomi.hit}/${last.myomi.n}的中）`, money(last.myomi.ret, last.myomi.spent)]);
       if (last.oshi && last.oshi.n) yr.push(["🔮 推し", `${last.oshi.hit}/${last.oshi.n}頭（${pctS(last.oshi.hit, last.oshi.n)}）が3着以内${last.oshi.win ? `（1着 ${last.oshi.win}）` : ""}`]);
       y += `<div class="sub" style="margin-bottom:6px">${esc(last.date_ja)} のまとめ（地方）</div><table>${yr.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>`;
     }
@@ -380,6 +407,7 @@ function viewResult() {
   if (H.length) { const S = H.reduce((a, h) => ({ spent: a.spent + hs(h).spent, ret: a.ret + hs(h).ret }), { spent: 0, ret: 0 }); if (S.spent) tot.push(["💴 単勝（標準）", money(S.ret, S.spent)]); }
   const HE = H.filter(h => h.ext && h.ext[mode] && h.ext[mode].spent);
   if (mode !== "1" && HE.length) { const s_ = HE.reduce((a, h) => a + h.ext[mode].spent, 0), r_ = HE.reduce((a, h) => a + h.ext[mode].ret, 0); tot.push([`💴 単勝（${MODES[mode]}）`, money(r_, s_)]); }
+  const HM = H.filter(h => h.myomi && h.myomi.n); if (HM.length) { const s_ = HM.reduce((a, h) => a + h.myomi.spent, 0), r_ = HM.reduce((a, h) => a + h.myomi.ret, 0), n_ = HM.reduce((a, h) => a + h.myomi.n, 0), h_ = HM.reduce((a, h) => a + h.myomi.hit, 0); tot.push([`🎯 妙味ワイド（${h_}/${n_}的中）`, money(r_, s_)]); }
   const HO = H.filter(h => h.oshi && h.oshi.n); if (HO.length) { const n_ = HO.reduce((a, h) => a + h.oshi.n, 0), h_ = HO.reduce((a, h) => a + h.oshi.hit, 0); tot.push(["🔮 推し", `${h_}/${n_}頭（${pctS(h_, n_)}）が3着以内`]); }
   const HX = H.filter(h => h.axis && h.axis[mode] && h.axis[mode].spent); if (HX.length) { const s_ = HX.reduce((a, h) => a + h.axis[mode].spent, 0), r_ = HX.reduce((a, h) => a + h.axis[mode].ret, 0); tot.push(["🧲 3連単（1着固定）", money(r_, s_)]); }
   const HW = H.filter(h => h.w5 && h.w5.spent); if (HW.length) { const s_ = HW.reduce((a, h) => a + h.w5.spent, 0), r_ = HW.reduce((a, h) => a + h.w5.ret, 0); tot.push([`🎯 WIN5（${HW.filter(h => h.w5.hit).length}/${HW.length}回）`, money(r_, s_)]); }
