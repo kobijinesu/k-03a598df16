@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "date_ja": "11/11（水）",
- "generated": "2026-11-11 15:30",
+ "generated": "2026-11-11 15:32",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -7587,6 +7587,17 @@
      "need": 13.55119160921666
     }
    ],
+   "result": {
+    "first": [
+     3
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 6,
     "name": "ライヴコニャック",
@@ -7601,6 +7612,10 @@
      "騎手の最近の成績が良い",
      "馬場状態の得意・不得意が合う"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -7851,6 +7866,22 @@
       "p3": 0.0573039234182478
      }
     ]
+   },
+   "pace_res": {
+    "trio": "3-5-7",
+    "trifecta": "3→5→7",
+    "trio_rank": 1,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
