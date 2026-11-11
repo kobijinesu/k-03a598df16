@@ -9,6 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="musu競馬">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
 <title>musu 競馬予想</title>
 <style>/*paper*/
 :root{--bg:#fff;--card:#fff;--text:#111;--sub:#6b6b6b;--line:#dadada;--accent:#111;--accent2:#f3f3f3;--buy:#c8102e;--buybg:#fff6f6;--hit:#c8102e;--miss:#9b9b9b;--inv:#fff}
@@ -140,6 +141,34 @@ html[data-skin=hud] main{padding-bottom:calc(84px + env(safe-area-inset-bottom))
 @keyframes hudblink{50%{opacity:0}}
 @keyframes hudsweep{to{transform:translateY(calc(100vh + 160px))}}
 @media (prefers-reduced-motion:reduce){html[data-skin=hud] *,html[data-skin=hud] *::before,html[data-skin=hud] *::after{animation:none !important;transition:none !important}#hudfx .sw{display:none}}
+/*shinbun*/
+html:not([data-skin=hud]){--bg:#f4f0e6;--card:#f4f0e6;--text:#1b1916;--sub:#6e675c;--line:#cfc7b6;--accent:#1b1916;--accent2:#ebe5d6;--buy:#b3121f;--buybg:#f7e3df;--hit:#b3121f;--miss:#8f877a;--inv:#f4f0e6}
+@media (prefers-color-scheme:dark){html:not([data-skin=hud]){--bg:#1c1a16;--card:#1c1a16;--text:#ece5d5;--sub:#a39a89;--line:#3d382f;--accent:#ece5d5;--accent2:#26231d;--buy:#ff7a72;--buybg:#3a1f1c;--hit:#ff7a72;--miss:#857d70;--inv:#1c1a16}}
+html:not([data-skin=hud]) body{font-family:"Hiragino Mincho ProN","Noto Serif JP","Yu Mincho","YuMincho",serif;font-feature-settings:"palt","tnum"}
+html:not([data-skin=hud]) header{background:var(--bg);color:var(--text);border-bottom:4px double var(--text);padding:calc(env(safe-area-inset-top) + 8px) 12px 6px}
+html:not([data-skin=hud]) header h1{font-size:24px;font-weight:900;letter-spacing:.18em;display:block;line-height:1.1}
+html:not([data-skin=hud]) header .meta{display:block;margin:2px 0 0;font-size:11px;opacity:1;color:var(--sub)}
+html:not([data-skin=hud]) .src{margin-top:6px;border-top:1px solid var(--text);padding-top:5px}
+html:not([data-skin=hud]) .src button{border:0;color:var(--sub);padding:2px 10px 2px 0;font-size:13px}
+html:not([data-skin=hud]) .src button:nth-of-type(2){border-right:0}
+html:not([data-skin=hud]) .src button.on{background:none;color:var(--text);font-weight:900;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+html:not([data-skin=hud]) .src .sosb,html:not([data-skin=hud]) .src .skinb{border:1px solid var(--text);color:var(--text);padding:1px 8px;margin-left:6px}
+html:not([data-skin=hud]) .src .sosb{margin-left:auto}
+html:not([data-skin=hud]) nav{border-top:4px double var(--text)}
+html:not([data-skin=hud]) nav button{font-size:14px}
+html:not([data-skin=hud]) nav button.on{box-shadow:none;background:var(--text);color:var(--inv)}
+html:not([data-skin=hud]) .card{border-top:4px double var(--text)}
+html:not([data-skin=hud]) .race-title{font-size:23px;font-weight:900;letter-spacing:.06em}
+html:not([data-skin=hud]) .rno{font-size:18px;font-weight:900}
+html:not([data-skin=hud]) .num{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-weight:900}
+html:not([data-skin=hud]) .count,html:not([data-skin=hud]) .big,html:not([data-skin=hud]) .kpi b{font-weight:900}
+html:not([data-skin=hud]) .lab{font-weight:700;letter-spacing:.12em;padding:1px 7px}
+html:not([data-skin=hud]) th{border-top:2px solid var(--text);font-weight:700;color:var(--text)}
+html:not([data-skin=hud]) .chips{border-bottom:2px solid var(--text)}
+html:not([data-skin=hud]) .chips button{font-size:15px}
+html:not([data-skin=hud]) .chips button.on{box-shadow:none;background:var(--text);color:var(--inv)}
+html:not([data-skin=hud]) .sample{border-bottom:1px solid var(--text);font-size:11px}
+html:not([data-skin=hud]) .sk{border-color:var(--buy);color:var(--buy)}
 </style>
 </head>
 <body>
@@ -588,7 +617,7 @@ function setSkin(v) {
   skin = v; document.documentElement.dataset.skin = v;
   try { localStorage.setItem("skin", v); } catch {}
   const b = $("#skinb"); if (b) b.textContent = v === "hud" ? "紙面" : "HUD";
-  document.querySelector('meta[name="theme-color"]').content = v === "hud" ? "#05080f" : "#111111";
+  document.querySelector('meta[name="theme-color"]').content = v === "hud" ? "#05080f" : "#f4f0e6";
   ROLL.clear(); if (D) render();
 }
 // 数字が回って止まる（値が変わった所だけ。初めて HUD にしたときは全部）
