@@ -85,10 +85,65 @@ table.sim th,table.sim td{padding:3px 2px;border-bottom:1px solid var(--line);bo
 table.sim th{color:var(--sub);font-weight:400;border-bottom:1px solid var(--text)}
 .sample{background:none;color:var(--sub);font-size:11px;font-weight:400;padding:4px 12px;border-bottom:1px solid var(--line)}
 dl.leg{margin:0;font-size:12px;line-height:1.55}dl.leg dt{font-weight:800;margin-top:6px}dl.leg dd{margin:0;color:var(--sub)}
+/*hud*/
+.sk{display:inline-block;font-size:10px;font-weight:400;color:var(--sub);border:1px solid var(--sub);padding:0 4px;margin-left:5px;line-height:1.4;vertical-align:1px;letter-spacing:.05em}
+.src .skinb{border:1px solid #555;background:transparent;color:#bbb;margin-left:6px;font-weight:400}
+#hudfx{display:none}
+html[data-skin=hud]{--bg:#05080f;--card:rgba(12,22,38,.66);--text:#e6f2ff;--sub:#7f97b4;--line:rgba(96,180,255,.20);--accent:#38e1ff;--accent2:rgba(56,225,255,.07);--buy:#38e1ff;--buybg:rgba(56,225,255,.10);--hit:#ff4fd8;--miss:#5a6c84;--inv:#05080f;--neon:#38e1ff;--par:0px}
+html[data-skin=hud] body{background:radial-gradient(900px 520px at 80% -8%,rgba(40,110,255,.22),transparent 62%),radial-gradient(700px 420px at -10% 110%,rgba(255,79,216,.10),transparent 60%),var(--bg);font-feature-settings:"palt","tnum"}
+html[data-skin=hud] body::before,html[data-skin=hud] body::after{content:"";position:fixed;left:-20%;right:-20%;top:-40%;bottom:-40%;pointer-events:none;z-index:0}
+html[data-skin=hud] body::before{background-image:linear-gradient(rgba(56,225,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(56,225,255,.06) 1px,transparent 1px);background-size:28px 28px;transform:translate3d(0,calc(var(--par) * .35),0)}
+html[data-skin=hud] body::after{background-image:linear-gradient(rgba(56,225,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(56,225,255,.10) 1px,transparent 1px);background-size:140px 140px;transform:translate3d(0,calc(var(--par) * .12),0);mask-image:radial-gradient(closest-side,#000 40%,transparent)}
+html[data-skin=hud] main,html[data-skin=hud] #sos,html[data-skin=hud] .sample{position:relative;z-index:1}
+html[data-skin=hud] header{background:rgba(5,10,20,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(56,225,255,.35);box-shadow:0 1px 18px rgba(56,225,255,.15)}
+html[data-skin=hud] header h1{letter-spacing:.22em;color:var(--neon);text-shadow:0 0 10px rgba(56,225,255,.6)}
+html[data-skin=hud] .src button{border-color:rgba(56,225,255,.35);color:#9fc6e8}
+html[data-skin=hud] .src button.on{background:rgba(56,225,255,.16);color:#fff;border-color:var(--neon);box-shadow:0 0 10px rgba(56,225,255,.45) inset}
+html[data-skin=hud] nav{background:rgba(5,10,20,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(56,225,255,.35)}
+html[data-skin=hud] nav button.on{color:var(--neon);box-shadow:inset 0 2px 0 var(--neon),0 -6px 16px -8px var(--neon);text-shadow:0 0 8px rgba(56,225,255,.7)}
+html[data-skin=hud] .card{background:var(--card);border:1px solid var(--line);border-top:1px solid var(--neon);padding:10px 12px 6px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));box-shadow:0 0 0 1px rgba(56,225,255,.05) inset;animation:hudin .45s ease-out}
+html[data-skin=hud] .race-title{letter-spacing:.08em}
+html[data-skin=hud] .count{color:var(--neon);text-shadow:0 0 14px rgba(56,225,255,.7);animation:hudpulse 2.4s ease-in-out infinite}
+html[data-skin=hud] .num{background:transparent;color:var(--neon);border:1px solid var(--neon);box-shadow:0 0 8px rgba(56,225,255,.35) inset;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);flex-basis:34px}
+html[data-skin=hud] .buy-box .num{background:rgba(56,225,255,.18);color:#fff}
+html[data-skin=hud] .lab{background:transparent;color:var(--neon);border:1px solid var(--neon);box-shadow:0 0 6px rgba(56,225,255,.4)}
+html[data-skin=hud] .hm,html[data-skin=hud] .badge.hit{color:var(--hit);text-shadow:0 0 10px rgba(255,79,216,.75)}
+html[data-skin=hud] .badge.buy{color:var(--neon);text-shadow:0 0 8px rgba(56,225,255,.6)}
+html[data-skin=hud] th{border-top-color:rgba(56,225,255,.45);color:#8fb4d8;letter-spacing:.05em}
+html[data-skin=hud] .sec>summary{position:relative}
+html[data-skin=hud] .sec>summary::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:18px;background:var(--neon);box-shadow:0 0 6px var(--neon);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+html[data-skin=hud] .sec[open]>summary::after{width:100%}
+html[data-skin=hud] .sec[open]{background:linear-gradient(180deg,rgba(56,225,255,.06),transparent 70%)}
+html[data-skin=hud] .sec[open]>div,html[data-skin=hud] details[open]>div{animation:hudunfold .38s cubic-bezier(.2,.8,.2,1)}
+html[data-skin=hud] .line{border-left-color:var(--neon);box-shadow:-6px 0 12px -8px var(--neon)}
+html[data-skin=hud] .chips{border-bottom-color:rgba(56,225,255,.35)}
+html[data-skin=hud] .chips button.on{color:var(--neon);box-shadow:inset 0 -2px 0 var(--neon);text-shadow:0 0 8px rgba(56,225,255,.6)}
+html[data-skin=hud] .modebar button.on{background:rgba(56,225,255,.16);border-color:var(--neon);color:#fff}
+html[data-skin=hud] .kpi div{border-top-color:rgba(56,225,255,.25)}
+html[data-skin=hud] .kpi b{color:#fff;text-shadow:0 0 10px rgba(56,225,255,.45)}
+html[data-skin=hud] .sk{color:#ffcf4a;border-color:#ffcf4a;box-shadow:0 0 6px rgba(255,207,74,.45)}
+html[data-skin=hud] .sk::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#ffcf4a;margin-right:3px;vertical-align:1px;animation:hudblink 1s steps(2) infinite}
+html[data-skin=hud] .rolling{color:var(--neon) !important;text-shadow:0 0 12px rgba(56,225,255,.9)}
+html[data-skin=hud] #hudfx{display:block;position:fixed;inset:0;pointer-events:none;z-index:4}
+#hudfx i{position:absolute;width:22px;height:22px;border:0 solid rgba(56,225,255,.55)}
+#hudfx .c1{top:calc(env(safe-area-inset-top) + 74px);left:6px;border-top-width:1px;border-left-width:1px}
+#hudfx .c2{top:calc(env(safe-area-inset-top) + 74px);right:6px;border-top-width:1px;border-right-width:1px}
+#hudfx .c3{bottom:calc(env(safe-area-inset-bottom) + 70px);left:6px;border-bottom-width:1px;border-left-width:1px}
+#hudfx .c4{bottom:calc(env(safe-area-inset-bottom) + 70px);right:6px;border-bottom-width:1px;border-right-width:1px}
+#hudfx .rd{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 44px);padding:2px 12px;font:10px/1.4 ui-monospace,Menlo,Consolas,monospace;color:rgba(56,225,255,.8);letter-spacing:.06em;text-shadow:0 0 6px rgba(56,225,255,.6);background:rgba(5,10,20,.7);border-top:1px solid rgba(56,225,255,.18);white-space:nowrap;overflow:hidden;display:flex;gap:14px}
+html[data-skin=hud] main{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+#hudfx .sw{position:absolute;left:0;right:0;height:80px;top:-80px;background:linear-gradient(180deg,transparent,rgba(56,225,255,.06),transparent);animation:hudsweep 7s linear infinite}
+@keyframes hudin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes hudunfold{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes hudpulse{50%{text-shadow:0 0 22px rgba(56,225,255,1)}}
+@keyframes hudblink{50%{opacity:0}}
+@keyframes hudsweep{to{transform:translateY(calc(100vh + 160px))}}
+@media (prefers-reduced-motion:reduce){html[data-skin=hud] *,html[data-skin=hud] *::before,html[data-skin=hud] *::after{animation:none !important;transition:none !important}#hudfx .sw{display:none}}
 </style>
 </head>
 <body>
-<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div><div class="src"><button data-src="jra">中央</button><button data-src="nar">地方（検証中）</button><button class="sosb" id="sosb">点検</button></div></header>
+<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div><div class="src"><button data-src="jra">中央</button><button data-src="nar">地方（検証中）</button><button class="sosb" id="sosb">点検</button><button class="skinb" id="skinb">HUD</button></div></header>
 <div id="sos" hidden></div>
 <div class="sample" id="sample" hidden></div>
 <main id="view"></main>
@@ -124,10 +179,12 @@ function modeBar() {   // 地方も切り替えあり（2026-11-08）
   return `<div class="modebar">単勝の範囲 ${Object.entries(L).map(([k, v]) => `<button data-mode="${k}" class="${k === mode ? "on" : ""}">${v}</button>`).join("")}<span>${mode === "1" ? "" : "（試験中）"}</span></div>`;
 }
 
+function sk(r) { return r.result && r.result.src === "速報" ? '<span class="sk">速報</span>' : ""; }
+
 function status(r) {
   if (r.state === "out") return ["対象外", "miss"];
   const bs = buysOf(r);
-  if (r.result && r.state === "decided") return bs.length ? (retOf(r) > 0 ? ["単勝 的中", "hit"] : ["単勝 外れ", "miss"]) : ["単勝 見送り", "miss"];
+  if (r.result && r.state === "decided") { const [a_, b_] = bs.length ? (retOf(r) > 0 ? ["単勝 的中", "hit"] : ["単勝 外れ", "miss"]) : ["単勝 見送り", "miss"]; return [a_ + sk(r), b_]; }
   if (r.state === "missed") return ["単勝 判定なし", "miss"];
   if (r.state === "decided") return bs.length ? [`単勝 ${bs.length}頭`, "buy"] : ["単勝 見送り", ""];
   return ["予想前", ""];
@@ -298,7 +355,7 @@ function raceDetail(r, opt = {}) {
     html += `<div class="line mute">予想 ${r.decide}ごろ（${lbl()}）</div>`;
   }
   if (r.result) {
-    html += `<div class="note" style="margin-top:8px">結果　1着 <b>${r.result.first.join("・")}番</b> ${esc(r.result.first_name || "")}　単勝 ${yen(r.result.tan)}${r.result.tan ? `（${(r.result.tan / 100).toFixed(1)}倍）` : ""}${buysOf(r).length ? `　／　単勝の収支 ${yen(retOf(r) - 100 * buysOf(r).length)}` : ""}</div>`;
+    html += `<div class="note" style="margin-top:8px">結果${sk(r)}　1着 <b>${r.result.first.join("・")}番</b> ${esc(r.result.first_name || "")}　単勝 ${yen(r.result.tan)}${r.result.tan ? `（${(r.result.tan / 100).toFixed(1)}倍）` : ""}${buysOf(r).length ? `　／　単勝の収支 ${yen(retOf(r) - 100 * buysOf(r).length)}` : ""}</div>`;
   }
   return html;
 }
@@ -429,8 +486,8 @@ function viewResult() {
     <div class="note">各100円で買った場合。的中＝当たったレース数/買ったレース数。回収率＝払戻÷買った額（100%で元が戻る）。・・拡大・広めは試験中の買い方です。</div></div>`;
   // 地方: 結果は翌朝に入るので、今日のまとめは夜まで空。いちばん新しい日（たいてい昨日）のまとめを出す（2026-11-09）
   if (src === "nar") {
-    const last = H.length ? H[H.length - 1] : null;
-    let y = `<div class="note" style="margin:0 0 6px">地方の結果は、翌朝（8:30ごろ）のデータで入ります。今日のレースは明日の朝に、ここと下の通算に反映されます。</div>`;
+    const last = H.filter(h => h.date !== D.date.replace(/-/g, "")).slice(-1)[0] || null;   // 今日は上のまとめに速報で出るので、前の日
+    let y = `<div class="note" style="margin:0 0 6px">地方の結果は、レース確定の数分〜10分後に「速報」で入り、翌朝（8:30ごろ）の確定データで付け直します。</div>`;
     if (last) {
       const yr = [];
       const e_ = mode !== "1" && last.ext && last.ext[mode] ? last.ext[mode] : { spent: last.spent, ret: last.ret };
@@ -469,10 +526,12 @@ function viewResult() {
     <dt>3連単（試験中）</dt><dd>単勝の馬を1着固定、2・3着は期待値1.2以上を5点まで。過去139〜149%、的中は約70点に1回。</dd>
     <dt>3連単・地方（試験中）</dt><dd>1着は勝率、2・3着は3着内モデルの「滑り込む力」で直した並び確率×推定オッズ。見立て0.5%以上・推定500倍以下を期待値順に10点まで。期待値0.75以上100円・0.8以上200円・0.85以上300円。過去 1日19R、的中約9%、回収121〜122%。</dd>
     <dt>3連複・地方（試験中）</dt><dd>3連単と同じ並び確率を6通り足したもの×推定オッズ。見立て1%以上・推定200倍以下を期待値順に10点まで、金額の濃淡は3連単と同じ。過去 1日16〜17R、平均2点、的中約22%、回収114〜121%。</dd>
+    <dt>速報と確定</dt><dd>地方はレースが確定すると数分〜10分ほどで「速報」の印つきで答え合わせを出し、翌朝の確定データで付け直す（速報と確定は過去の照合で全件一致）。</dd>
+    <dt>表示</dt><dd>右上の「HUD」で近未来風の表示に、「紙面」で元の表示に戻る。端末ごとに覚える。</dd>
     <dt>展開</dt><dd>ペース・馬場の内外・荒れ具合で馬がまとめて動くことを入れた全通り計算（10万回シミュレーション相当）。</dd>
     <dt>WIN5（試験中）</dt><dd>勝率と世間の票の偏りから、配当の割に起きやすい組。過去256回で約140%。</dd>
     <dt>お楽しみ</dt><dd>30〜100倍で期待値の高い組。遊び用の別帳簿。過去の回収8〜10割。</dd>
-    <dt>数字</dt><dd>回収率＝払戻÷買った額。地方の結果は翌朝8:30ごろ反映。</dd></dl></div>`;
+    <dt>数字</dt><dd>回収率＝払戻÷買った額。地方の結果はレース後に速報、翌朝8:30ごろ確定。</dd></dl></div>`;
   return html;
 }
 
@@ -488,6 +547,7 @@ function render() {
   document.querySelectorAll("#view details").forEach(d => { if (open.has(dkey(d))) d.open = true; });
   if (same) window.scrollTo(0, y);
   lastTab = tab;
+  rollNumbers();
 }
 
 let lastTab = null;
@@ -521,6 +581,45 @@ document.querySelectorAll("nav button").forEach(b => b.onclick = () => { tab = b
 setInterval(() => { const c = $("#cd"); if (c) { const left = Math.max(0, Math.floor((new Date(c.dataset.close) - now()) / 1000)); c.textContent = Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0"); } }, 1000);
 setInterval(load, 60000);
 document.addEventListener("visibilitychange", () => { if (!document.hidden) load(); });
+// ---------- 表示の切り替え（紙面 ⇔ 近未来 HUD、2026-11-11）
+let skin = "paper"; try { skin = localStorage.getItem("skin") || "paper"; } catch {}
+const RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+function setSkin(v) {
+  skin = v; document.documentElement.dataset.skin = v;
+  try { localStorage.setItem("skin", v); } catch {}
+  const b = $("#skinb"); if (b) b.textContent = v === "hud" ? "紙面" : "HUD";
+  document.querySelector('meta[name="theme-color"]').content = v === "hud" ? "#05080f" : "#111111";
+  ROLL.clear(); if (D) render();
+}
+// 数字が回って止まる（値が変わった所だけ。初めて HUD にしたときは全部）
+const ROLL = new Map();
+function rollNumbers() {
+  if (skin !== "hud" || RM) return;
+  const els = [...document.querySelectorAll("#view .kpi b, #view .big, #view .badge.hit, #view .count:not(#cd), #view td b, #view .hm")];
+  els.forEach((el, i) => {
+    const k = tab + i + "|" + (el.closest("[data-k]") || {}).dataset?.k, t = el.textContent;
+    const prev = ROLL.get(k); ROLL.set(k, t);
+    if (prev === t || !/[0-9]/.test(t) || el.dataset.rolling) return;
+    el.dataset.rolling = "1"; el.classList.add("rolling");
+    const t0 = performance.now(), dur = 520 + Math.random() * 380;
+    const step = now_ => {
+      const f = Math.min(1, (now_ - t0) / dur), fix = Math.floor(f * t.length);
+      el.textContent = [...t].map((ch, j) => j < fix || !/[0-9]/.test(ch) ? ch : String(Math.floor(Math.random() * 10))).join("");
+      if (f < 1) requestAnimationFrame(step); else { el.textContent = t; el.classList.remove("rolling"); delete el.dataset.rolling; }
+    };
+    requestAnimationFrame(step);
+  });
+}
+// 奥行き（スクロールで背景のグリッドがずれる）と四隅の計器
+let parQ = false;
+window.addEventListener("scroll", () => { if (skin !== "hud" || RM || parQ) return; parQ = true;
+  requestAnimationFrame(() => { document.documentElement.style.setProperty("--par", (-window.scrollY) + "px"); parQ = false; }); }, { passive: true });
+document.body.insertAdjacentHTML("beforeend", '<div id="hudfx" aria-hidden="true"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><div class="sw"></div><div class="rd" id="hudrd"></div></div>');
+setInterval(() => { if (skin !== "hud" || !D) return; const d = new Date(Date.now() + 9 * 3600000), rs = D.races || [];
+  const dec = rs.filter(r => r.state === "decided").length, res = rs.filter(r => r.result).length, sk_ = rs.filter(r => r.result && r.result.src === "速報").length;
+  $("#hudrd").innerHTML = `<span>SYS ${d.toISOString().slice(11, 19)}</span><span>${src === "nar" ? "NAR" : "JRA"} ● LIVE</span><span>PRED ${dec}/${rs.length}</span><span>RES ${res}${sk_ ? `・速報${sk_}` : ""}</span>`; }, 1000);
+$("#skinb").onclick = () => setSkin(skin === "hud" ? "paper" : "hud");
+setSkin(skin);
 load();
 // 緊急チェック: 中継サービス ntfy.sh の合言葉チャンネルに合図 → PC の緊急チェック係（code\musu_sos.py）が点検・修正し data/sos.json に結果を出す
 const SOS_TOPIC = "musu-sos-6f1873a77b020c2b";
