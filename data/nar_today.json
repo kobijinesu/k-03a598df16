@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "date_ja": "11/11（水）",
- "generated": "2026-11-11 18:45",
+ "generated": "2026-11-11 18:52",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -16533,6 +16533,17 @@
      "need": 25.620419605844038
     }
    ],
+   "result": {
+    "first": [
+     6
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -16811,6 +16822,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "6-9-12",
+    "trifecta": "6→9→12",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -16909,6 +16936,21 @@
       "p": 0.049289666583458576
      }
     ]
+   },
+   "tri_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -16963,6 +17005,17 @@
      "need": 11.695737621295468
     }
    ],
+   "result": {
+    "first": [
+     12
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 12,
     "name": "メイショウカラクサ",
@@ -16977,6 +17030,10 @@
      "厩舎の最近の成績が良い",
      "斤量・年齢の条件が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": true
    },
    "pace": {
     "trifecta": [
@@ -17277,6 +17334,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-3-12",
+    "trifecta": "12→1→3",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -17404,6 +17477,21 @@
       "p": 0.12555742707374415
      }
     ]
+   },
+   "tri_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 400,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
