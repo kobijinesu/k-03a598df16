@@ -4159,6 +4159,17 @@
      "need": 13.962677310721418
     }
    ],
+   "result": {
+    "first": [
+     3
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -4415,6 +4426,22 @@
       "p3": 0.08976942516990706
      }
     ]
+   },
+   "pace_res": {
+    "trio": "2-3-5",
+    "trifecta": "3→2→5",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
