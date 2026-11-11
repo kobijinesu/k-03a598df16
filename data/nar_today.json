@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "date_ja": "11/11（水）",
- "generated": "2026-11-11 17:35",
+ "generated": "2026-11-11 17:41",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -14143,6 +14143,17 @@
      "need": 22.81955460532893
     }
    ],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 2,
     "name": "コムーネ",
@@ -14157,6 +14168,10 @@
      "これまでの成績が人気の割に良い",
      "近走の内容（着順・好走した格）が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -14429,6 +14444,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "6-8-9",
+    "trifecta": "8→9→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": false,
     "axis": {
@@ -14503,6 +14534,11 @@
      }
     ],
     "total": 300
+   },
+   "myomi_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -14557,6 +14593,17 @@
      "need": 20.74991020960802
     }
    ],
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 9,
     "name": "マリノステアハート",
@@ -14571,6 +14618,10 @@
      "最近のこのコースで有利な枠・脚質に合う",
      "厩舎の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": true
    },
    "pace": {
     "trifecta": [
@@ -14856,6 +14907,22 @@
       "p3": 0.012466076590629371
      }
     ]
+   },
+   "pace_res": {
+    "trio": "4-6-9",
+    "trifecta": "9→4→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
