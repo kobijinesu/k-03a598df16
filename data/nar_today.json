@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "date_ja": "11/11（水）",
- "generated": "2026-11-11 15:05",
+ "generated": "2026-11-11 15:12",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -6657,6 +6657,17 @@
      "need": 16.1907543919067
     }
    ],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 3,
     "name": "ハッピーチャンス",
@@ -6671,6 +6682,10 @@
      "厩舎の最近の成績が良い",
      "騎手と厩舎のコンビの成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -6943,6 +6958,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "7-8-10",
+    "trifecta": "8→7→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -7003,6 +7034,21 @@
       "p": 0.035174186057144625
      }
     ]
+   },
+   "tri_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
