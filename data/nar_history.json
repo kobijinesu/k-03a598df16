@@ -154,36 +154,36 @@
   },
   "ext": {
    "2": {
-    "spent": 0,
+    "spent": 100,
     "ret": 0
    },
    "3": {
-    "spent": 100,
+    "spent": 200,
     "ret": 0
    }
   },
   "myomi": {
-   "n": 0,
-   "hit": 0,
-   "spent": 0,
-   "ret": 0
+   "n": 1,
+   "hit": 1,
+   "spent": 300,
+   "ret": 410
   },
   "tri": {
-   "n": 1,
+   "n": 2,
    "hit": 0,
-   "spent": 600,
+   "spent": 900,
    "ret": 0
   },
   "trio": {
-   "n": 1,
-   "hit": 0,
-   "spent": 400,
-   "ret": 0
+   "n": 2,
+   "hit": 1,
+   "spent": 800,
+   "ret": 1060
   },
   "tria": {
-   "n": 0,
+   "n": 1,
    "hit": 0,
-   "spent": 0,
+   "spent": 300,
    "ret": 0
   }
  }
