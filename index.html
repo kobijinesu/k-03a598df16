@@ -272,9 +272,12 @@ function myomiBox(r) {
     </div></details>`;
 }
 
+function triOn() { return src === "nar" || (D && D.races.some(x => x.tri)); }   // その日に3連単・3連複の計算が動いているか
+function miokuri(r, lab) { return r.state === "decided" && triOn() ? `<div class="line mute">${lab}：見送り</div>` : ""; }
+
 function trioBox(r) {
   // 3連複（地方・試験中）: 3連単と同じ並び確率を6通り足したもの × 3連複の推定オッズ。見立て1%以上・200倍以下、10点まで
-  const v = r.tri; if (!v || !(v.trio || []).length) return "";
+  const v = r.tri; if (!v || !(v.trio || []).length) return miokuri(r, "3連複");
   const res = r.trio_res, hit = new Set(res ? res.hits : []);
   const badge = res ? (res.ret ? `<span class="badge hit">的中 ${yen(res.ret)}</span>` : `<span class="badge miss">外れ</span>`) : `<span class="sub">${v.trio.length}点 ${yen(v.trio_total)}</span>`;
   const rows = v.trio.map(b => `<tr${hit.has(b.kumi) ? ' style="background:var(--buybg);font-weight:800"' : ""}><td style="text-align:left"><b>${esc(b.kumi)}</b>${hit.has(b.kumi) ? " <b class=hm>的中</b>" : ""}</td><td>${(b.p * 100).toFixed(1)}%</td><td>${Math.round(b.est)}倍</td><td>${yen(b.amt)}</td></tr>`).join("");
@@ -285,8 +288,8 @@ function trioBox(r) {
 function triBox(r) {
   // 3連単（地方・試験中）: 1着は勝率、2・3着は「滑り込む力」（3着内モデル）で直した並び確率 × 推定オッズ。10点まで、期待値で金額に濃淡
   // 大穴（2026-11-11）: 1着を単勝の穴モデルの馬（10〜100倍・期待値1.2以上）に固定。切り替えは triKind
-  const ana = triKind === "ana" && src === "nar", v0 = r.tri; if (!v0) return "";
-  const v = ana ? { bets: v0.ana || [], total: v0.ana_total || 0, horses: v0.horses } : v0; if (!v.bets.length) return "";
+  const ana = triKind === "ana" && src === "nar", v0 = r.tri; if (!v0) return miokuri(r, ana ? "3連単 大穴" : "3連単");
+  const v = ana ? { bets: v0.ana || [], total: v0.ana_total || 0, horses: v0.horses } : v0; if (!v.bets.length) return miokuri(r, ana ? "3連単 大穴" : "3連単");
   const res = ana ? r.tria_res : r.tri_res, hit = new Set(res ? res.hits : []);
   const badge = res ? (res.ret ? `<span class="badge hit">的中 ${yen(res.ret)}</span>` : `<span class="badge miss">外れ</span>`) : `<span class="sub">${v.bets.length}点 ${yen(v.total)}</span>`;
   const rows = v.bets.map(b => `<tr${hit.has(b.kumi) ? ' style="background:var(--buybg);font-weight:800"' : ""}><td style="text-align:left"><b>${esc(b.kumi)}</b>${hit.has(b.kumi) ? " <b class=hm>的中</b>" : ""}</td><td>${(b.p * 100).toFixed(1)}%</td><td>${Math.round(b.est)}倍</td><td>${yen(b.amt)}</td></tr>`).join("");
@@ -458,6 +461,12 @@ function rowHtml(r, showVenue) {
   if (r.tri && r.tri.bets.length && (triKind !== "ana" || src !== "nar")) tags.push(`単${r.tri.bets.length}点${r.tri_res && r.tri_res.ret ? "<b class=hm>中</b>" : ""}`.replace(/^単/, "三連単 "));
   if (r.tri && (r.tri.ana || []).length && triKind === "ana" && src === "nar") tags.push(`三連単大穴 ${r.tri.ana.length}点${r.tria_res && r.tria_res.ret ? "<b class=hm>中</b>" : ""}`);
   if (r.tri && (r.tri.trio || []).length) tags.push(`三連複 ${r.tri.trio.length}点${r.trio_res && r.trio_res.ret ? "<b class=hm>中</b>" : ""}`);
+  if (r.state === "decided" && triOn()) {
+    const tk = triKind === "ana" && src === "nar", nb = r.tri ? (tk ? (r.tri.ana || []) : r.tri.bets).length : 0, nt = r.tri ? (r.tri.trio || []).length : 0;
+    if (!nb && !nt) tags.push(`<span style="color:var(--sub)">三連 見送り</span>`);
+    else if (!nb) tags.push(`<span style="color:var(--sub)">三連単 見送り</span>`);
+    else if (!nt) tags.push(`<span style="color:var(--sub)">三連複 見送り</span>`);
+  }
   if (r.oshi) tags.push(`推 ${r.oshi.no}${r.oshi_res ? (r.oshi_res.hit ? '<b class=hm>中</b>' : "") : ""}`);
   if (bs.length) tags.push(`単 ${bs.map(b => b.no).join("・")}${r.result && retOf(r) > 0 ? '<b class=hm>中</b>' : ""}`);
   if (r.result) tags.push(`<span style="color:var(--sub)">1着${r.result.first.join("・")}番${r.result.tan ? ` ${(r.result.tan / 100).toFixed(1)}倍` : ""}</span>`);
