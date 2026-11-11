@@ -285,7 +285,7 @@ function trioBox(r) {
 function triBox(r) {
   // 3連単（地方・試験中）: 1着は勝率、2・3着は「滑り込む力」（3着内モデル）で直した並び確率 × 推定オッズ。10点まで、期待値で金額に濃淡
   // 大穴（2026-11-11）: 1着を単勝の穴モデルの馬（10〜100倍・期待値1.2以上）に固定。切り替えは triKind
-  const ana = triKind === "ana", v0 = r.tri; if (!v0) return "";
+  const ana = triKind === "ana" && src === "nar", v0 = r.tri; if (!v0) return "";
   const v = ana ? { bets: v0.ana || [], total: v0.ana_total || 0, horses: v0.horses } : v0; if (!v.bets.length) return "";
   const res = ana ? r.tria_res : r.tri_res, hit = new Set(res ? res.hits : []);
   const badge = res ? (res.ret ? `<span class="badge hit">的中 ${yen(res.ret)}</span>` : `<span class="badge miss">外れ</span>`) : `<span class="sub">${v.bets.length}点 ${yen(v.total)}</span>`;
@@ -455,8 +455,8 @@ function rowHtml(r, showVenue) {
   const bs = (r.state === "decided") ? buysOf(r) : [];
   const tags = [];
   if (r.myomi) tags.push(`妙 ${r.myomi.axis.no}×${r.myomi.ana.map(h => h.no).join("・")}${r.myomi_res ? (r.myomi_res.ret ? '<b class=hm>中</b>' : "") : ""}`);
-  if (r.tri && r.tri.bets.length && triKind !== "ana") tags.push(`単${r.tri.bets.length}点${r.tri_res && r.tri_res.ret ? "<b class=hm>中</b>" : ""}`.replace(/^単/, "三連単 "));
-  if (r.tri && (r.tri.ana || []).length && triKind === "ana") tags.push(`三連単大穴 ${r.tri.ana.length}点${r.tria_res && r.tria_res.ret ? "<b class=hm>中</b>" : ""}`);
+  if (r.tri && r.tri.bets.length && (triKind !== "ana" || src !== "nar")) tags.push(`単${r.tri.bets.length}点${r.tri_res && r.tri_res.ret ? "<b class=hm>中</b>" : ""}`.replace(/^単/, "三連単 "));
+  if (r.tri && (r.tri.ana || []).length && triKind === "ana" && src === "nar") tags.push(`三連単大穴 ${r.tri.ana.length}点${r.tria_res && r.tria_res.ret ? "<b class=hm>中</b>" : ""}`);
   if (r.tri && (r.tri.trio || []).length) tags.push(`三連複 ${r.tri.trio.length}点${r.trio_res && r.trio_res.ret ? "<b class=hm>中</b>" : ""}`);
   if (r.oshi) tags.push(`推 ${r.oshi.no}${r.oshi_res ? (r.oshi_res.hit ? '<b class=hm>中</b>' : "") : ""}`);
   if (bs.length) tags.push(`単 ${bs.map(b => b.no).join("・")}${r.result && retOf(r) > 0 ? '<b class=hm>中</b>' : ""}`);
@@ -563,6 +563,7 @@ function viewResult() {
     <dt>推し</dt><dd>4番人気以下、3着以内の見立て40%以上かつ世間より高い馬。1レース1頭。</dd>
     <dt>妙味ワイド（地方・試験中）</dt><dd>軸＝1〜3番人気で勝率が世間の1.2倍以上。穴＝5番人気以下・10倍以上で1.3倍以上。消し＝1〜3番人気で0.85倍未満。過去 1日4.6R、的中約4割、回収107〜114%。</dd>
     <dt>3連単（試験中）</dt><dd>単勝の馬を1着固定、2・3着は期待値1.2以上を5点まで。過去139〜149%、的中は約70点に1回。</dd>
+    <dt>3連単・中央（試験中）</dt><dd>地方と同じ作り（中央の3着内モデルで2・3着を直す）。選ぶのは推定オッズ、本物のオッズは表示用。過去 1日16〜19R、的中4〜7%、回収 89〜121%（年でばらつき大、地方より弱い）。</dd>
     <dt>3連単・地方（試験中）</dt><dd>1着は勝率、2・3着は3着内モデルの「滑り込む力」で直した並び確率×推定オッズ。見立て0.5%以上・推定500倍以下を期待値順に10点まで。期待値0.75以上100円・0.8以上200円・0.85以上300円。過去 1日19R、的中約9%、回収121〜122%。</dd>
     <dt>3連複・地方（試験中）</dt><dd>3連単と同じ並び確率を6通り足したもの×推定オッズ。見立て1%以上・推定200倍以下を期待値順に10点まで、金額の濃淡は3連単と同じ。過去 1日16〜17R、平均2点、的中約22%、回収114〜121%。</dd>
     <dt>速報と確定</dt><dd>地方はレースが確定すると数分〜10分ほどで「速報」の印つきで答え合わせを出し、翌朝の確定データで付け直す（速報と確定は過去の照合で全件一致）。</dd>
