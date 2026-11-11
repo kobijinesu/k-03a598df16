@@ -43,6 +43,24 @@
     "ret": 0
    }
   },
-  "w5": null
+  "w5": null,
+  "tri": {
+   "n": 0,
+   "hit": 0,
+   "spent": 0,
+   "ret": 0
+  },
+  "trio": {
+   "n": 0,
+   "hit": 0,
+   "spent": 0,
+   "ret": 0
+  },
+  "exo": {
+   "n": 34,
+   "hit": 2,
+   "spent": 22200,
+   "ret": 48980
+  }
  }
 ]

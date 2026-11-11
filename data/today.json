@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "date_ja": "11/8（日）",
- "generated": "2026-11-08 22:09",
+ "generated": "2026-11-11 14:23",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -244,6 +244,11 @@
     "trifecta": "5→3→4",
     "trio_rank": 1,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -584,6 +589,11 @@
     "trio_rank": 1,
     "tri_rank": 1
    },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -864,6 +874,11 @@
     "trifecta": "2→5→12",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -1379,6 +1394,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -1841,6 +1861,11 @@
     "trifecta": "6→3→9",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -2325,6 +2350,11 @@
     "trifecta": "1→7→2",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 400,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -2912,6 +2942,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [],
    "result": {
     "first": [
@@ -3358,6 +3393,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -3772,6 +3812,11 @@
     "trifecta": "6→1→3",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 400,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -4324,6 +4369,13 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 900,
+    "ret": 5530,
+    "hits": [
+     "ワイド 6-11"
+    ]
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -4838,6 +4890,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -5339,6 +5396,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 400,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -5791,6 +5853,11 @@
     "trifecta": "3→5→6",
     "trio_rank": 1,
     "tri_rank": 3
+   },
+   "exo_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -6251,6 +6318,11 @@
     "trifecta": "8→15→1",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [],
    "result": {
@@ -6732,6 +6804,11 @@
     "trifecta": "7→8→12",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -7229,6 +7306,11 @@
     "trifecta": "14→9→10",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -7747,6 +7829,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -8253,6 +8340,11 @@
     "trifecta": "7→14→3",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -8780,6 +8872,11 @@
     "trifecta": "4→9→8",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -9312,6 +9409,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -9799,6 +9901,11 @@
     "trio_rank": 2,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [],
    "result": {
     "first": [
@@ -10212,6 +10319,11 @@
     "trifecta": "7→8→2",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -10751,6 +10863,13 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 900,
+    "ret": 43450,
+    "hits": [
+     "3連複 6-9-13"
+    ]
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -11175,6 +11294,11 @@
     "trifecta": "7→6→3",
     "trio_rank": 2,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -11675,6 +11799,11 @@
     "trifecta": "4→10→3",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -12194,6 +12323,11 @@
     "trio_rank": 1,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [],
    "result": {
     "first": [
@@ -12623,6 +12757,11 @@
     "trifecta": "8→3→7",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -13073,6 +13212,11 @@
     "trifecta": "6→8→2",
     "trio_rank": 3,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -13589,6 +13733,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [],
    "result": {
     "first": [
@@ -14066,6 +14215,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [],
    "result": {
     "first": [
@@ -14535,6 +14689,11 @@
     "trifecta": "11→8→3",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -15045,6 +15204,11 @@
     "trio_rank": 0,
     "tri_rank": 0
    },
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [],
    "result": {
     "first": [
@@ -15462,6 +15626,11 @@
     "trifecta": "4→7→8",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [
     {
@@ -16024,6 +16193,11 @@
     "trifecta": "12→18→5",
     "trio_rank": 0,
     "tri_rank": 0
+   },
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
    },
    "asobi": [],
    "result": {
