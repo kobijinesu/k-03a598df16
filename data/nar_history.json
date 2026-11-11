@@ -139,5 +139,52 @@
    "spent": 0,
    "ret": 0
   }
+ },
+ {
+  "date": "20261111",
+  "date_ja": "11/11（水）",
+  "bets": 0,
+  "hits": 0,
+  "spent": 0,
+  "ret": 0,
+  "oshi": {
+   "n": 0,
+   "hit": 0,
+   "win": 0
+  },
+  "ext": {
+   "2": {
+    "spent": 0,
+    "ret": 0
+   },
+   "3": {
+    "spent": 100,
+    "ret": 0
+   }
+  },
+  "myomi": {
+   "n": 0,
+   "hit": 0,
+   "spent": 0,
+   "ret": 0
+  },
+  "tri": {
+   "n": 1,
+   "hit": 0,
+   "spent": 600,
+   "ret": 0
+  },
+  "trio": {
+   "n": 1,
+   "hit": 0,
+   "spent": 400,
+   "ret": 0
+  },
+  "tria": {
+   "n": 0,
+   "hit": 0,
+   "spent": 0,
+   "ret": 0
+  }
  }
 ]
