@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "date_ja": "11/11（水）",
- "generated": "2026-11-11 14:45",
+ "generated": "2026-11-11 14:52",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -5439,6 +5439,17 @@
      "need": 11.408319126117178
     }
    ],
+   "result": {
+    "first": [
+     6
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 1,
     "name": "アークレオン",
@@ -5453,6 +5464,10 @@
      "馬場状態の得意・不得意が合う",
      "斤量・年齢の条件が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -5692,6 +5707,22 @@
       "p3": 0.033152608471290416
      }
     ]
+   },
+   "pace_res": {
+    "trio": "1-6-8",
+    "trifecta": "6→1→8",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
