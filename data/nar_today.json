@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "date_ja": "11/11（水）",
- "generated": "2026-11-11 16:35",
+ "generated": "2026-11-11 16:43",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -11076,6 +11076,17 @@
      "need": 15.330816460106004
     }
    ],
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -11339,6 +11350,22 @@
       "p3": 0.019831540029970743
      }
     ]
+   },
+   "pace_res": {
+    "trio": "3-7-9",
+    "trifecta": "9→7→3",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
@@ -11393,6 +11420,17 @@
      "need": 20.080964326687692
     }
    ],
+   "result": {
+    "first": [
+     2
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 4,
     "name": "オセロ",
@@ -11407,6 +11445,10 @@
      "騎手の最近の成績が良い",
      "厩舎の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -11693,6 +11735,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-3-8",
+    "trifecta": "2→8→3",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 10,
@@ -11704,6 +11752,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -11870,6 +11928,21 @@
       "p": 0.05026909602848282
      }
     ]
+   },
+   "tri_res": {
+    "bet": 1300,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
