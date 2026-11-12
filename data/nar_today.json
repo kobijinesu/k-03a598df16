@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "date_ja": "11/12（木）",
- "generated": "2026-11-12 12:25",
+ "generated": "2026-11-12 12:31",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -1616,6 +1616,17 @@
      "need": 27.46033740045598
     }
    ],
+   "result": {
+    "first": [
+     6
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 2,
     "name": "スマートキングダム",
@@ -1630,6 +1641,10 @@
      "これまでの成績が人気の割に良い",
      "近走の内容（着順・好走した格）が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -1902,6 +1917,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "4-6-8",
+    "trifecta": "6→8→4",
+    "trio_rank": 1,
+    "tri_rank": 2
+   },
    "buys_ext": [
     {
      "no": 7,
@@ -1913,6 +1934,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": false,
     "axis": {
@@ -2015,6 +2046,11 @@
     ],
     "total": 300
    },
+   "myomi_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
    "tri": {
     "bets": [
      {
@@ -2097,6 +2133,21 @@
       "p": 0.049039298952374834
      }
     ]
+   },
+   "tri_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
    }
   },
   {
