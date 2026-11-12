@@ -17179,6 +17179,17 @@
      "need": 18.067467286248817
     }
    ],
+   "result": {
+    "first": [
+     11
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -17464,6 +17475,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-5-11",
+    "trifecta": "11→2→5",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [],
     "total": 0,
@@ -17509,6 +17536,21 @@
       "p": 0.0789901132712164
      }
     ]
+   },
+   "tri_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -17563,6 +17605,17 @@
      "need": 18.1690948333994
     }
    ],
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -17841,6 +17894,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "8-9-11",
+    "trifecta": "9→11→8",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": true,
     "axis": {
@@ -17929,6 +17998,13 @@
      }
     ],
     "total": 500
+   },
+   "myomi_res": {
+    "bet": 500,
+    "ret": 280,
+    "hits": [
+     "wide 9-11"
+    ]
    }
   },
   {
