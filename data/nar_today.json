@@ -1,7 +1,7 @@
 {
  "date": "2026-11-12",
  "date_ja": "11/12（木）",
- "generated": "2026-11-12 20:30",
+ "generated": "2026-11-12 20:31",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -21229,6 +21229,17 @@
      "need": 20.64592812384026
     }
    ],
+   "result": {
+    "first": [
+     5
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -21521,6 +21532,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "5-9-10",
+    "trifecta": "5→10→9",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -21658,6 +21685,21 @@
       "p": 0.0638589942103602
      }
     ]
+   },
+   "tri_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 400,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -21712,6 +21754,17 @@
      "need": 13.918654359564297
     }
    ],
+   "result": {
+    "first": [
+     14
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -22011,6 +22064,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "4-13-14",
+    "trifecta": "14→13→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 10,
@@ -22022,6 +22081,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -22101,6 +22170,21 @@
       "p": 0.05545927550892669
      }
     ]
+   },
+   "tri_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
    }
   },
   {
