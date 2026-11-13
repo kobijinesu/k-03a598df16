@@ -8784,6 +8784,17 @@
      "need": 18.62779515513051
     }
    ],
+   "result": {
+    "first": [
+     6
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 3,
     "name": "マリーナダンサー",
@@ -8798,6 +8809,10 @@
      "厩舎の最近の成績が良い",
      "騎手と厩舎のコンビの成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -9030,6 +9045,22 @@
       "p3": 0.12414566555921924
      }
     ]
+   },
+   "pace_res": {
+    "trio": "5-6-7",
+    "trifecta": "6→5→7",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
@@ -9084,6 +9115,17 @@
      "need": 40.56436323326778
     }
    ],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -9341,6 +9383,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "6-7-8",
+    "trifecta": "8→7→6",
+    "trio_rank": 1,
+    "tri_rank": 1
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -9394,6 +9452,21 @@
       "p": 0.03438221435106818
      }
     ]
+   },
+   "tri_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
