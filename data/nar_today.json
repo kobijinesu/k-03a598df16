@@ -1,7 +1,7 @@
 {
  "date": "2026-11-13",
  "date_ja": "11/13（金）",
- "generated": "2026-11-13 16:50",
+ "generated": "2026-11-13 16:51",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -10354,6 +10354,17 @@
      "need": 24.402622511960658
     }
    ],
+   "result": {
+    "first": [
+     2
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 4,
     "name": "ピーエムザスカイ",
@@ -10368,6 +10379,10 @@
      "厩舎の最近の成績が良い",
      "騎手の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -10586,6 +10601,22 @@
       "p3": 0.17382285275515202
      }
     ]
+   },
+   "pace_res": {
+    "trio": "2-5-6",
+    "trifecta": "2→5→6",
+    "trio_rank": 1,
+    "tri_rank": 1
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
