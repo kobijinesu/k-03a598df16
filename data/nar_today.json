@@ -1,7 +1,7 @@
 {
  "date": "2026-11-13",
  "date_ja": "11/13（金）",
- "generated": "2026-11-13 17:30",
+ "generated": "2026-11-13 17:31",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -12423,6 +12423,17 @@
      "need": 31.03096366865701
     }
    ],
+   "result": {
+    "first": [
+     1
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 6,
     "name": "マイボンド",
@@ -12437,6 +12448,10 @@
      "騎手の最近の成績が良い",
      "近走の内容（着順・好走した格）が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -12688,6 +12703,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-4-5",
+    "trifecta": "1→4→5",
+    "trio_rank": 3,
+    "tri_rank": 3
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -12779,6 +12810,23 @@
       "p": 0.059981327483846734
      }
     ]
+   },
+   "tri_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 200,
+    "ret": 600,
+    "hits": [
+     "1-4-5"
+    ]
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
