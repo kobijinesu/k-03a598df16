@@ -70,27 +70,27 @@
   "hits": 0,
   "spent": 0,
   "ret": 0,
-  "a_races": 17,
+  "a_races": 18,
   "a_hits": 0,
-  "a_spent": 8100,
+  "a_spent": 8300,
   "a_ret": 0,
   "ext": {
    "2": {
-    "spent": 400,
+    "spent": 500,
     "ret": 0
    },
    "3": {
-    "spent": 1000,
+    "spent": 1200,
     "ret": 4160
    },
    "4": {
-    "spent": 100,
+    "spent": 200,
     "ret": 0
    }
   },
   "oshi": {
-   "n": 2,
-   "hit": 1,
+   "n": 3,
+   "hit": 2,
    "win": 1
   },
   "axis": {
@@ -115,15 +115,15 @@
    "ret": 0
   },
   "trio": {
-   "n": 6,
+   "n": 7,
    "hit": 0,
-   "spent": 1200,
+   "spent": 1600,
    "ret": 0
   },
   "exo": {
-   "n": 18,
+   "n": 19,
    "hit": 0,
-   "spent": 11400,
+   "spent": 12000,
    "ret": 0
   }
  }
