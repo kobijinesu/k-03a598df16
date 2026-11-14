@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 13:44",
+ "generated": "2026-11-14 13:45",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -13153,6 +13153,20 @@
      "tier": 4
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 200,
+     "ret": 0
+    },
+    "3": {
+     "bet": 400,
+     "ret": 0
+    },
+    "4": {
+     "bet": 200,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -13512,8 +13526,29 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "8-9-10",
+    "trifecta": "8→10→9",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "メイショウピリカ",
+    "tan": 1530,
+    "bet": 100,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140508",
