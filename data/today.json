@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 15:19",
+ "generated": "2026-11-14 15:23",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -17366,6 +17366,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -17718,8 +17732,29 @@
      "pick": "slow"
     }
    },
+   "pace_res": {
+    "trio": "3-4-14",
+    "trifecta": "3→14→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     3
+    ],
+    "first_name": "アスタールフナ",
+    "tan": 1100,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140511",
