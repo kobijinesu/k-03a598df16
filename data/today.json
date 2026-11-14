@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 14:19",
+ "generated": "2026-11-14 14:28",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -14727,6 +14727,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -15072,6 +15086,12 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "5-11-13",
+    "trifecta": "13→11→5",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": {
     "bets": [
      {
@@ -15118,7 +15138,32 @@
      }
     ]
    },
-   "asobi": []
+   "tri_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "exo_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     13
+    ],
+    "first_name": "コスモストーム",
+    "tan": 400,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140809",
