@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 16:05",
+ "generated": "2026-11-14 16:12",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -1046,6 +1046,17 @@
      "need": 16.724701830210158
     }
    ],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 12,
     "name": "アイアムイブシギン",
@@ -1060,6 +1071,10 @@
      "最近のこのコースで有利な枠・脚質に合う",
      "騎手の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -1346,6 +1361,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "6-8-12",
+    "trifecta": "8→6→12",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -1468,6 +1499,21 @@
       "p": 0.06150002651938121
      }
     ]
+   },
+   "tri_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
