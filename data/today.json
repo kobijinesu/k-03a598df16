@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 12:29",
+ "generated": "2026-11-14 12:30",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -8718,6 +8718,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -9028,7 +9042,18 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "4-9-10",
+    "trifecta": "10→9→4",
+    "trio_rank": 2,
+    "tri_rank": 2
+   },
    "tri": null,
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -9046,7 +9071,22 @@
      "p": 0.02845695599326836,
      "ev": 1.0159133289596805
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "ソブリオ",
+    "tan": 230,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140306",
