@@ -70,9 +70,9 @@
   "hits": 0,
   "spent": 0,
   "ret": 0,
-  "a_races": 10,
+  "a_races": 11,
   "a_hits": 0,
-  "a_spent": 5500,
+  "a_spent": 6000,
   "a_ret": 0,
   "ext": {
    "2": {
@@ -109,9 +109,9 @@
   },
   "w5": null,
   "tri": {
-   "n": 7,
+   "n": 8,
    "hit": 0,
-   "spent": 5000,
+   "spent": 5200,
    "ret": 0
   },
   "trio": {
@@ -121,9 +121,9 @@
    "ret": 0
   },
   "exo": {
-   "n": 10,
+   "n": 11,
    "hit": 0,
-   "spent": 6200,
+   "spent": 6900,
    "ret": 0
   }
  }
