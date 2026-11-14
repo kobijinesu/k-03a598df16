@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 12:19",
+ "generated": "2026-11-14 12:20",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -8225,6 +8225,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -8244,6 +8258,10 @@
      "血統（父・母の父）がこの条件に強い",
      "前に行けそうな位置（隊列の予測）"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": true
    },
    "pace": {
     "trifecta": [
@@ -8549,7 +8567,18 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "1-4-9",
+    "trifecta": "4→9→1",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
    "tri": null,
+   "exo_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -8575,7 +8604,22 @@
      "p": 0.019172141438462274,
      "ev": 1.012289067950808
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "トーセンイビサ",
+    "tan": 540,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140805",
