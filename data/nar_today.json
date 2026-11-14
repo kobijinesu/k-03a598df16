@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 19:10",
+ "generated": "2026-11-14 19:11",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -6250,6 +6250,17 @@
      "need": 20.502330209643713
     }
    ],
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -6534,6 +6545,22 @@
       "p3": 0.030965452410221812
      }
     ]
+   },
+   "pace_res": {
+    "trio": "4-8-10",
+    "trifecta": "10→8→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
