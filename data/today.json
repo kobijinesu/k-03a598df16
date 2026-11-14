@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 15:04",
+ "generated": "2026-11-14 15:05",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -16334,6 +16334,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -16693,8 +16707,31 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "10-15-17",
+    "trifecta": "10→15→17",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 800,
+    "ret": 2190,
+    "hits": [
+     "ワイド 10-17"
+    ]
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "トライアンフパス",
+    "tan": 1080,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140810",
