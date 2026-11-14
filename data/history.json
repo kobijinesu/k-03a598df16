@@ -70,17 +70,17 @@
   "hits": 0,
   "spent": 100,
   "ret": 0,
-  "a_races": 21,
-  "a_hits": 0,
-  "a_spent": 10000,
-  "a_ret": 0,
+  "a_races": 22,
+  "a_hits": 1,
+  "a_spent": 10300,
+  "a_ret": 3350,
   "ext": {
    "2": {
-    "spent": 700,
+    "spent": 800,
     "ret": 0
    },
    "3": {
-    "spent": 1900,
+    "spent": 2000,
     "ret": 4980
    },
    "4": {
@@ -121,10 +121,10 @@
    "ret": 0
   },
   "exo": {
-   "n": 23,
-   "hit": 0,
-   "spent": 14400,
-   "ret": 0
+   "n": 24,
+   "hit": 1,
+   "spent": 15100,
+   "ret": 3350
   }
  }
 ]
