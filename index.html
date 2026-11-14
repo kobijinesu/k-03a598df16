@@ -562,18 +562,18 @@ function win5Box() {   // WIN5（試験中）: 対象5レース、買い目（�
       <div class="note" style="padding-bottom:0">即PATの「フォーメーション」で、買い目ごとに各レースの馬を選んで入れます（買い目どうしの重なりは合計から除いています）。少なく買うなら買い目1から順に。</div>
       ${(w.top || []).length ? `<details class="info" data-k="w5top" style="margin-top:10px"><summary>期待値の高い組（上位${w.top.length}）</summary><div class="sb"><table class="sim"><tr><th>順</th><th class="l">組</th><th>起きる確率</th></tr>${w.top.map((x, i) => `<tr><td>${i + 1}</td><td class="l">${kc(x.kumi.join("-"))}</td><td>${(x.p * 100).toFixed(3)}%</td></tr>`).join("")}</table></div></details>` : ""}`;
   }
-  return `<section class="sec"><details class="slip" data-k="w5" open style="border-top:0"><summary><span class="sl">WIN5<small>試験中</small></span><span class="sm"><span class="mu">${w.pending || w.note ? "準備中" : "買い目あり"}</span></span><span class="sa">${aside}</span></summary><div class="sb">${body}</div></details></section>`;
+  return `<section class="sec"><details class="slip" data-k="w5"${w.pending || w.note ? "" : " open"} style="border-top:0"><summary><span class="sl">WIN5<small>試験中</small></span><span class="sm"><span class="mu">${w.pending || w.note ? "準備中" : "買い目あり"}</span></span><span class="sa">${aside}</span></summary><div class="sb">${body}</div></details></section>`;
 }
 
 function viewNext() {
   const up = upcoming();
   if (!up.length) return scoreBar() + `<section class="sec hero"><div class="eb">今日のレース</div><h2 class="rt">本日終了</h2><div class="meta" style="padding-bottom:16px">結果は「結果」タブで見られます。</div></section>`;
   const r = up[0], [s, cls] = status(r);
-  let html = scoreBar() + win5Box() + `<section class="sec hero"><div class="prog"><i id="prog"></i></div>
+  let html = scoreBar() + `<section class="sec hero"><div class="prog"><i id="prog"></i></div>
     <div class="hh"><div style="min-width:0"><div class="eb">次のレース</div><h2 class="rt">${esc(r.venue)}<span class="n">${r.R}<small>R</small></span></h2>
       <div class="meta">${r.name && r.name !== r.venue ? `<span>${esc(r.name)}</span>` : ""}<span>発走 ${r.post}</span><span>締切 ${r.close}</span>${s === "予想前" ? "" : `<span class="st ${cls}">${s}</span>`}</div></div>
       <div class="cdw"><div class="eb">発走まで</div><div class="cd n" id="cd" data-close="${t(r.post).toISOString()}"></div></div></div>
-    ${raceDetail(r)}</section>`;
+    ${raceDetail(r)}</section>` + win5Box();
   const after = up.slice(1, 4);
   if (after.length) html += `<section class="sec"><div class="sech"><span class="eb">このあとのレース</span></div>${after.map(x => rowHtml(x, true)).join("")}</section>`;
   return html;
