@@ -4,208 +4,337 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="musu競馬">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <title>musu 競馬予想</title>
-<style>/*paper*/
-:root{--bg:#fff;--card:#fff;--text:#111;--sub:#6b6b6b;--line:#dadada;--accent:#111;--accent2:#f3f3f3;--buy:#c8102e;--buybg:#fff6f6;--hit:#c8102e;--miss:#9b9b9b;--inv:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#141414;--card:#141414;--text:#ececec;--sub:#9c9c9c;--line:#333;--accent:#ececec;--accent2:#1e1e1e;--buy:#ff6b7d;--buybg:#2a1719;--hit:#ff6b7d;--miss:#777;--inv:#141414}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;font-size:15px;line-height:1.45;-webkit-text-size-adjust:100%;font-feature-settings:"palt"}
-header{position:sticky;top:0;z-index:5;background:#111;color:#fff;padding:calc(env(safe-area-inset-top) + 6px) 12px 6px;border-bottom:1px solid #000}
-header h1{margin:0;font-size:14px;font-weight:800;letter-spacing:.08em;display:inline}
-header .meta{font-size:11px;opacity:.75;display:inline;margin-left:8px;font-variant-numeric:tabular-nums}
-.src{display:flex;gap:0;margin-top:5px}.src button{border:1px solid #555;border-right:0;background:transparent;color:#bbb;border-radius:0;padding:3px 12px;font-size:12px;font-family:inherit}
-.src button:nth-of-type(2){border-right:1px solid #555}.src button.on{background:#fff;color:#111;font-weight:800;border-color:#fff}
-.src .sosb{margin-left:auto;border:1px solid #555;background:transparent;color:#bbb;font-weight:400}
-#sos{margin:8px 12px 0;padding:10px 0;border-top:2px solid var(--buy);font-size:13px;line-height:1.5}
-#sos .it{padding:5px 0;border-top:1px solid var(--line)}#sos .ng{color:var(--buy);font-weight:700}#sos .ok{color:var(--text)}#sos .x{float:right;border:0;background:none;color:var(--sub);font-size:18px}
-main{padding:6px 12px calc(64px + env(safe-area-inset-bottom))}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--bg);border-top:2px solid var(--text);padding-bottom:env(safe-area-inset-bottom);z-index:5}
-nav button{flex:1;border:0;background:none;color:var(--sub);font-size:13px;padding:12px 0;font-family:inherit}
-nav button .ic{display:none}
-nav button.on{color:var(--text);font-weight:800;box-shadow:inset 0 3px 0 var(--text)}
-.card{background:transparent;border:0;border-top:2px solid var(--text);border-radius:0;padding:8px 0 4px;margin:0 0 16px}
-.race-title{font-size:19px;font-weight:800;margin:0;letter-spacing:.02em}
-.sub{color:var(--sub);font-size:12px}
-.row{display:flex;align-items:center;gap:10px}
-.between{justify-content:space-between}
-.count{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.badge{display:inline-block;font-size:12px;font-weight:400;padding:0;border-radius:0;background:none;color:var(--sub);white-space:nowrap;border:0}
-.badge.buy{color:var(--text);font-weight:800}
-.badge.hit{color:var(--hit);background:none;font-weight:800}
-.badge.miss{color:var(--miss);background:none;border:0}
-.buy-box{background:transparent;border-top:1px solid var(--text);border-radius:0;padding:6px 0 0;margin-top:10px}
-.buy-box h3{margin:0 0 2px;font-size:12px;color:var(--text);font-weight:800}
-.horse{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line)}
-.horse:first-of-type{border-top:0}
-.num{flex:0 0 30px;height:30px;border-radius:0;background:var(--text);color:var(--inv);font-size:17px;font-weight:800;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
-.buy-box .num{background:var(--buy);color:#fff}
-.hname{font-size:15px;font-weight:700}
-.right{margin-left:auto;text-align:right;font-variant-numeric:tabular-nums}
-.big{font-size:19px;font-weight:800}
-.none{padding:12px 0;text-align:center;color:var(--sub);border-top:1px solid var(--line);margin-top:10px}
+<script>try { const th = localStorage.getItem("theme"); if (th === "light" || th === "dark") document.documentElement.dataset.theme = th; } catch {}</script>
+<style>/*ledger 2026-11-14: 画面の作り直し（見た目と使い勝手だけ。データと計算は前のまま）*/
+:root{
+  --bg:#f2f1ed;--sf:#fff;--ink:#131517;--ink2:#4c5258;--ink3:#868c92;--line:#ebe9e4;--line2:#d8d5ce;--fill:#f2f1ed;
+  --go:#0b7a3f;--gobg:#e2f2e8;--hit:#d2281a;--hitbg:#fdebe8;--warn:#a55906;--warnbg:#fbefdb;--inv:#fff;--glass:rgba(255,255,255,.88);
+  --txt:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Segoe UI",sans-serif;
+  --num:"Barlow Condensed","Roboto Condensed","Arial Narrow",-apple-system,"Hiragino Sans","Yu Gothic UI","Noto Sans JP",sans-serif;
+  --hh:86px;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#0a0b0c;--sf:#141618;--ink:#f3f3f0;--ink2:#b3b8bd;--ink3:#7c8288;--line:#222528;--line2:#363b40;--fill:#1c1f22;
+  --go:#43d686;--gobg:#102b1d;--hit:#ff6455;--hitbg:#361815;--warn:#f3a842;--warnbg:#34260f;--inv:#0a0b0c;--glass:rgba(20,22,24,.86);color-scheme:dark}}
+:root[data-theme=dark]{
+  --bg:#0a0b0c;--sf:#141618;--ink:#f3f3f0;--ink2:#b3b8bd;--ink3:#7c8288;--line:#222528;--line2:#363b40;--fill:#1c1f22;
+  --go:#43d686;--gobg:#102b1d;--hit:#ff6455;--hitbg:#361815;--warn:#f3a842;--warnbg:#34260f;--inv:#0a0b0c;--glass:rgba(20,22,24,.86);color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--txt);font-feature-settings:"palt";-webkit-font-smoothing:antialiased}
+button{font-family:inherit;color:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:6px}
+.n{font-family:var(--num);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.wrap{max-width:560px;margin:0 auto}
+
+/* ---- 上の帯 */
+header{position:sticky;top:0;z-index:10;background:var(--glass);-webkit-backdrop-filter:saturate(1.6) blur(16px);backdrop-filter:saturate(1.6) blur(16px);border-bottom:1px solid var(--line);padding:calc(env(safe-area-inset-top) + 8px) 16px 0}
+.h1{display:flex;align-items:center;gap:6px;height:36px}
+.logo{margin:0;font-size:20px;font-weight:800;letter-spacing:-.035em;line-height:1}
+.logo small{font-size:11px;font-weight:600;color:var(--ink3);margin-left:6px;letter-spacing:.1em}
+.seg{margin-left:auto;display:flex;background:var(--fill);border-radius:10px;padding:2px;box-shadow:inset 0 0 0 1px var(--line)}
+.seg button{border:0;background:none;font-size:13px;font-weight:600;color:var(--ink3);padding:6px 16px;border-radius:8px;transition:color .15s}
+.seg button.on{background:var(--sf);color:var(--ink);box-shadow:0 0 0 1px var(--line2),0 1px 2px rgba(0,0,0,.08)}
+.ib{width:36px;height:36px;margin-right:-8px;border:0;background:none;color:var(--ink2);display:grid;place-items:center;border-radius:10px}
+.ib svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7}
+.ib:active,.seg button:active,.sosb:active{opacity:.55}
+.h2{display:flex;align-items:center;gap:7px;height:30px;font-size:11.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+#meta{flex:0 1 auto;border:0;background:none;padding:6px 0 6px 3px;margin-left:-3px;font-size:inherit;color:inherit;display:block;text-align:left;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live{display:inline-block;width:6px;height:6px;margin:0 8px 1px 0;border-radius:50%;background:var(--go);box-shadow:0 0 0 3px var(--gobg)}
+.live.stale{background:var(--warn);box-shadow:0 0 0 3px var(--warnbg)}
+.live.spin{animation:blink .7s ease-in-out infinite}
+#meta b{color:var(--warn);font-weight:600}
+.sosb{margin-left:auto;flex:0 0 auto;white-space:nowrap;border:0;background:none;box-shadow:inset 0 0 0 1px var(--line2);border-radius:7px;font-size:11px;font-weight:600;color:var(--ink2);padding:4px 9px}
+#dock{display:flex;align-items:center;gap:8px;width:calc(100% + 32px);margin:0 -16px;padding:9px 16px;border:0;border-top:1px solid var(--line);background:none;font-size:13px;text-align:left}
+#dock[hidden]{display:none}
+#dock b{font-weight:700}
+#dock .dt{color:var(--ink3);font-size:12px;font-variant-numeric:tabular-nums}
+#dock .dc{margin-left:auto;font-size:19px;font-weight:600;line-height:1}
+#dock::after{content:"";width:6px;height:6px;border-right:1.6px solid var(--ink3);border-top:1.6px solid var(--ink3);transform:rotate(45deg)}
+#dock:active{background:var(--fill)}
+.dc.soon,.cd.soon{color:var(--warn)}.dc.now,.cd.now{color:var(--hit)}
+
+/* ---- 下のタブ */
+nav{position:fixed;bottom:0;left:0;right:0;z-index:10;background:var(--glass);-webkit-backdrop-filter:saturate(1.6) blur(16px);backdrop-filter:saturate(1.6) blur(16px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav .wrap{display:flex}
+nav button{flex:1;border:0;background:none;color:var(--ink3);font-size:10.5px;font-weight:600;padding:7px 0 8px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative;transition:color .15s}
+nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--ink)}
+nav button::before{content:"";position:absolute;top:-1px;left:50%;width:0;height:2px;background:var(--ink);border-radius:0 0 2px 2px;transform:translateX(-50%);transition:width .22s cubic-bezier(.2,.7,.2,1)}
+nav button.on::before{width:36px}
+nav button:active svg{transform:scale(.9)}
+
+/* ---- 本文 */
+main{padding:0 0 calc(76px + env(safe-area-inset-bottom))}
+#sample{margin:0;padding:8px 16px 0;font-size:11.5px;color:var(--ink3);line-height:1.5}
+.sec{background:var(--sf);border-block:1px solid var(--line);padding:0 16px;margin:8px 0 0}
+.eb{font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.05em;white-space:nowrap}
+.sech{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:13px 0 9px}
+.sech .eb{font-size:12px;color:var(--ink2);letter-spacing:.02em}
+.sech .dim{font-size:11px;color:var(--ink3);font-weight:400}
+.note{font-size:11.5px;color:var(--ink3);line-height:1.6;padding:8px 0 12px}
+.msg{font-size:13px;color:var(--ink2);padding:12px 0;border-top:1px solid var(--line)}
+.msg b{font-weight:700;color:var(--ink)}
+.msg .sub2{display:block;font-size:11.5px;color:var(--ink3);margin-top:2px}
+
+/* モデルの実績（横にめくる札） */
+.pwrap{padding-top:10px}
+.ph{display:flex;justify-content:space-between;align-items:baseline;padding:0 16px 6px}
+.perf{display:flex;gap:8px;overflow-x:auto;padding:0 16px 4px;scroll-snap-type:x proximity;scroll-padding:0 16px;scrollbar-width:none}
+.perf::-webkit-scrollbar{display:none}
+.pt{flex:0 0 auto;min-width:118px;background:var(--sf);box-shadow:inset 0 0 0 1px var(--line);border-radius:12px;padding:9px 12px 10px;scroll-snap-align:start}
+.pt .l{font-size:11px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.pt .v{font:600 26px/1 var(--num);margin-top:6px;letter-spacing:0}
+.pt .v small{font:500 10px/1 var(--txt);color:var(--ink3);margin-left:4px;letter-spacing:.04em}
+.pt .s{font-size:10.5px;color:var(--ink3);margin-top:6px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pt .s b{font-weight:700;color:var(--ink2)}.pt .s b.up{color:var(--hit)}
+
+/* 今日ここまで */
+.tstrip{display:flex;align-items:center;gap:14px;padding:11px 0}
+.tstrip .ts{display:flex;align-items:baseline;gap:5px;font-size:12px;color:var(--ink2);white-space:nowrap}
+.tstrip .ts b{font:600 17px/1 var(--num)}
+.tstrip .ts em{font-style:normal;font-size:11px;color:var(--ink3)}
+
+/* 次のレース */
+.hero{padding-top:14px;position:relative}
+.prog{position:absolute;left:0;right:0;top:-1px;height:2px;background:transparent}
+.prog i{display:block;height:100%;width:0;background:var(--ink);transition:width 1s linear}
+.hh{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-bottom:14px}
+.rt{margin:3px 0 4px;font-size:25px;font-weight:700;letter-spacing:-.01em;line-height:1.1;display:flex;align-items:baseline;gap:7px}
+.rt .n{font-size:34px;font-weight:600;line-height:.9}
+.rt .n small{font-size:21px;font-weight:600;margin-left:1px}
+.meta{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.cdw{text-align:right;flex:0 0 auto}
+.cd{font:600 46px/.95 var(--num);margin-top:4px;min-width:2.3em}
+
+/* 状態の札 */
+.st{display:inline-flex;align-items:center;font-size:12px;font-weight:600;white-space:nowrap;color:var(--ink3)}
+.st.buy{color:var(--go);background:var(--gobg);padding:3px 9px;border-radius:999px}
+.st.hit{color:var(--hit);background:var(--hitbg);padding:3px 9px;border-radius:999px}
+.sk{font-size:10px;font-weight:600;color:var(--warn);background:var(--warnbg);padding:2px 5px;border-radius:4px;margin-left:5px;letter-spacing:.04em}
+.hm{font-style:normal;font-size:10px;font-weight:700;color:var(--hit);margin-left:5px;white-space:nowrap}
+.pm{font-weight:700;font-variant-numeric:tabular-nums}.pm.up{color:var(--hit)}
+
+/* 馬番・組番 */
+.no{display:inline-grid;place-items:center;min-width:27px;height:27px;padding:0 4px;border-radius:7px;font:600 17px/1 var(--num);font-style:normal;background:var(--sf);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line2);font-variant-numeric:tabular-nums}
+.no.on{background:var(--ink);color:var(--inv);box-shadow:none}
+.no.hitc{background:var(--hit);color:#fff;box-shadow:none}
+.kc{display:inline-flex;align-items:center;gap:2px;vertical-align:middle}
+.kc i{display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 3px;border-radius:6px;font:600 15px/1 var(--num);font-style:normal;background:var(--sf);box-shadow:inset 0 0 0 1px var(--line2);font-variant-numeric:tabular-nums}
+.kc.ord{gap:0}
+.kc.ord i+i{margin-left:12px;position:relative}
+.kc.ord i+i::before{content:"";position:absolute;left:-9px;top:50%;width:4px;height:4px;border-top:1.5px solid var(--ink3);border-right:1.5px solid var(--ink3);transform:translateY(-50%) rotate(45deg)}
+.kc.hit i{background:var(--hit);color:#fff;box-shadow:none}
+.x{color:var(--ink3);font-size:11px;margin:0 1px}
+
+/* 買い目の行（左の欄＝券種、中＝中身、右＝点数や結果） */
+.slip{border-top:1px solid var(--line)}
+.slip>summary,.slip>.sum{display:grid;grid-template-columns:54px minmax(0,1fr) auto 12px;align-items:center;column-gap:10px;padding:11px 0;min-height:50px;list-style:none;cursor:pointer}
+.slip>.sum{grid-template-columns:54px minmax(0,1fr) auto;cursor:default}
+summary::-webkit-details-marker{display:none}
+.slip>summary::after,.info>summary::after{content:"";width:6px;height:6px;border-right:1.6px solid var(--ink3);border-bottom:1.6px solid var(--ink3);transform:translateY(-2px) rotate(45deg);transition:transform .22s;justify-self:center}
+.slip[open]>summary::after,.info[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.slip>summary:active{opacity:.6}
+.sl{font-size:12.5px;font-weight:700;line-height:1.25;color:var(--ink)}
+.sl small{display:block;font-size:10px;font-weight:600;color:var(--ink3);margin-top:1px}
+.sm{min-width:0;display:flex;align-items:center;gap:5px 6px;flex-wrap:wrap;font-size:13px}
+.sm .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:100%}
+.sm .mu,.mu{color:var(--ink3);font-size:12px;font-variant-numeric:tabular-nums}
+.sa{font-size:12px;color:var(--ink3);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sb{padding:0 0 14px}
+.sb>.cap{font-size:11px;font-weight:600;color:var(--ink3);margin:12px 0 2px}
+.pass{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border-top:1px solid var(--line);padding:11px 0;font-size:12px;color:var(--ink3)}
+.pass span{background:var(--fill);border-radius:5px;padding:2px 7px;font-size:11px}
+
+/* 馬の行 */
+.hr{display:grid;grid-template-columns:54px minmax(0,1fr) auto;column-gap:10px;align-items:center;padding:8px 0}
+.hr+.hr{border-top:1px solid var(--line)}
+.hn{font-size:15px;font-weight:600;line-height:1.3}
+.hs{font-size:11.5px;color:var(--ink3);font-variant-numeric:tabular-nums;margin-top:1px}
+.ho{text-align:right;white-space:nowrap}.ho b{font:600 23px/1 var(--num)}.ho small{font-size:10.5px;color:var(--ink3);margin-left:2px}
+.tg{display:inline-block;font-style:normal;font-size:10.5px;font-weight:600;line-height:1;padding:3px 6px;border-radius:5px;background:var(--fill);color:var(--ink2);white-space:nowrap;vertical-align:1.5px;margin-right:5px}
+.tg.hit{background:var(--hitbg);color:var(--hit)}
+.tg.go{background:var(--gobg);color:var(--go)}
+
+/* 役の行（妙味ワイド・推し） */
+.role{display:grid;grid-template-columns:54px minmax(0,1fr);column-gap:10px;padding:8px 0}
+.role+.role{border-top:1px solid var(--line)}
+.role .rk{font-size:11px;font-weight:700;color:var(--ink2);padding-top:5px}
+.role .r1{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.role .r1 b{font-size:14px;font-weight:600}
+.role .r2{font-size:11.5px;color:var(--ink3);margin-top:3px;line-height:1.55}
+.cmp{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 8px;font-size:11.5px;color:var(--ink3);margin-top:6px;max-width:260px}
+.cmp i{display:block;height:5px;border-radius:3px;background:var(--line2)}
+.cmp i.m{background:var(--ink)}
+.cmp b{font:600 15px/1 var(--num);color:var(--ink)}
+.cmp span:nth-of-type(2n){text-align:right}
+
+/* 表 */
 table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
-th,td{padding:5px 4px;border-top:1px solid var(--line);text-align:right}
-th{color:var(--sub);font-weight:400;font-size:11px;border-top:1px solid var(--text)}
-td:first-child,th:first-child{text-align:left}
-.chips{display:flex;gap:0;overflow-x:auto;margin:6px 0 10px;border-bottom:1px solid var(--text)}
-.chips button{border:0;background:none;color:var(--sub);border-radius:0;padding:7px 12px;font-size:14px;white-space:nowrap;font-family:inherit}
-.chips button.on{color:var(--text);font-weight:800;box-shadow:inset 0 -3px 0 var(--text);background:none}
-.modebar{display:flex;align-items:center;gap:0;margin:2px 0 6px;font-size:11px;color:var(--sub);flex-wrap:wrap}
-.modebar button{border:1px solid var(--line);background:none;color:var(--sub);border-radius:0;padding:2px 9px;font-size:11px;font-family:inherit;margin-left:-1px}
-.modebar button:first-of-type{margin-left:6px}
-.modebar button.on{background:var(--text);border-color:var(--text);color:var(--inv);font-weight:700}
-.line{margin-top:8px;padding:2px 0 2px 8px;border-left:3px solid var(--text);border-radius:0;background:none;font-size:13px;line-height:1.5}
-.line.mute{border-left-color:var(--line);color:var(--sub)}
-.sec{margin-top:8px;border:0;border-top:1px solid var(--line);border-radius:0;padding:0}
-.sec>summary{padding:7px 0;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
-.sec>summary b{font-weight:800}
-.info>summary{color:var(--sub);font-size:11px;padding:5px 0}
-.legend{display:none !important}
-.lab{display:inline-block;background:var(--text);color:var(--inv);font-style:normal;font-size:11px;font-weight:800;padding:1px 6px;margin-right:6px;letter-spacing:.06em;vertical-align:1px}
-.hm{color:var(--hit);font-weight:800}
-.rrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
-.rrow-wrap:first-child .rrow{border-top:0}
-.rno{flex:0 0 38px;font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
-.rmid{flex:1;min-width:0}
-.rmid .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;font-size:14px}
-details>summary{list-style:none;cursor:pointer}
-details>summary::-webkit-details-marker{display:none}
-.kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:0 12px}
-.kpi div{background:none;border-top:1px solid var(--line);border-radius:0;padding:6px 0}
-.kpi b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
-.kpi span{font-size:11px;color:var(--sub)}
-.note{font-size:11px;color:var(--sub);margin-top:4px;line-height:1.5}
-table.sim{width:100%;border-collapse:collapse;font-size:11px;font-variant-numeric:tabular-nums}
-table.sim th,table.sim td{padding:3px 2px;border-bottom:1px solid var(--line);border-top:0;text-align:right;white-space:nowrap}
-table.sim th{color:var(--sub);font-weight:400;border-bottom:1px solid var(--text)}
-.sample{background:none;color:var(--sub);font-size:11px;font-weight:400;padding:4px 12px;border-bottom:1px solid var(--line)}
-dl.leg{margin:0;font-size:12px;line-height:1.55}dl.leg dt{font-weight:800;margin-top:6px}dl.leg dd{margin:0;color:var(--sub)}
-/*hud*/
-.sk{display:inline-block;font-size:10px;font-weight:400;color:var(--sub);border:1px solid var(--sub);padding:0 4px;margin-left:5px;line-height:1.4;vertical-align:1px;letter-spacing:.05em}
-.src .skinb{border:1px solid #555;background:transparent;color:#bbb;margin-left:6px;font-weight:400}
-#hudfx{display:none}
-html[data-skin=hud]{--bg:#05080f;--card:rgba(12,22,38,.66);--text:#e6f2ff;--sub:#7f97b4;--line:rgba(96,180,255,.20);--accent:#38e1ff;--accent2:rgba(56,225,255,.07);--buy:#38e1ff;--buybg:rgba(56,225,255,.10);--hit:#ff4fd8;--miss:#5a6c84;--inv:#05080f;--neon:#38e1ff;--par:0px}
-html[data-skin=hud] body{background:radial-gradient(900px 520px at 80% -8%,rgba(40,110,255,.22),transparent 62%),radial-gradient(700px 420px at -10% 110%,rgba(255,79,216,.10),transparent 60%),var(--bg);font-feature-settings:"palt","tnum"}
-html[data-skin=hud] body::before,html[data-skin=hud] body::after{content:"";position:fixed;left:-20%;right:-20%;top:-40%;bottom:-40%;pointer-events:none;z-index:0}
-html[data-skin=hud] body::before{background-image:linear-gradient(rgba(56,225,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(56,225,255,.06) 1px,transparent 1px);background-size:28px 28px;transform:translate3d(0,calc(var(--par) * .35),0)}
-html[data-skin=hud] body::after{background-image:linear-gradient(rgba(56,225,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(56,225,255,.10) 1px,transparent 1px);background-size:140px 140px;transform:translate3d(0,calc(var(--par) * .12),0);mask-image:radial-gradient(closest-side,#000 40%,transparent)}
-html[data-skin=hud] main,html[data-skin=hud] #sos,html[data-skin=hud] .sample{position:relative;z-index:1}
-html[data-skin=hud] header{background:rgba(5,10,20,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(56,225,255,.35);box-shadow:0 1px 18px rgba(56,225,255,.15)}
-html[data-skin=hud] header h1{letter-spacing:.22em;color:var(--neon);text-shadow:0 0 10px rgba(56,225,255,.6)}
-html[data-skin=hud] .src button{border-color:rgba(56,225,255,.35);color:#9fc6e8}
-html[data-skin=hud] .src button.on{background:rgba(56,225,255,.16);color:#fff;border-color:var(--neon);box-shadow:0 0 10px rgba(56,225,255,.45) inset}
-html[data-skin=hud] nav{background:rgba(5,10,20,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(56,225,255,.35)}
-html[data-skin=hud] nav button.on{color:var(--neon);box-shadow:inset 0 2px 0 var(--neon),0 -6px 16px -8px var(--neon);text-shadow:0 0 8px rgba(56,225,255,.7)}
-html[data-skin=hud] .card{background:var(--card);border:1px solid var(--line);border-top:1px solid var(--neon);padding:10px 12px 6px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));box-shadow:0 0 0 1px rgba(56,225,255,.05) inset;animation:hudin .45s ease-out}
-html[data-skin=hud] .race-title{letter-spacing:.08em}
-html[data-skin=hud] .count{color:var(--neon);text-shadow:0 0 14px rgba(56,225,255,.7);animation:hudpulse 2.4s ease-in-out infinite}
-html[data-skin=hud] .num{background:transparent;color:var(--neon);border:1px solid var(--neon);box-shadow:0 0 8px rgba(56,225,255,.35) inset;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);flex-basis:34px}
-html[data-skin=hud] .buy-box .num{background:rgba(56,225,255,.18);color:#fff}
-html[data-skin=hud] .lab{background:transparent;color:var(--neon);border:1px solid var(--neon);box-shadow:0 0 6px rgba(56,225,255,.4)}
-html[data-skin=hud] .hm,html[data-skin=hud] .badge.hit{color:var(--hit);text-shadow:0 0 10px rgba(255,79,216,.75)}
-html[data-skin=hud] .badge.buy{color:var(--neon);text-shadow:0 0 8px rgba(56,225,255,.6)}
-html[data-skin=hud] th{border-top-color:rgba(56,225,255,.45);color:#8fb4d8;letter-spacing:.05em}
-html[data-skin=hud] .sec>summary{position:relative}
-html[data-skin=hud] .sec>summary::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:18px;background:var(--neon);box-shadow:0 0 6px var(--neon);transition:width .45s cubic-bezier(.2,.8,.2,1)}
-html[data-skin=hud] .sec[open]>summary::after{width:100%}
-html[data-skin=hud] .sec[open]{background:linear-gradient(180deg,rgba(56,225,255,.06),transparent 70%)}
-html[data-skin=hud] .sec[open]>div,html[data-skin=hud] details[open]>div{animation:hudunfold .38s cubic-bezier(.2,.8,.2,1)}
-html[data-skin=hud] .line{border-left-color:var(--neon);box-shadow:-6px 0 12px -8px var(--neon)}
-html[data-skin=hud] .chips{border-bottom-color:rgba(56,225,255,.35)}
-html[data-skin=hud] .chips button.on{color:var(--neon);box-shadow:inset 0 -2px 0 var(--neon);text-shadow:0 0 8px rgba(56,225,255,.6)}
-html[data-skin=hud] .modebar button.on{background:rgba(56,225,255,.16);border-color:var(--neon);color:#fff}
-html[data-skin=hud] .kpi div{border-top-color:rgba(56,225,255,.25)}
-html[data-skin=hud] .kpi b{color:#fff;text-shadow:0 0 10px rgba(56,225,255,.45)}
-html[data-skin=hud] .sk{color:#ffcf4a;border-color:#ffcf4a;box-shadow:0 0 6px rgba(255,207,74,.45)}
-html[data-skin=hud] .sk::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#ffcf4a;margin-right:3px;vertical-align:1px;animation:hudblink 1s steps(2) infinite}
-html[data-skin=hud] .rolling{color:var(--neon) !important;text-shadow:0 0 12px rgba(56,225,255,.9)}
-html[data-skin=hud] #hudfx{display:block;position:fixed;inset:0;pointer-events:none;z-index:4}
-#hudfx i{position:absolute;width:22px;height:22px;border:0 solid rgba(56,225,255,.55)}
-#hudfx .c1{top:calc(env(safe-area-inset-top) + 74px);left:6px;border-top-width:1px;border-left-width:1px}
-#hudfx .c2{top:calc(env(safe-area-inset-top) + 74px);right:6px;border-top-width:1px;border-right-width:1px}
-#hudfx .c3{bottom:calc(env(safe-area-inset-bottom) + 70px);left:6px;border-bottom-width:1px;border-left-width:1px}
-#hudfx .c4{bottom:calc(env(safe-area-inset-bottom) + 70px);right:6px;border-bottom-width:1px;border-right-width:1px}
-#hudfx .rd{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 44px);padding:2px 12px;font:10px/1.4 ui-monospace,Menlo,Consolas,monospace;color:rgba(56,225,255,.8);letter-spacing:.06em;text-shadow:0 0 6px rgba(56,225,255,.6);background:rgba(5,10,20,.7);border-top:1px solid rgba(56,225,255,.18);white-space:nowrap;overflow:hidden;display:flex;gap:14px}
-html[data-skin=hud] main{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
-#hudfx .sw{position:absolute;left:0;right:0;height:80px;top:-80px;background:linear-gradient(180deg,transparent,rgba(56,225,255,.06),transparent);animation:hudsweep 7s linear infinite}
-@keyframes hudin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes hudunfold{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
-@keyframes hudpulse{50%{text-shadow:0 0 22px rgba(56,225,255,1)}}
-@keyframes hudblink{50%{opacity:0}}
-@keyframes hudsweep{to{transform:translateY(calc(100vh + 160px))}}
-@media (prefers-reduced-motion:reduce){html[data-skin=hud] *,html[data-skin=hud] *::before,html[data-skin=hud] *::after{animation:none !important;transition:none !important}#hudfx .sw{display:none}}
-/*shinbun*/
-html:not([data-skin=hud]){--bg:#f4f0e6;--card:#f4f0e6;--text:#1b1916;--sub:#6e675c;--line:#cfc7b6;--accent:#1b1916;--accent2:#ebe5d6;--buy:#b3121f;--buybg:#f7e3df;--hit:#b3121f;--miss:#8f877a;--inv:#f4f0e6}
-@media (prefers-color-scheme:dark){html:not([data-skin=hud]){--bg:#1c1a16;--card:#1c1a16;--text:#ece5d5;--sub:#a39a89;--line:#3d382f;--accent:#ece5d5;--accent2:#26231d;--buy:#ff7a72;--buybg:#3a1f1c;--hit:#ff7a72;--miss:#857d70;--inv:#1c1a16}}
-html:not([data-skin=hud]) body{font-family:"Hiragino Mincho ProN","Noto Serif JP","Yu Mincho","YuMincho",serif;font-feature-settings:"palt","tnum"}
-html:not([data-skin=hud]) header{background:var(--bg);color:var(--text);border-bottom:4px double var(--text);padding:calc(env(safe-area-inset-top) + 8px) 12px 6px}
-html:not([data-skin=hud]) header h1{font-size:24px;font-weight:900;letter-spacing:.18em;display:block;line-height:1.1}
-html:not([data-skin=hud]) header .meta{display:block;margin:2px 0 0;font-size:11px;opacity:1;color:var(--sub)}
-html:not([data-skin=hud]) .src{margin-top:6px;border-top:1px solid var(--text);padding-top:5px}
-html:not([data-skin=hud]) .src button{border:0;color:var(--sub);padding:2px 10px 2px 0;font-size:13px}
-html:not([data-skin=hud]) .src button:nth-of-type(2){border-right:0}
-html:not([data-skin=hud]) .src button.on{background:none;color:var(--text);font-weight:900;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
-html:not([data-skin=hud]) .src .sosb,html:not([data-skin=hud]) .src .skinb{border:1px solid var(--text);color:var(--text);padding:1px 8px;margin-left:6px}
-html:not([data-skin=hud]) .src .sosb{margin-left:auto}
-html:not([data-skin=hud]) nav{border-top:4px double var(--text)}
-html:not([data-skin=hud]) nav button{font-size:14px}
-html:not([data-skin=hud]) nav button.on{box-shadow:none;background:var(--text);color:var(--inv)}
-html:not([data-skin=hud]) .card{border-top:4px double var(--text)}
-html:not([data-skin=hud]) .race-title{font-size:23px;font-weight:900;letter-spacing:.06em}
-html:not([data-skin=hud]) .rno{font-size:18px;font-weight:900}
-html:not([data-skin=hud]) .num{font-family:"Hiragino Mincho ProN","Noto Serif JP",serif;font-weight:900}
-html:not([data-skin=hud]) .count,html:not([data-skin=hud]) .big,html:not([data-skin=hud]) .kpi b{font-weight:900}
-html:not([data-skin=hud]) .lab{font-weight:700;letter-spacing:.12em;padding:1px 7px}
-html:not([data-skin=hud]) th{border-top:2px solid var(--text);font-weight:700;color:var(--text)}
-html:not([data-skin=hud]) .chips{border-bottom:2px solid var(--text)}
-html:not([data-skin=hud]) .chips button{font-size:15px}
-html:not([data-skin=hud]) .chips button.on{box-shadow:none;background:var(--text);color:var(--inv)}
-html:not([data-skin=hud]) .sample{border-bottom:1px solid var(--text);font-size:11px}
-html:not([data-skin=hud]) .sk{border-color:var(--buy);color:var(--buy)}
+th{font-size:11px;font-weight:500;color:var(--ink3);text-align:right;padding:7px 0 6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{text-align:right;padding:7px 0 7px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child>td{border-bottom:0}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+td.l,th.l{text-align:left}
+tr.hitr td{color:var(--hit);font-weight:600}
+table.sim{font-size:12px}table.sim td,table.sim th{padding:5px 0 5px 6px;white-space:nowrap}
+table.sim td:first-child,table.sim th:first-child{padding-left:0}
+.scroll{overflow-x:auto;scrollbar-width:none}.scroll::-webkit-scrollbar{display:none}
+.amt{display:inline-flex;align-items:center;gap:6px}
+.lv{display:inline-flex;gap:2px;align-items:flex-end}
+.lv u{width:3px;height:9px;border-radius:1px;background:var(--line2)}
+.lv u:nth-child(1){height:5px}.lv u:nth-child(2){height:7px}
+.lv u.on{background:var(--ink)}
+.est{color:var(--ink3)}
+.dn{color:var(--ink2)}.upc{color:var(--hit)}
+
+/* くわしい中身・凡例 */
+.info{border-top:1px solid var(--line)}
+.info>summary{display:grid;grid-template-columns:minmax(0,1fr) 12px;align-items:center;column-gap:10px;padding:12px 0;font-size:12.5px;font-weight:600;color:var(--ink2);list-style:none;cursor:pointer}
+.info>summary:active{opacity:.6}
+.info .sb>.cap:first-child{margin-top:0}
+dl.leg{margin:0;padding:0 0 14px;font-size:12px;line-height:1.65}dl.leg dt{font-weight:700;margin-top:10px}dl.leg dt:first-child{margin-top:0}dl.leg dd{margin:0;color:var(--ink2)}
+
+/* 結果の小さな帯（レースの中） */
+.res{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line);font-size:12.5px;font-variant-numeric:tabular-nums}
+.res .w{display:flex;align-items:center;gap:6px;font-weight:600}
+.res .r{margin-left:auto;color:var(--ink2);text-align:right}
+
+/* 今日のレース一覧 */
+.chips{position:sticky;top:var(--hh);z-index:5;display:flex;gap:6px;overflow-x:auto;padding:9px 16px;margin:8px 0 -8px;background:var(--glass);-webkit-backdrop-filter:saturate(1.6) blur(16px);backdrop-filter:saturate(1.6) blur(16px);scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{border:0;background:none;box-shadow:inset 0 0 0 1px var(--line2);border-radius:999px;font-size:13px;font-weight:600;color:var(--ink2);padding:6px 14px;white-space:nowrap}
+.chips button.on{background:var(--ink);color:var(--inv);box-shadow:none}
+.chips button:active{opacity:.6}
+.rw{border-top:1px solid var(--line)}.rw:first-of-type{border-top:0}
+.rrow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;column-gap:10px;align-items:center;padding:11px 0;min-height:58px;list-style:none;cursor:pointer}
+.rrow:active{opacity:.6}
+.rno{font:600 23px/1 var(--num)}
+.rno small{font-size:15px;margin-left:1px}
+.rno span{display:block;font:500 11px/1 var(--txt);color:var(--ink3);margin-top:5px;font-variant-numeric:tabular-nums;letter-spacing:0}
+.rmid{min-width:0}
+.rmid .t{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tags{display:flex;flex-wrap:wrap;gap:4px 5px;margin-top:4px;align-items:center}
+.rmid .t:empty+.tags,.rmid .tags:first-child{margin-top:0}
+.tags .tg{margin:0;font-weight:500;font-variant-numeric:tabular-nums}
+.tags .tg b{font-weight:700;color:var(--ink)}
+.tags .tg.hit b{color:var(--hit)}
+.tags .pl{font-size:11px;color:var(--ink3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.rw.nx>.rrow .rno{color:var(--go)}
+.rw.nx{box-shadow:inset 3px 0 0 var(--go);margin:0 -16px;padding:0 16px}
+.rw.past>.rrow .rno{color:var(--ink3)}
+.rd{background:var(--bg);margin:0 -16px;padding:0 16px 4px;border-top:1px solid var(--line)}
+.rd>:first-child{border-top:0}
+
+/* 結果タブ */
+.rr{padding:12px 0;border-top:1px solid var(--line)}.sech+.rr,.note+.rr{border-top:0;padding-top:2px}
+.rr1{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.rl{font-size:14px;font-weight:600}
+.rl small{font-size:11.5px;font-weight:400;color:var(--ink3);margin-left:7px;font-variant-numeric:tabular-nums}
+.rr1 .pm{font:600 21px/1 var(--num)}
+.rr1 .pm small{font:500 11px/1 var(--txt);margin-left:1px}
+.rr2{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;color:var(--ink3);margin-top:5px;font-variant-numeric:tabular-nums}
+.rr2 b{font-weight:700;color:var(--ink2)}
+.bar{position:relative;height:4px;border-radius:2px;background:var(--fill);margin-top:8px}
+.bar i{display:block;height:100%;border-radius:2px;background:var(--ink3);max-width:100%}
+.bar.up i{background:var(--hit)}
+.bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--ink2)}
+
+/* 点検の結果 */
+#sos{margin:0;background:var(--sf);border-bottom:1px solid var(--line);padding:12px 16px;font-size:13px;line-height:1.55;position:relative}
+#sos .it{padding:6px 0;border-top:1px solid var(--line);font-size:12.5px}#sos .it:first-of-type{margin-top:8px}
+#sos .ng{color:var(--hit);font-weight:700}#sos .ok{color:var(--go);font-weight:700}
+#sos .xb{position:absolute;right:6px;top:4px;border:0;background:none;color:var(--ink3);font-size:20px;width:36px;height:36px}
+
+/* 読み込み中 */
+.skel{height:86px;margin:8px 0 0;background:linear-gradient(90deg,var(--sf) 0%,var(--fill) 50%,var(--sf) 100%);background-size:200% 100%;animation:sh 1.3s linear infinite;border-block:1px solid var(--line)}
+.skel.tall{height:230px}
+@keyframes sh{to{background-position:-200% 0}}
+@keyframes blink{50%{opacity:.25}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+#view.enter>*{animation:rise .34s cubic-bezier(.2,.7,.2,1) both}
+#view.enter>*:nth-child(2){animation-delay:.03s}#view.enter>*:nth-child(3){animation-delay:.06s}#view.enter>*:nth-child(4){animation-delay:.09s}#view.enter>*:nth-child(n+5){animation-delay:.12s}
+@supports (interpolate-size:allow-keywords){
+  :root{interpolate-size:allow-keywords}
+  details::details-content{block-size:0;overflow-y:clip;transition:block-size .26s cubic-bezier(.2,.7,.2,1),content-visibility .26s allow-discrete}
+  details[open]::details-content{block-size:auto}
+  #view.still details::details-content{transition:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+@media (min-width:592px){.sec,.chips,.skel{border-inline:1px solid var(--line)}}
 </style>
 </head>
 <body>
-<header><h1>musu 競馬予想</h1><div class="meta" id="meta">読み込み中…</div><div class="src"><button data-src="jra">中央</button><button data-src="nar">地方（検証中）</button><button class="sosb" id="sosb">点検</button><button class="skinb" id="skinb">HUD</button></div></header>
-<div id="sos" hidden></div>
-<div class="sample" id="sample" hidden></div>
-<main id="view"></main>
-<nav>
-  <button data-tab="next" class="on">次のレース</button>
-  <button data-tab="today">今日のレース</button>
-  <button data-tab="result">結果</button>
-</nav>
+<header><div class="wrap">
+  <div class="h1"><h1 class="logo">musu<small>競馬予想</small></h1>
+    <div class="seg" role="tablist"><button data-src="jra">中央</button><button data-src="nar">地方</button></div>
+    <button class="ib" id="themeb" aria-label="明るい表示と暗い表示を切り替える"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor" stroke="none"/></svg></button></div>
+  <div class="h2"><button id="meta" aria-label="いますぐ読み込み直す"><i class="live spin"></i>読み込み中…</button><button class="sosb" id="sosb">点検</button></div>
+  <button id="dock" hidden></button>
+</div></header>
+<div id="sos" class="wrap" hidden></div>
+<main class="wrap"><p id="sample" hidden></p><div id="view"><div class="skel"></div><div class="skel tall"></div><div class="skel"></div></div></main>
+<nav><div class="wrap">
+  <button data-tab="next"><svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.2"/><path d="M12 9.8v3.7l2.4 1.5M9.6 3.4h4.8"/></svg>次のレース</button>
+  <button data-tab="today"><svg viewBox="0 0 24 24"><path d="M9 6.5h10.5M9 12h10.5M9 17.5h10.5"/><path d="M4.6 6.5h.01M4.6 12h.01M4.6 17.5h.01" stroke-width="2.4"/></svg>今日のレース</button>
+  <button data-tab="result"><svg viewBox="0 0 24 24"><path d="M5.5 19.5v-6M12 19.5v-15M18.5 19.5v-9.5"/></svg>結果</button>
+</div></nav>
 <script>
-let D = null, H = [], tab = localStorage.getItem("tab") || "next", venue = null, src = localStorage.getItem("src") || "jra";
+const LS = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch {} } };
+let D = null, H = [], tab = LS.get("tab") || "next", venue = null, src = LS.get("src") || "jra";
+if (!["next", "today", "result"].includes(tab)) tab = "next";
 const lbl = () => D.decision_label || `締切${D.decision_min}分前`;
 const $ = s => document.querySelector(s);
-const yen = v => (v ?? 0).toLocaleString("ja-JP") + "円";
+const num = v => (v ?? 0).toLocaleString("ja-JP");
+const yen = v => num(v) + "円";
 const pct = v => v == null ? "—" : (v * 100).toFixed(1) + "%";
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pm = v => `<b class="pm${v > 0 ? " up" : ""}">${v > 0 ? "+" : v < 0 ? "−" : ""}${num(Math.abs(v))}<small>円</small></b>`;   // 収支（プラスだけ赤）
 
 function now() { return D && D.now_override ? new Date(D.now_override) : new Date(); }
 function t(hm) { const [h, m] = hm.split(":").map(Number); const d = new Date(D.date + "T00:00:00+09:00"); d.setHours(h, m, 0, 0); return d; }
+function upcoming() { const n = now(); return D.races.filter(r => r.state !== "out" && t(r.post) > n).sort((a, b) => t(a.post) - t(b.post)); }
 
-// 単勝の型の切り替え（1=合格版、2=拡大版、3=広め。2・3は検証中）。中央のみ
-let modeSel = "1", mode = "1";   // modeSel=選んだ型、mode=今の表示に使う型（地方は常に合格版の扱い）
-try { modeSel = localStorage.getItem("mode") || "1"; if (!["1", "2", "3"].includes(modeSel)) modeSel = "1"; } catch {}
-const MODES = { "1": "標準", "2": "拡大", "3": "広め" };   // 標準＝合格モデル＋馬主モデル（2026-11-08 から）
+// 単勝の型（1=合格版、2=拡大版、3=広め）。画面は広めまで全部出して札で区別する。mode は集計のときだけ切り替える
+let mode = "3";
 const TIERTAG = { 2: "拡大", 3: "広め", 4: "馬主モデルのみ" };
 // 単勝の買い: 標準＝合格モデルの買い＋馬主モデルだけの買い（tier 4）。拡大・広めはさらに tier 2・3 を足す
-function buysOf(r) {   // 同じ馬が「拡大」と「馬主モデルのみ」の両方に入っていても1頭として数える（2026-11-08 直し）
+function buysOf(r) {   // 同じ馬が「拡大」と「馬主モデルのみ」の両方に入っていても1頭として数える
   const ex = r.buys_ext || [], seen = new Set();
   return r.buys.concat(ex.filter(b => b.tier === 4 || (mode !== "1" && b.tier <= +mode))).filter(b => !seen.has(b.no) && seen.add(b.no));
 }
 function retOf(r) { if (!r.result) return 0; const w = new Set(r.result.first); return buysOf(r).filter(b => w.has(b.no)).length * (r.result.tan || 0); }
-let triKind = "mid"; try { triKind = localStorage.getItem("triKind") || "mid"; } catch {}
-function perfBar() {   // モデルの実績: 過去（バックテスト）と本番の通算（history）。2026-11-11
-  const sumH = f => { let sp = 0, rt = 0, d = 0; H.forEach(h => { const x = f(h); if (x && x.spent) { sp += x.spent; rt += x.ret; d++; } }); return sp ? `<b>${Math.round(rt / sp * 100)}%</b><span class="sub">（${d}日 ${rt - sp >= 0 ? "+" : ""}${yen(rt - sp)}）</span>` : `<span class="sub">まだなし</span>`; };
+
+// ---------- 部品
+function kc(kumi, hit) {   // 組番を札にする（→ は着順どおり、- は順不同）
+  const s = String(kumi), ord = s.includes("→"), parts = s.split(ord ? "→" : "-");
+  return `<span class="kc${ord ? " ord" : ""}${hit ? " hit" : ""}">${parts.map(p => `<i>${esc(p.trim())}</i>`).join("")}</span>`;
+}
+const hm = '<em class="hm">的中</em>';
+function amt(a) { const k = Math.min(3, Math.round(a / 100)); return `<span class="amt"><span class="lv">${[1, 2, 3].map(i => `<u${i <= k ? ' class="on"' : ""}></u>`).join("")}</span>${yen(a)}</span>`; }   // 金額の濃淡
+function fmtO(b) { const o = b.odds; if (o == null) return b.est ? `<span class="est">推定 ${Math.round(b.est)}</span>` : "—"; return Array.isArray(o) ? `${o[0]}〜${o[1]}` : `${o}`; }
+function sk(r) { return r.result && r.result.src === "速報" ? '<span class="sk">速報</span>' : ""; }
+function resBadge(res, hitTxt, pre) { return res ? (res.ret ? `<span class="st hit">${hitTxt || "的中"} ${yen(res.ret)}</span>` : `<span class="st">外れ</span>`) : pre; }
+
+function status(r) {
+  if (r.state === "out") return ["対象外", ""];
+  const bs = buysOf(r);
+  if (r.result && r.state === "decided") { const [a_, b_] = bs.length ? (retOf(r) > 0 ? ["単勝 的中", "hit"] : ["単勝 外れ", ""]) : ["単勝 見送り", ""]; return [a_ + sk(r), b_]; }
+  if (r.state === "missed") return ["単勝 判定なし", ""];
+  if (r.state === "decided") return bs.length ? [`単勝 ${bs.length}頭`, "buy"] : ["単勝 見送り", ""];
+  return ["予想前", ""];
+}
+
+// ---------- モデルの実績: 過去（バックテスト）と本番の通算（history）
+function perfStrip() {
+  const sumH = f => { let sp = 0, rt = 0, d = 0; H.forEach(h => { const x = f(h); if (x && x.spent) { sp += x.spent; rt += x.ret; d++; } }); return sp ? { p: Math.round(rt / sp * 100), d, diff: rt - sp } : null; };
   const L = src === "nar" ? [
     ["単勝 標準", "141%", h => ({ spent: h.spent, ret: h.ret })],
     ["単勝 拡大まで", "118%", h => h.ext && h.ext["2"]],
@@ -222,133 +351,122 @@ function perfBar() {   // モデルの実績: 過去（バックテスト）と�
     ["単勝の馬1着の3連単", "144%", h => h.axis && h.axis["2"]],
     ["お楽しみ", "92%", h => ({ spent: h.a_spent, ret: h.a_ret })],
     ["参考の組合せ", "—", h => h.exo]];
-  return `<div class="card" style="margin-bottom:8px"><div class="sub" style="margin-bottom:2px">モデルの実績（${src === "nar" ? "地方" : "中央"}）</div>
-    <table><tr><th style="text-align:left">買い目</th><th>過去の回収率</th><th>本番の通算</th></tr>${L.map(([n, b, f]) => `<tr><td style="text-align:left;white-space:nowrap">${n}</td><td>${b}</td><td>${sumH(f)}</td></tr>`).join("")}</table>
-    <div class="note">過去＝バックテストの年ごとの平均（${src === "nar" ? "地方 2020〜26年" : "中央 2018〜26年"}）。本番＝実際に予想を出し始めてからの記録（各100円の想定、お金は賭けていない）。</div></div>`;
-}
-function triBoth(r) { const k = triKind; triKind = "mid"; let h = triBox(r); if (src === "nar" && r.tri && (r.tri.ana || []).length) { triKind = "ana"; h += triBox(r); } triKind = k; return h; }
-function modeBar() { return perfBar();   // 地方も切り替えあり（2026-11-08）
-  const L = { "1": "標準", "2": "拡大", "3": "広め" };
-  const tk = src === "nar" ? `<div class="modebar">3連単　 ${[["mid", "中穴"], ["ana", "大穴"]].map(([k, v]) => `<button data-tk="${k}" class="${k === triKind ? "on" : ""}">${v}</button>`).join("")}<span>${triKind === "ana" ? "（1着を単勝の穴馬に固定・試験中）" : "（2・3着の滑り込み）"}</span></div>` : "";
-  return `<div class="modebar">単勝の範囲 ${Object.entries(L).map(([k, v]) => `<button data-mode="${k}" class="${k === mode ? "on" : ""}">${v}</button>`).join("")}<span>${mode === "1" ? "" : "（試験中）"}</span></div>` + tk;
+  return `<div class="pwrap"><div class="ph"><span class="eb">モデルの実績（${src === "nar" ? "地方" : "中央"}）</span><span class="eb" style="font-weight:400;letter-spacing:0">過去の回収率と、本番の通算</span></div>
+    <div class="perf" id="perf">${L.map(([nm, b, f]) => { const s = sumH(f);
+      return `<div class="pt"><div class="l">${nm}</div><div class="v">${b}${b === "—" ? "" : "<small>過去</small>"}</div>
+        <div class="s">${s ? `本番 <b${s.p >= 100 ? ' class="up"' : ""}>${s.p}%</b>　${s.d}日 ${s.diff >= 0 ? "+" : "−"}${yen(Math.abs(s.diff))}` : "本番 まだなし"}</div></div>`; }).join("")}</div></div>`;
 }
 
-function sk(r) { return r.result && r.result.src === "速報" ? '<span class="sk">速報</span>' : ""; }
+// ---------- レースの中身
+function horseRows(list, withEv, win, on) {
+  return list.map(h => `<div class="hr"><div><i class="no${on ? " on" : ""}${win && win.has(h.no) ? " hitc" : ""}">${h.no}</i></div>
+    <div><div class="hn">${h.both === true ? `<i class="tg hit">★両方</i>` : h.both === false ? `<i class="tg">合格モデルのみ</i>` : ""}${h.tier ? `<i class="tg">${TIERTAG[h.tier]}</i>` : ""}${esc(h.name)}${win && win.has(h.no) ? hm : ""}</div>
+      <div class="hs">勝率 ${pct(h.p)}${withEv ? ` ・ 期待値 ${h.ev.toFixed(2)}` : ` ・ 必要オッズ ${h.need.toFixed(1)}倍`}</div></div>
+    <div class="ho"><b>${h.odds.toFixed(1)}</b><small>倍</small></div></div>`).join("");
+}
 
-function status(r) {
-  if (r.state === "out") return ["対象外", "miss"];
+function tanBox(r, skip) {   // 単勝（合格モデル。各100円・札なし＝標準、札＝拡大・広め）
   const bs = buysOf(r);
-  if (r.result && r.state === "decided") { const [a_, b_] = bs.length ? (retOf(r) > 0 ? ["単勝 的中", "hit"] : ["単勝 外れ", "miss"]) : ["単勝 見送り", "miss"]; return [a_ + sk(r), b_]; }
-  if (r.state === "missed") return ["単勝 判定なし", "miss"];
-  if (r.state === "decided") return bs.length ? [`単勝 ${bs.length}頭`, "buy"] : ["単勝 見送り", ""];
-  return ["予想前", ""];
+  if (!bs.length) { if (r.note) return `<div class="msg">単勝：予想できませんでした（${esc(r.note)}）</div>`; skip.push("単勝"); return ""; }
+  const win = r.result ? new Set(r.result.first) : null, ret = retOf(r);
+  const aside = r.result ? (ret > 0 ? `<span class="st hit">的中 ${yen(ret)}</span>` : `<span class="st">外れ</span>`) : `${bs.length}頭 ${yen(100 * bs.length)}`;
+  return `<div class="slip"><div class="sum"><span class="sl">単勝<small>各100円</small></span><span class="sm"><span class="mu">${bs.some(b => b.tier) ? "札なし＝標準、札＝拡大・広め" : "買う馬"}</span></span><span class="sa">${aside}</span></div>
+    <div class="sb" style="padding-bottom:6px">${horseRows(bs, true, win, true)}${bs.some(b => b.both !== undefined || b.tier === 4) ? `<div class="note" style="padding-bottom:6px">★両方＝合格モデルと馬主モデルの両方が「買い」（いちばん信頼できる）。「〜のみ」は片方だけが「買い」。</div>` : ""}</div></div>`;
 }
 
-function axisBox(r) {
-  // 単勝の買い馬（選択中の型）を1着に固定した3連単（検証中）
-  const am = mode === "4" ? "1" : mode, list = (r.axis || {})[am] || [], res = (r.axis_res || {})[am];
-  if (!list.length) return "";
-  const hit = new Set(res ? res.hits : []);
-  const badge = res ? `<span class="badge ${res.ret ? "hit" : "miss"}">${res.ret ? "的中 " + yen(res.ret) : "外れ"}</span>` : `<span class="sub">${list.length}点・${yen(100 * list.length)}</span>`;
-  return `<details class="sec"><summary><span><i class="lab">単勝の馬を1着にした3連単</i></span>${badge}</summary>
-    <table><tr><th>組番</th><th>オッズ</th><th>期待値</th></tr>${list.map(e => `<tr><td>${hit.has(e.type + e.kumi) ? "" : ""}${esc(e.kumi)}</td><td>${e.odds ? e.odds.toFixed(1) : "—"}</td><td>${e.ev.toFixed(2)}</td></tr>`).join("")}</table>
-    <details class="info legend"><summary>この買い方について</summary><div class="note">各100円（単勝より少なめの額で）。${mode === "1" ? "合格版" : "拡大版まで"}の馬を1着に固定し、2・3着は勝率と「2・3着の来やすさ」から期待値1.2以上の組を5点まで。過去の試算は 139%／149% だが、約70点に1回しか当たらず、数回の大当たりで稼ぐ形（大当たり3回を除くと約95%）。長い外れが続くのが普通です。（検証中）</div></details></details>`;
-}
-
-function horseRows(list, withEv) {
-  return list.map(h => `<div class="horse"><div class="num">${h.no}</div>
-    <div><div class="hname">${h.both === true ? `<span class="badge hit">★両方</span> ` : h.both === false ? `<span class="badge">合格モデルのみ</span> ` : ""}${h.tier ? `<span class="badge">${TIERTAG[h.tier]}</span> ` : ""}${esc(h.name)}</div><div class="sub">勝率 ${pct(h.p)}${withEv ? ` ・ 期待値 ${h.ev.toFixed(2)}` : ` ・ 必要オッズ ${h.need.toFixed(1)}倍`}</div></div>
-    <div class="right"><div class="big">${h.odds.toFixed(1)}<span class="sub">倍</span></div></div></div>`).join("");
-}
-
-function oshiBox(r) {
-  // 推し: 4番人気以下で3着以内に来ると読んだ馬（1レース1頭・検証中）
+function oshiBox(r) {   // 推し: 4番人気以下で3着以内に来ると読んだ馬（1レース1頭・検証中）
   const o = r.oshi; if (!o) return "";
   const res = r.oshi_res;
-  const badge = res ? (res.win ? `<span class="badge hit">1着！</span>` : res.hit ? `<span class="badge hit">的中（3着以内）</span>` : `<span class="badge miss">外れ</span>`) : "";
-  return `<div style="margin:8px 0 10px;padding:12px;border-top:1px solid var(--line)">
-    <div class="row between"><b><i class="lab">推し</i>${o.strong ? "★★" : "★"}</b>${badge}</div>
-    <div style="font-size:18px;font-weight:700;margin:6px 0">${o.no}番 ${esc(o.name)} <span class="sub">${o.ninki}番人気・${o.odds.toFixed(1)}倍</span></div>
-    <div><b>3着以内</b>${o.p >= 0.15 ? "、1着まで" : ""}</div>
-    <div class="sub">3着内 ${(o.t3 * 100).toFixed(0)}%（世間 ${(o.t3m * 100).toFixed(0)}%）</div>
-    ${o.why && o.why.length ? `<div class="note" style="margin-top:6px">根拠 ${o.why.map(esc).join("／")}</div>` : ""}
-  </div>`;
+  const badge = res ? (res.win ? `<span class="st hit">1着</span>` : res.hit ? `<span class="st hit">的中（3着以内）</span>` : `<span class="st">外れ</span>`) : `${o.ninki}番人気 ${o.odds.toFixed(1)}倍`;
+  return `<details class="slip" data-k="${r.id}:oshi"><summary><span class="sl">推し<small>${o.strong ? "★★" : "★"}</small></span>
+      <span class="sm"><i class="no${res && res.hit ? " hitc" : ""}">${o.no}</i><span class="nm">${esc(o.name)}</span></span><span class="sa">${badge}</span></summary>
+    <div class="sb"><div class="role"><div class="rk">見立て</div><div>
+      <div class="r1"><b>3着以内${o.p >= 0.15 ? "、1着まで" : ""}</b><span class="mu">${o.ninki}番人気・${o.odds.toFixed(1)}倍</span></div>
+      <div class="cmp"><span>モデル</span><i class="m" style="width:${Math.round(o.t3 * 100)}%"></i><b>${(o.t3 * 100).toFixed(0)}%</b><span>世間</span><i style="width:${Math.round(o.t3m * 100)}%"></i><b>${(o.t3m * 100).toFixed(0)}%</b></div>
+      ${o.why && o.why.length ? `<div class="r2">根拠　${o.why.map(esc).join("／")}</div>` : ""}</div></div></div></details>`;
 }
 
-function myomiBox(r) {
-  // 妙味ワイド（地方・試験中）: 買われ足りない人気馬を軸に、誰も見ていない穴へ。買われすぎの人気馬は切る
+function myomiBox(r) {   // 妙味ワイド（地方・試験中）: 買われ足りない人気馬を軸に、誰も見ていない穴へ。買われすぎの人気馬は切る
   const m = r.myomi; if (!m) return "";
   const res = r.myomi_res, hit = new Set(res ? res.hits : []);
-  const badge = res ? (res.ret ? `<span class="badge hit">的中 ${yen(res.ret)}</span>` : `<span class="badge miss">外れ</span>`) : `<span class="sub">${m.bets.length}点・${yen(m.total)}</span>`;
-  const why = h => h.why && h.why.length ? `<div class="sub" style="font-size:11px">根拠 ${h.why.map(esc).join("／")}</div>` : "";
-  const hl = (h, tag, note) => `<div style="margin:6px 0"><b>${tag}</b> <b>${h.no}番</b> ${esc(h.name)} <span class="sub">${h.ninki}番人気・${h.odds.toFixed(1)}倍</span>
-    <div class="sub" style="font-size:11px">${note}</div>${why(h)}</div>`;
+  const badge = resBadge(res, "", `${m.bets.length}点 ${yen(m.total)}`);
+  const hl = (h, tag, note) => `<div class="role"><div class="rk">${tag}</div><div><div class="r1"><i class="no">${h.no}</i><b>${esc(h.name)}</b><span class="mu">${h.ninki}番人気・${h.odds.toFixed(1)}倍</span></div>
+    <div class="r2">${note}${h.why && h.why.length ? `<br>根拠　${h.why.map(esc).join("／")}` : ""}</div></div></div>`;
   const TN = { wide: "ワイド", umaren: "馬連" };
-  return `<details class="sec" data-k="myomi"><summary><span><i class="lab">妙味ワイド</i> <span class="sub">軸 ${m.axis.no}番 × 穴 ${m.ana.map(h => h.no + "番").join("・")}</span></span>${badge}</summary>
-    <div style="padding:4px 0 8px">
+  return `<details class="slip" data-k="${r.id}:myomi"><summary><span class="sl">妙味<small>ワイド</small></span>
+      <span class="sm"><span class="mu">軸</span><i class="no">${m.axis.no}</i><span class="x">×</span><span class="mu">穴</span>${m.ana.map(h => `<i class="no">${h.no}</i>`).join("")}</span><span class="sa">${badge}</span></summary>
+    <div class="sb">
       ${hl(m.axis, "軸", `人気だが買われ足りない　世間の ${m.axis.r.toFixed(2)} 倍`)}
       ${m.ana.map(h => hl(h, "穴", `人気薄　モデルは世間の ${h.r.toFixed(2)} 倍`)).join("")}
       ${m.ate ? hl(m.ate, "当て役", "的中を拾う1点（単独では1割負け）") : ""}
-      ${m.cut.length ? `<div style="margin:6px 0"><i class="lab">消し</i> ${m.cut.map(h => `<b>${h.no}番</b> ${esc(h.name)} <span class="sub">${h.ninki}番人気　買われすぎ ${h.r.toFixed(2)} 倍</span>`).join("、")}</div>` : ""}
-      <table><tr><th>券種</th><th>組</th><th>役</th><th>オッズ</th><th>金額</th></tr>${m.bets.map(b => `<tr${hit.has(b.type + " " + b.kumi) ? ' style="background:var(--buybg);font-weight:700"' : ""}><td>${TN[b.type]}</td><td>${esc(b.kumi)}</td><td>${b.role}</td><td>${fmtO(b)}</td><td>${yen(b.amt)}</td></tr>`).join("")}</table>
-      <details class="info legend"><summary>妙味ワイドについて</summary><div class="note">軸＝1〜3番人気でモデルが「世間より1.2倍以上来る」と見る馬。穴＝5番人気以下・10倍以上で「1.3倍以上来る」と見る馬（最大2頭）。1〜3番人気でモデルが買われすぎと見る馬（0.85倍未満）は相手から外します。軸の見落としが大きい（1.3倍以上）レースは穴の金額を倍に。過去（2023〜2026年の地方）では1日約4.6レース、的中約4割、回収率107〜114%。もうけは穴の組から出て、当て役は的中を増やすための費用です。試験中（記録だけ）。</div></details>
+      ${m.cut.map(h => hl(h, "消し", `買われすぎ　世間の ${h.r.toFixed(2)} 倍`)).join("")}
+      <div class="cap">買い目</div>
+      <table><tr><th>券種</th><th class="l">組</th><th>役</th><th>オッズ</th><th>金額</th></tr>${m.bets.map(b => { const h_ = hit.has(b.type + " " + b.kumi);
+        return `<tr${h_ ? ' class="hitr"' : ""}><td>${TN[b.type]}</td><td class="l">${kc(b.kumi, h_)}${h_ ? hm : ""}</td><td>${b.role}</td><td>${fmtO(b)}</td><td>${amt(b.amt)}</td></tr>`; }).join("")}</table>
     </div></details>`;
 }
 
 function triOn() { return src === "nar" || (D && D.races.some(x => x.tri)); }   // その日に3連単・3連複の計算が動いているか
-function miokuri(r, lab) { return r.state === "decided" && triOn() ? `<div class="line mute">${lab}：見送り</div>` : ""; }
+function betTable(list, hit) {
+  return `<table><tr><th>組</th><th>見立て</th><th>オッズ</th><th>金額</th></tr>${list.map(b => { const h_ = hit.has(b.kumi);
+    return `<tr${h_ ? ' class="hitr"' : ""}><td>${kc(b.kumi, h_)}${h_ ? hm : ""}</td><td>${(b.p * 100).toFixed(1)}%</td><td>${fmtO(b)}</td><td>${amt(b.amt)}</td></tr>`; }).join("")}</table>`;
+}
 
-function trioBox(r) {
-  // 3連複（地方・試験中）: 3連単と同じ並び確率を6通り足したもの × 3連複の推定オッズ。見立て1%以上・200倍以下、10点まで
-  const v = r.tri; if (!v || !(v.trio || []).length) return miokuri(r, "3連複");
+function trioBox(r, skip) {   // 3連複（試験中）: 3連単と同じ並び確率を6通り足したもの × 推定オッズ
+  const v = r.tri; if (!v || !(v.trio || []).length) { if (r.state === "decided" && triOn()) skip.push("3連複"); return ""; }
   const res = r.trio_res, hit = new Set(res ? res.hits : []);
-  const badge = res ? (res.ret ? `<span class="badge hit">的中 ${yen(res.ret)}</span>` : `<span class="badge miss">外れ</span>`) : `<span class="sub">${v.trio.length}点 ${yen(v.trio_total)}</span>`;
-  const rows = v.trio.map(b => `<tr${hit.has(b.kumi) ? ' style="background:var(--buybg);font-weight:800"' : ""}><td style="text-align:left"><b>${esc(b.kumi)}</b>${hit.has(b.kumi) ? " <b class=hm>的中</b>" : ""}</td><td>${(b.p * 100).toFixed(1)}%</td><td>${fmtO(b)}</td><td>${yen(b.amt)}</td></tr>`).join("");
-  return `<details class="sec" data-k="trio"><summary><span><i class="lab">3連複</i><span class="sub">${v.trio.slice(0, 2).map(b => esc(b.kumi)).join("　")}${v.trio.length > 2 ? " ほか" : ""}</span></span>${badge}</summary>
-    <div style="padding:2px 0 8px"><table><tr><th>組</th><th>見立て</th><th>オッズ</th><th>金額</th></tr>${rows}</table></div></details>`;
+  return `<details class="slip" data-k="${r.id}:trio"><summary><span class="sl">3連複</span>
+      <span class="sm">${kc(v.trio[0].kumi, hit.has(v.trio[0].kumi))}${v.trio.length > 1 ? `<span class="mu">ほか</span>` : ""}</span><span class="sa">${resBadge(res, "", `${v.trio.length}点 ${yen(v.trio_total)}`)}</span></summary>
+    <div class="sb">${betTable(v.trio, hit)}</div></details>`;
 }
 
-function triBox(r) {
-  // 3連単（地方・試験中）: 1着は勝率、2・3着は「滑り込む力」（3着内モデル）で直した並び確率 × 推定オッズ。10点まで、期待値で金額に濃淡
-  // 大穴（2026-11-11）: 1着を単勝の穴モデルの馬（10〜100倍・期待値1.2以上）に固定。切り替えは triKind
-  const ana = triKind === "ana" && src === "nar", v0 = r.tri; if (!v0) return miokuri(r, ana ? "3連単 大穴" : src === "nar" ? "3連単 中穴" : "3連単");
-  const v = ana ? { bets: v0.ana || [], total: v0.ana_total || 0, horses: v0.horses } : v0; if (!v.bets.length) return miokuri(r, ana ? "3連単 大穴" : src === "nar" ? "3連単 中穴" : "3連単");
+function triBox(r, ana, skip) {   // 3連単（試験中）: 1着は勝率、2・3着は「滑り込む力」で直した並び確率 × 推定オッズ。大穴＝1着を単勝の穴馬に固定（地方）
+  const name = ana ? "3連単 大穴" : src === "nar" ? "3連単 中穴" : "3連単", v0 = r.tri;
+  const pass = () => { if (r.state === "decided" && triOn()) skip.push(name); return ""; };
+  if (!v0) return pass();
+  const v = ana ? { bets: v0.ana || [], total: v0.ana_total || 0, horses: v0.horses } : v0; if (!v.bets.length) return pass();
   const res = ana ? r.tria_res : r.tri_res, hit = new Set(res ? res.hits : []);
-  const badge = res ? (res.ret ? `<span class="badge hit">的中 ${yen(res.ret)}</span>` : `<span class="badge miss">外れ</span>`) : `<span class="sub">${v.bets.length}点 ${yen(v.total)}</span>`;
-  const rows = v.bets.map(b => `<tr${hit.has(b.kumi) ? ' style="background:var(--buybg);font-weight:800"' : ""}><td style="text-align:left"><b>${esc(b.kumi)}</b>${hit.has(b.kumi) ? " <b class=hm>的中</b>" : ""}</td><td>${(b.p * 100).toFixed(1)}%</td><td>${fmtO(b)}</td><td>${yen(b.amt)}</td></tr>`).join("");
-  const hs = (v.horses || []).map(h => `<tr><td style="text-align:left"><b>${h.no}</b> <span style="font-size:11px">${esc(h.name || "")}</span></td><td>${h.ninki}</td><td><b>${pct(h.t3)}</b></td><td>${pct(h.t3m)}</td></tr>`).join("");
-  return `<details class="sec" data-k="tri"><summary><span><i class="lab">${ana ? "3連単 大穴" : src === "nar" ? "3連単 中穴" : "3連単"}</i><span class="sub">${v.bets.slice(0, 2).map(b => esc(b.kumi)).join("　")}${v.bets.length > 2 ? " ほか" : ""}</span></span>${badge}</summary>
-    <div style="padding:2px 0 8px">
-      <table><tr><th>組</th><th>見立て</th><th>オッズ</th><th>金額</th></tr>${rows}</table>
-      ${hs ? `<div class="sub" style="margin:8px 0 0">使った馬の3着内（モデル／世間）</div><table class="sim"><tr><th style="text-align:left">馬</th><th>人気</th><th>モデル</th><th>世間</th></tr>${hs}</table>` : ""}
-    </div></details>`;
+  const hs = (v.horses || []).map(h => `<tr><td><b>${h.no}</b>　${esc(h.name || "")}</td><td>${h.ninki}</td><td><b>${pct(h.t3)}</b></td><td>${pct(h.t3m)}</td></tr>`).join("");
+  return `<details class="slip" data-k="${r.id}:tri${ana ? "a" : ""}"><summary><span class="sl">3連単${ana ? "<small>大穴</small>" : src === "nar" ? "<small>中穴</small>" : ""}</span>
+      <span class="sm">${kc(v.bets[0].kumi, hit.has(v.bets[0].kumi))}${v.bets.length > 1 ? `<span class="mu">ほか</span>` : ""}</span><span class="sa">${resBadge(res, "", `${v.bets.length}点 ${yen(v.total)}`)}</span></summary>
+    <div class="sb">${betTable(v.bets, hit)}
+      ${hs ? `<div class="cap">使った馬の3着内（モデル／世間）</div><table class="sim"><tr><th>馬</th><th>人気</th><th>モデル</th><th>世間</th></tr>${hs}</table>` : ""}</div></details>`;
 }
 
-function simMore(v, res, r) {   // の中の「▼ 10万回の中身」: 上位10の決着と馬ごとの着順（開いた時だけ）
+function axisBox(r) {   // 単勝の買い馬を1着に固定した3連単（検証中）
+  const list = (r.axis || {})[mode] || [], res = (r.axis_res || {})[mode];
+  if (!list.length) return "";
+  const hit = new Set(res ? res.hits : []);
+  return `<details class="slip" data-k="${r.id}:axis"><summary><span class="sl">3連単<small>1着固定</small></span>
+      <span class="sm">${kc(list[0].kumi, hit.has(list[0].type + list[0].kumi))}${list.length > 1 ? `<span class="mu">ほか</span>` : ""}</span><span class="sa">${resBadge(res, "", `${list.length}点 ${yen(100 * list.length)}`)}</span></summary>
+    <div class="sb"><table><tr><th>組</th><th>オッズ</th><th>期待値</th></tr>${list.map(e => { const h_ = hit.has(e.type + e.kumi);
+      return `<tr${h_ ? ' class="hitr"' : ""}><td>${kc(e.kumi, h_)}${h_ ? hm : ""}</td><td>${e.odds ? e.odds.toFixed(1) : "—"}</td><td>${e.ev.toFixed(2)}</td></tr>`; }).join("")}</table></div></details>`;
+}
+
+function simMore(v, res, r) {   // 展開の中の「10万回の中身」: 上位10の決着と馬ごとの着順
   if (!v.horses && !v.trio10) return "";
   const k = x => Math.round(x * 100000).toLocaleString();
-  const mark = (list, hit) => (list || []).map((x, i) => `<tr${hit && x.kumi === hit ? ' style="background:var(--buybg);font-weight:700"' : ""}><td>${i + 1}</td><td style="text-align:left">${esc(x.kumi)}${hit && x.kumi === hit ? " <b class=hm>的中</b>" : ""}</td><td>${k(x.p)}回</td>${(list || []).some(y => y.odds) ? `<td>${x.odds ? x.odds.toLocaleString() + "倍" : ""}</td>` : ""}</tr>`).join("");
+  const mark = (list, hit) => (list || []).map((x, i) => `<tr${hit && x.kumi === hit ? ' class="hitr"' : ""}><td>${i + 1}</td><td class="l">${kc(x.kumi, hit && x.kumi === hit)}${hit && x.kumi === hit ? hm : ""}</td><td>${k(x.p)}回</td>${(list || []).some(y => y.odds) ? `<td>${x.odds ? x.odds.toLocaleString() + "倍" : ""}</td>` : ""}</tr>`).join("");
   const od = {}; ((r && r.top) || []).forEach(x => { od[x.no] = x.odds; });   // 判定した時点の単勝オッズ
-  const hs = (v.horses || []).map(h => `<tr><td style="text-align:left"><b>${h.no}</b>${od[h.no] ? `<span class="sub" style="font-size:10px"> ${od[h.no]}倍</span>` : ""}<div class="sub" style="font-size:10px;max-width:4.2em;overflow:hidden;text-overflow:ellipsis">${esc(h.name || "")}</div></td>
+  const hs = (v.horses || []).map(h => `<tr><td><b>${h.no}</b>${od[h.no] ? `<span class="mu" style="font-size:10.5px"> ${od[h.no]}倍</span>` : ""}<div class="mu" style="font-size:10.5px;max-width:5em;overflow:hidden;text-overflow:ellipsis">${esc(h.name || "")}</div></td>
       <td>${k(h.p1)}</td><td>${k(h.p2)}</td><td>${k(h.p3)}</td><td><b>${pct(h.p1)}</b></td><td>${pct(h.p1 + h.p2)}</td><td>${pct(h.p1 + h.p2 + h.p3)}</td></tr>`).join("");
-  return `<details class="info" style="margin-top:8px"><summary>▼ 10万回の中身（上位10の決着・馬ごとの着順）</summary>
-    ${hs ? `<div class="sub" style="margin:6px 0 2px">馬ごと（10万回のうち何回その着順か。倍＝判定した時点の単勝オッズ）</div>
-    <div style="overflow-x:auto"><table class="sim"><tr><th style="text-align:left">馬</th><th>1着</th><th>2着</th><th>3着</th><th>勝率</th><th>連対</th><th>複勝</th></tr>${hs}</table></div>` : ""}
-    ${v.trio10 ? `<div class="sub" style="margin:8px 0 2px">3連複 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th>${v.trio10.some(y => y.odds) ? "<th>オッズ</th>" : ""}</tr>${mark(v.trio10, res && res.trio)}</table>` : ""}
-    ${v.tri10 ? `<div class="sub" style="margin:8px 0 2px">3連単 上位10</div><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>10万回中</th>${v.tri10.some(y => y.odds) ? "<th>オッズ</th>" : ""}</tr>${mark(v.tri10, res && res.trifecta)}</table>` : ""}
-  </details>`;
+  return `<details class="info" data-k="${r.id}:sim" style="margin-top:10px"><summary>10万回の中身（上位10の決着・馬ごとの着順）</summary><div class="sb">
+    ${hs ? `<div class="cap">馬ごと（10万回のうち何回その着順か。倍＝判定した時点の単勝オッズ）</div>
+    <div class="scroll"><table class="sim"><tr><th>馬</th><th>1着</th><th>2着</th><th>3着</th><th>勝率</th><th>連対</th><th>複勝</th></tr>${hs}</table></div>` : ""}
+    ${v.trio10 ? `<div class="cap">3連複 上位10</div><table class="sim"><tr><th>順</th><th class="l">組</th><th>10万回中</th>${v.trio10.some(y => y.odds) ? "<th>オッズ</th>" : ""}</tr>${mark(v.trio10, res && res.trio)}</table>` : ""}
+    ${v.tri10 ? `<div class="cap">3連単 上位10</div><table class="sim"><tr><th>順</th><th class="l">組</th><th>10万回中</th>${v.tri10.some(y => y.odds) ? "<th>オッズ</th>" : ""}</tr>${mark(v.tri10, res && res.trifecta)}</table>` : ""}
+  </div></details>`;
 }
 
-function paceBox(r) {
-  // 展開予想（検証中）
+function paceBox(r) {   // 展開予想（検証中）
   const v = r.pace; if (!v) return "";
-  const res = r.pace_res, lab = { high: "ハイペースなら", slow: "スローなら", inner: "内が伸びる馬場なら", outer: "外が伸びる馬場なら", chaos: "荒れるなら", calm: "堅く決まるなら" };
-  // もしもの展開: 展開ごとに「⬆浮く馬」と「⬇沈む人気馬（勝率の上位3頭のうち、いちばん下がる馬）」を1行に（2026-11-08 見やすく）
+  const res = r.pace_res;
+  // もしもの展開: 展開ごとに「浮く馬」と「沈む人気馬（勝率の上位3頭のうち、いちばん下がる馬）」を1行に
   const lab2 = { high: "ハイペース", slow: "スロー", inner: "内が有利", outer: "外が有利", chaos: "荒れる" };
-  const cell = (h, up) => h ? `<b>${h.no}</b> <span style="font-size:11px">${esc(h.name || "")}</span><div class="sub" style="font-size:10.5px">3着内 ${pct(h.t3)}（<span style="color:${up ? "var(--hit)" : "var(--buy)"}">${up ? "+" : ""}${(h.diff * 100).toFixed(0)}pt</span>）</div>` : `<span class="sub">—</span>`;
+  const cell = (h, up) => h ? `<b>${h.no}</b>　${esc(h.name || "")}<div class="mu" style="font-size:10.5px">3着内 ${pct(h.t3)}（<span class="${up ? "upc" : "dn"}">${up ? "+" : ""}${(h.diff * 100).toFixed(0)}pt</span>）</div>` : `<span class="mu">—</span>`;
   const sr = ["high", "slow", "inner", "outer", "chaos"].filter(k => v.scen[k] && (v.scen[k].diff > 0.02 || v.scen[k].down))
-    .map(k => `<tr><td style="text-align:left;white-space:nowrap;font-size:11px">${lab2[k]}</td><td style="text-align:left;white-space:normal">${v.scen[k].diff > 0.02 ? cell(v.scen[k], true) : cell(null)}</td><td style="text-align:left;white-space:normal">${cell(v.scen[k].down, false)}</td></tr>`).join("");
-  const sc = sr ? `<table class="sim" style="table-layout:fixed"><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><tr><th style="text-align:left">もしも〜なら</th><th style="text-align:left">浮く馬</th><th style="text-align:left">沈む人気馬</th></tr>${sr}</table>` : "";
+    .map(k => `<tr><td style="white-space:nowrap">${lab2[k]}</td><td class="l" style="white-space:normal">${v.scen[k].diff > 0.02 ? cell(v.scen[k], true) : cell(null)}</td><td class="l" style="white-space:normal">${cell(v.scen[k].down, false)}</td></tr>`).join("");
+  const sc = sr ? `<table class="sim" style="table-layout:fixed"><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><tr><th>もしも〜なら</th><th class="l">浮く馬</th><th class="l">沈む人気馬</th></tr>${sr}</table>` : "";
   const tri = v.trifecta[0], trio = v.trio[0];
   let today = "";
   if (v.today) {
@@ -359,373 +477,333 @@ function paceBox(r) {
     if (t_.gate === "outer") words.push("外枠が来ている");
     const pk = t_.pick && v.scen[t_.pick];
     today = words.length
-      ? `<div class="line"><b>今日の馬場　${words.join("・")}</b>${pk ? `<br>→ この馬場なら <b>${pk.no}番 ${esc(pk.name)}</b>（3着以内 ${pct(pk.t3)}）` : ""}<div class="sub">この場の前の${t_.n}レースから自動で判断（同じ傾向が続くのは6割ほど）</div></div>`
-      : `<div class="line mute">今日の馬場　${t_.n ? "はっきりした偏りはまだ見えない" : "この場の最初のレースなので、まだ分からない"}</div>`;
+      ? `<div class="msg"><b>今日の馬場　${words.join("・")}</b>${pk ? `<br>この馬場なら <b>${pk.no}番 ${esc(pk.name)}</b>（3着以内 ${pct(pk.t3)}）` : ""}<span class="sub2">この場の前の${t_.n}レースから自動で判断（同じ傾向が続くのは6割ほど）</span></div>`
+      : `<div class="msg" style="color:var(--ink3)">今日の馬場　${t_.n ? "はっきりした偏りはまだ見えない" : "この場の最初のレースなので、まだ分からない"}</div>`;
   }
-  const hit = res ? (res.tri_rank ? `<span class="badge hit">3連単 的中！</span>` : res.trio_rank ? `<span class="badge hit">3連複 的中</span>` : `<span class="badge miss">外れ（${esc(res.trio)}${(() => { const i = (v.trio10 || []).findIndex(x => x.kumi === res.trio); return i >= 0 ? `・${i + 1}番目` : ""; })()}）</span>`) : "";
+  const hit = res ? (res.tri_rank ? `<span class="st hit">3連単 的中</span>` : res.trio_rank ? `<span class="st hit">3連複 的中</span>` : `<span class="st">外れ（${esc(res.trio)}${(() => { const i = (v.trio10 || []).findIndex(x => x.kumi === res.trio); return i >= 0 ? `・${i + 1}番目` : ""; })()}）</span>`) : "";
   return `${today}
-    <details class="sec"><summary><span><i class="lab">展開</i>起きやすい決着 <b>3連複 ${esc(trio.kumi)}</b></span>${hit || '<span class="sub">くわしく ▼</span>'}</summary>
-    <div style="padding:6px 0 8px">
-      ${v.front && v.front.length ? `<div>前に行きそう：<b>${v.front.map(h => `${h.no}番`).join("・")}</b>　後ろから：${v.back.map(h => `${h.no}番`).join("・")}</div>` : ""}
-      <div style="margin-top:4px">10万回走らせると：3連単 <b>${esc(tri.kumi)}</b> が約${Math.round(tri.p * 100000).toLocaleString()}回、3連複 <b>${esc(trio.kumi)}</b> が約${Math.round(trio.p * 100000).toLocaleString()}回（いちばん多い決着）</div>
-      ${sc ? `<div class="sub" style="margin-top:6px">もしもの展開（3着以内の確率が、ふつうの見立てから何pt動くか）</div>${sc}` : ""}
+    <details class="slip" data-k="${r.id}:pace"><summary><span class="sl">展開<small>最多の決着</small></span><span class="sm">${kc(trio.kumi, res && res.trio_rank && res.trio === trio.kumi)}<span class="mu">3連複</span></span><span class="sa">${hit}</span></summary>
+    <div class="sb">
+      ${v.front && v.front.length ? `<div class="role"><div class="rk">位置取り</div><div class="r1" style="font-size:13px">前に行きそう ${v.front.map(h => `<i class="no">${h.no}</i>`).join("")}<span class="mu">後ろから</span>${v.back.map(h => `<i class="no">${h.no}</i>`).join("")}</div></div>` : ""}
+      <div class="role"><div class="rk">10万回</div><div style="font-size:13px;line-height:2">3連単 ${kc(tri.kumi)} 約${Math.round(tri.p * 100000).toLocaleString()}回<br>3連複 ${kc(trio.kumi)} 約${Math.round(trio.p * 100000).toLocaleString()}回<span class="mu">（いちばん多い決着）</span></div></div>
+      ${sc ? `<div class="cap">もしもの展開（3着以内の確率が、ふつうの見立てから何pt動くか）</div>${sc}` : ""}
       ${simMore(v, res, r)}
-      <details class="info legend"><summary>展開予想について</summary><div class="note">ペース・馬場の内外・荒れ具合で馬が「まとめて動く」ことを入れて全通りを計算（10万回のシミュレーションを無限回まわしたのと同じ）。過去の確認で、今の計算より1〜3着の当たり方がわずかに良い。（検証中）</div></details>
     </div></details>`;
 }
 
-function asobiBox(r) {
-  // お楽しみ馬券（遊び用・別帳簿）
+function asobiBox(r) {   // お楽しみ馬券（遊び用・別帳簿）
   const res = r.asobi_res, hit = new Set(res ? res.hits : []);
   if (!r.asobi.length) return "";
   const n3 = r.asobi.filter(e => e.type === "3連複").length, nt = r.asobi.length - n3;
-  const badge = res ? `<span class="badge ${res.hits.length ? "hit" : "miss"}">${res.hits.length ? "的中 " + yen(res.ret) : "外れ"}</span>` : `<span class="sub">${[n3 ? `3連複${n3}点` : "", nt ? `3連単${nt}点` : ""].filter(Boolean).join("・")}・${yen(100 * r.asobi.length)}</span>`;
-  return `<details class="sec" style="border-style:dashed"><summary><span><i class="lab">お楽しみ馬券</i></span>${badge}</summary>
-    <table><tr><th>券種</th><th>組番</th><th>オッズ</th></tr>${r.asobi.map(e => `<tr><td>${esc(e.type)}</td><td>${hit.has(e.kumi) ? "" : ""}${esc(e.kumi)}</td><td>${e.odds.toFixed(1)}</td></tr>`).join("")}</table>
-    <details class="info legend"><summary>お楽しみ馬券について</summary><div class="note">各100円。オッズ30〜100倍（配当3,000〜10,000円）で、勝率モデルから見て期待値の高い組。過去の試算の回収率は3連複で約8割、3連単で約10割。勝てると確認された買い方ではないので、遊ぶ金額を決めて楽しむ用です。</div></details></details>`;
+  const badge = res ? (res.hits.length ? `<span class="st hit">的中 ${yen(res.ret)}</span>` : `<span class="st">外れ</span>`) : `${r.asobi.length}点 ${yen(100 * r.asobi.length)}`;
+  return `<details class="slip" data-k="${r.id}:asobi"><summary><span class="sl">お楽しみ<small>遊び用</small></span><span class="sm"><span class="mu">${[n3 ? `3連複 ${n3}点` : "", nt ? `3連単 ${nt}点` : ""].filter(Boolean).join("・")}</span></span><span class="sa">${badge}</span></summary>
+    <div class="sb"><table><tr><th>券種</th><th class="l">組</th><th>オッズ</th></tr>${r.asobi.map(e => `<tr${hit.has(e.kumi) ? ' class="hitr"' : ""}><td>${esc(e.type)}</td><td class="l">${kc(e.kumi, hit.has(e.kumi))}${hit.has(e.kumi) ? hm : ""}</td><td>${e.odds.toFixed(1)}</td></tr>`).join("")}</table></div></details>`;
 }
 
-function raceDetail(r, opt = {}) {
-  const [s, cls] = status(r);
-  let html = "";
-  if (!opt.noHead) html += `<div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
-    <div class="sub">${[r.name ? esc(r.name) : "", `発走 ${r.post}`, `締切 ${r.close}`].filter(Boolean).join(" ・ ")}</div></div><span class="badge ${cls}">${s}</span></div>`;
+function resLine(r) {   // レースの結果（1着と単勝の払戻）
+  if (!r.result) return "";
+  const bs = buysOf(r);
+  return `<div class="res"><span class="eb">結果</span>${sk(r)}<span class="w">1着 ${r.result.first.map(x => `<i class="no">${x}</i>`).join("")} ${esc(r.result.first_name || "")}</span>
+    <span class="r">${r.result.tan ? `単勝 ${yen(r.result.tan)}（${(r.result.tan / 100).toFixed(1)}倍）` : ""}${bs.length ? `${r.result.tan ? "<br>" : ""}単勝の収支 ${pm(retOf(r) - 100 * bs.length)}` : ""}</span></div>`;
+}
+
+function raceDetail(r) {
+  let html = resLine(r);
   if (r.state === "out" || r.state === "missed") {
-    html += `<div class="line mute">${esc(r.note || "予想の対象外")}</div>`;
+    html += `<div class="msg" style="color:var(--ink3)">${esc(r.note || "予想の対象外")}</div>`;
   } else if (r.state === "decided" || r.result) {
-    html += oshiBox(r);
-    html += myomiBox(r);
-    html += triBoth(r);
-    html += trioBox(r);
+    const skip = [];
+    html += tanBox(r, skip) + oshiBox(r) + myomiBox(r) + triBox(r, false, skip) + (src === "nar" && r.tri && (r.tri.ana || []).length ? triBox(r, true, skip) : "") + trioBox(r, skip) + axisBox(r);
+    if (skip.length) html += `<div class="pass">見送り${skip.map(x => `<span>${x}</span>`).join("")}</div>`;
     html += paceBox(r);
-    const bs = buysOf(r);
-    html += bs.length
-      ? `<div class="buy-box"><h3>単勝で買う（各100円・札なし＝標準、札＝拡大・広め）</h3>${horseRows(bs, true)}${bs.some(b => b.both !== undefined || b.tier === 4) ? `<div class="note">★両方＝合格モデルと馬主モデルの両方が「買い」（いちばん信頼できる）。「〜のみ」は片方だけが「買い」。</div>` : ""}</div>`
-      : `<div class="line mute">単勝：${r.note ? "予想できませんでした（" + esc(r.note) + "）" : "見送り"}</div>`;
-    html += axisBox(r);
     if (r.asobi) html += asobiBox(r);
     let more = "";
-    if (r.top && r.top.length) more += `<div class="sub" style="margin-top:6px">勝率の高い順</div>${horseRows(r.top, false)}`;
-    if (r.exo && r.exo.length) more += `<div class="sub" style="margin-top:8px">参考：組合せ馬券（検証中・記録用）</div>
-      <table><tr><th>券種</th><th>組番</th><th>オッズ</th><th>期待値</th></tr>${r.exo.map(e => `<tr${r.exo_res && r.exo_res.hits.includes(e.type + " " + e.kumi) ? ' style="background:var(--buybg);font-weight:800"' : ""}><td>${esc(e.type)}</td><td>${esc(e.kumi)}${r.exo_res && r.exo_res.hits.includes(e.type + " " + e.kumi) ? " <b class=hm>的中</b>" : ""}</td><td>${e.odds.toFixed(1)}</td><td>${e.ev.toFixed(2)}</td></tr>`).join("")}</table>`;
-    more += `<div class="note">${D.rule_note ? esc(D.rule_note) : `オッズは判定時（締切${D.decision_min}分前）の値。単勝の買う条件: 10〜50倍 かつ 期待値1.15以上。`}</div>`;
-    html += `<details class="info" style="margin-top:8px"><summary>▼ くわしい数字（勝率の順・参考の組合せ）</summary>${more}</details>`;
+    if (r.top && r.top.length) more += `<div class="cap">勝率の高い順</div>${horseRows(r.top, false)}`;
+    if (r.exo && r.exo.length) more += `<div class="cap">参考：組合せ馬券（検証中・記録用）</div>
+      <table><tr><th>券種</th><th class="l">組</th><th>オッズ</th><th>期待値</th></tr>${r.exo.map(e => { const h_ = r.exo_res && r.exo_res.hits.includes(e.type + " " + e.kumi);
+        return `<tr${h_ ? ' class="hitr"' : ""}><td>${esc(e.type)}</td><td class="l">${kc(e.kumi, h_)}${h_ ? hm : ""}</td><td>${e.odds.toFixed(1)}</td><td>${e.ev.toFixed(2)}</td></tr>`; }).join("")}</table>`;
+    more += `<div class="note" style="padding-bottom:0">${D.rule_note ? esc(D.rule_note) : `オッズは判定時（締切${D.decision_min}分前）の値。単勝の買う条件: 10〜50倍 かつ 期待値1.15以上。`}</div>`;
+    html += `<details class="info" data-k="${r.id}:more"><summary>くわしい数字（勝率の順・参考の組合せ）</summary><div class="sb">${more}</div></details>`;
   } else {
-    html += `<div class="line mute">予想 ${r.decide}ごろ（${lbl()}）</div>`;
-  }
-  if (r.result) {
-    html += `<div class="note" style="margin-top:8px">結果${sk(r)}　1着 <b>${r.result.first.join("・")}番</b> ${esc(r.result.first_name || "")}　単勝 ${yen(r.result.tan)}${r.result.tan ? `（${(r.result.tan / 100).toFixed(1)}倍）` : ""}${buysOf(r).length ? `　／　単勝の収支 ${yen(retOf(r) - 100 * buysOf(r).length)}` : ""}</div>`;
+    html += `<div class="msg">予想は <b>${r.decide}</b> ごろ（${lbl()}）に出ます</div>`;
   }
   return html;
 }
 
-function viewNext() {
-  const n = now();
-  const up = D.races.filter(r => r.state !== "out" && t(r.post) > n).sort((a, b) => t(a.post) - t(b.post));
-  if (!up.length) return `<div class="card"><p class="race-title">本日終了</p><div class="sub">結果は「結果」タブ。</div></div>`;
-  const r = up[0], cl = t(r.post)
-  const sb = scoreBar(), left = Math.max(0, Math.floor((cl - n) / 1000));
-  const mm = Math.floor(left / 60), ss = String(left % 60).padStart(2, "0");
-  const [s, cls] = status(r);
-  let html = sb + win5Box() + `<div class="card" data-k="n${r.id}"><div class="row between"><div><p class="race-title">${esc(r.venue)} ${r.R}R</p>
-      <div class="sub">${[r.name && r.name !== r.venue ? esc(r.name) : "", `発走 ${r.post}`].filter(Boolean).join(" ・ ")}</div></div>
-      <div style="text-align:right"><div class="sub">発走まで</div><div class="count" id="cd" data-close="${cl.toISOString()}">${mm}:${ss}</div></div></div>
-    ${raceDetail(r, { noHead: true })}</div>`;
-  const after = up.slice(1, 4);
-  if (after.length) html += `<div class="card"><div class="sub" style="margin-bottom:4px">このあとのレース</div>${after.map(x => rowHtml(x, true)).join("")}</div>`;
-  return html;
-}
-
-function scoreBar() {   // 次のレースの上: 今日ここまでの当たり（結果が1つも無ければ出さない）
+// ---------- 次のレース
+function scoreBar() {   // 今日ここまでの当たり（結果が1つも無ければ出さない）
   const od = D.races.filter(r => r.oshi_res), pr = D.races.filter(r => r.pace_res);
   const bets = D.races.filter(r => r.result && r.state === "decided" && buysOf(r).length);
   const parts = [];
-  if (od.length) parts.push(`推し <b>${od.filter(r => r.oshi_res.hit).length}/${od.length}</b> 3着内`);
   if (bets.length) { const sp = bets.reduce((a, r) => a + 100 * buysOf(r).length, 0), rt = bets.reduce((a, r) => a + retOf(r), 0);
-    parts.push(`単勝 <b>${bets.filter(r => retOf(r) > 0).length}/${bets.length}</b>（<b style="color:${rt - sp > 0 ? "var(--hit)" : "inherit"}">${rt - sp >= 0 ? "+" : ""}${yen(rt - sp)}</b>）`); }
-  if (pr.length) parts.push(`決着 <b>${pr.filter(r => r.pace_res.trio_rank).length}/${pr.length}</b>`);
+    parts.push(`<span class="ts">単勝 <b>${bets.filter(r => retOf(r) > 0).length}/${bets.length}</b> ${pm(rt - sp)}</span>`); }
+  if (od.length) parts.push(`<span class="ts">推し <b>${od.filter(r => r.oshi_res.hit).length}/${od.length}</b><em>3着内</em></span>`);
+  if (pr.length) parts.push(`<span class="ts">決着 <b>${pr.filter(r => r.pace_res.trio_rank).length}/${pr.length}</b></span>`);
   if (!parts.length) return "";
-  return `<div class="sub" style="margin:0 2px 8px;line-height:1.8">今日ここまで　${parts.map(x => `<span style="white-space:nowrap">${x}</span>`).join("　")}</div>`;
+  return `<section class="sec"><div class="tstrip scroll"><span class="eb">今日ここまで</span>${parts.join("")}</div></section>`;
 }
 
 function win5Box() {   // WIN5（試験中）: 対象5レース、買い目（フォーメーション）、結果
   const w = D.win5; if (!w || src !== "jra") return "";
   const R_ = id => D.races.find(r => r.id === id) || {};
   const nm = id => { const r = R_(id); return r.venue ? `${esc(r.venue)}${r.R}R` : id.slice(-4); };
-  let body = "";
-  if (w.note) body = `<div class="sub">${esc(w.note)}</div>`;
-  else if (w.pending) body = `<div class="sub">対象：${w.legs.map(nm).join("・")}<br>買い目は1レース目（${nm(w.legs[0])}）の発走10分前に出します。</div>`;
+  let body = "", aside = `<span class="mu">${w.legs.length}レース</span>`;
+  if (w.note) body = `<div class="msg" style="border-top:0;padding-top:0">${esc(w.note)}</div>`;
+  else if (w.pending) body = `<div class="msg" style="border-top:0;padding-top:0">対象　${w.legs.map(nm).join("・")}<span class="sub2">買い目は1レース目（${nm(w.legs[0])}）の発走10分前に出します。</span></div>`;
   else {
     const ff = w.forms || [];
-    const head = `<tr><th style="text-align:left">レース</th>${ff.map((f, i) => `<th>買い目${i + 1}</th>`).join("")}</tr>`;
+    const head = `<tr><th>レース</th>${ff.map((f, i) => `<th class="l">買い目${i + 1}</th>`).join("")}</tr>`;
     const rows = w.legs.map((id, k) => { const win = R_(id).result ? new Set(R_(id).result.first) : null;
-      return `<tr><td style="text-align:left;white-space:nowrap">${k + 1}. ${nm(id)}</td>${ff.map(f => `<td style="text-align:left">${f[k].map(n => win && win.has(n) ? `<b style="color:var(--hit)">${n}</b>` : n).join("・")}</td>`).join("")}</tr>`; }).join("");
+      return `<tr><td>${k + 1}. ${nm(id)}</td>${ff.map(f => `<td class="l" style="white-space:normal">${f[k].map(n => win && win.has(n) ? `<b class="upc">${n}</b>` : n).join("・")}</td>`).join("")}</tr>`; }).join("");
     const pts = ff.map(f => f.reduce((a, s) => a * s.length, 1));
-    const res = w.res ? (w.res.hit ? `<span class="badge hit">的中 ${yen(w.res.pay)}</span>` : `<span class="badge miss">外れ</span>`) : "";
-    body = `<div class="row between" style="margin-bottom:6px"><div class="sub">合計 <b>${w.pts}点（${yen(100 * w.pts)}）</b>・${w.at}判定</div>${res}</div>
-      <div style="overflow-x:auto"><table class="sim">${head}${rows}<tr><td style="text-align:left" class="sub">点数</td>${pts.map(p => `<td class="sub">${p}点</td>`).join("")}</tr></table></div>
-      <div class="note">即PATの「フォーメーション」で、買い目ごとに各レースの馬を選んで入れます（買い目どうしの重なりは合計から除いています）。少なく買うなら買い目1から順に。</div>
-      ${(w.top || []).length ? `<details class="info"><summary>▼ 期待値の高い組（上位${w.top.length}）</summary><table class="sim"><tr><th>順</th><th style="text-align:left">組</th><th>起きる確率</th></tr>${w.top.map((x, i) => `<tr><td>${i + 1}</td><td style="text-align:left">${x.kumi.join("-")}</td><td>${(x.p * 100).toFixed(3)}%</td></tr>`).join("")}</table></details>` : ""}`;
+    aside = w.res ? (w.res.hit ? `<span class="st hit">的中 ${yen(w.res.pay)}</span>` : `<span class="st">外れ</span>`) : `${w.pts}点 ${yen(100 * w.pts)}`;
+    body = `<div class="mu" style="padding-bottom:6px">合計 ${w.pts}点（${yen(100 * w.pts)}）・${w.at}判定　対象 ${w.legs.map(nm).join("・")}</div>
+      <div class="scroll"><table class="sim">${head}${rows}<tr><td class="mu">点数</td>${pts.map(p => `<td class="l mu">${p}点</td>`).join("")}</tr></table></div>
+      <div class="note" style="padding-bottom:0">即PATの「フォーメーション」で、買い目ごとに各レースの馬を選んで入れます（買い目どうしの重なりは合計から除いています）。少なく買うなら買い目1から順に。</div>
+      ${(w.top || []).length ? `<details class="info" data-k="w5top" style="margin-top:10px"><summary>期待値の高い組（上位${w.top.length}）</summary><div class="sb"><table class="sim"><tr><th>順</th><th class="l">組</th><th>起きる確率</th></tr>${w.top.map((x, i) => `<tr><td>${i + 1}</td><td class="l">${kc(x.kumi.join("-"))}</td><td>${(x.p * 100).toFixed(3)}%</td></tr>`).join("")}</table></div></details>` : ""}`;
   }
-  return `<div class="card"><details class="sec" data-k="w5" open><summary><span><i class="lab">WIN5</i>（試験中）</span><span class="sub">${w.legs.map(nm).join("・")}</span></summary><div style="padding:6px 0">${body}
-    <details class="info legend"><summary>この買い方について</summary><div class="note">5レースの勝率と「世間の WIN5 の票の入り方（人気馬に偏る）」から、当たれば配当が大きい割に起きやすい組を選びます。過去（2023-26、256回）は1回1000点で約140%、的中は10回に1回ほど。市場だけで同じことをすると約66%。外れが何週も続くのが普通の買い方です。まだ確かめ中なので、紙の上の記録を続けています。</div></details></div></details></div>`;
+  return `<section class="sec"><details class="slip" data-k="w5" open style="border-top:0"><summary><span class="sl">WIN5<small>試験中</small></span><span class="sm"><span class="mu">${w.pending || w.note ? "準備中" : "買い目あり"}</span></span><span class="sa">${aside}</span></summary><div class="sb">${body}</div></details></section>`;
 }
 
-function opt_id(r) {   // 今日のレースで、次に締切が来るレースの行に印（開いた時にそこまで動かす）
-  const nx = D.races.filter(x => x.state !== "out" && t(x.post) > now()).sort((a, b) => t(a.post) - t(b.post))[0];
-  return nx && nx.id === r.id ? ' id="nextrow"' : "";
+function viewNext() {
+  const up = upcoming();
+  if (!up.length) return scoreBar() + `<section class="sec hero"><div class="eb">今日のレース</div><h2 class="rt">本日終了</h2><div class="meta" style="padding-bottom:16px">結果は「結果」タブで見られます。</div></section>`;
+  const r = up[0], [s, cls] = status(r);
+  let html = scoreBar() + win5Box() + `<section class="sec hero"><div class="prog"><i id="prog"></i></div>
+    <div class="hh"><div style="min-width:0"><div class="eb">次のレース</div><h2 class="rt">${esc(r.venue)}<span class="n">${r.R}<small>R</small></span></h2>
+      <div class="meta">${r.name && r.name !== r.venue ? `<span>${esc(r.name)}</span>` : ""}<span>発走 ${r.post}</span><span>締切 ${r.close}</span>${s === "予想前" ? "" : `<span class="st ${cls}">${s}</span>`}</div></div>
+      <div class="cdw"><div class="eb">発走まで</div><div class="cd n" id="cd" data-close="${t(r.post).toISOString()}"></div></div></div>
+    ${raceDetail(r)}</section>`;
+  const after = up.slice(1, 4);
+  if (after.length) html += `<section class="sec"><div class="sech"><span class="eb">このあとのレース</span></div>${after.map(x => rowHtml(x, true)).join("")}</section>`;
+  return html;
 }
 
+// ---------- 今日のレース
 function rowHtml(r, showVenue) {
-  const [s, cls] = status(r);
+  const [s, cls] = status(r), nx = D.__nx === r.id;
   const bs = (r.state === "decided") ? buysOf(r) : [];
-  const tags = [];
-  if (r.myomi) tags.push(`妙 ${r.myomi.axis.no}×${r.myomi.ana.map(h => h.no).join("・")}${r.myomi_res ? (r.myomi_res.ret ? '<b class=hm>中</b>' : "") : ""}`);
-  if (r.tri && r.tri.bets.length) tags.push(`単${r.tri.bets.length}点${r.tri_res && r.tri_res.ret ? "<b class=hm>中</b>" : ""}`.replace(/^単/, src === "nar" ? "三連単中穴 " : "三連単 "));
-  if (r.tri && (r.tri.ana || []).length && src === "nar") tags.push(`三連単大穴 ${r.tri.ana.length}点${r.tria_res && r.tria_res.ret ? "<b class=hm>中</b>" : ""}`);
-  if (r.tri && (r.tri.trio || []).length) tags.push(`三連複 ${r.tri.trio.length}点${r.trio_res && r.trio_res.ret ? "<b class=hm>中</b>" : ""}`);
+  const tags = [], tg = (h, hit) => `<i class="tg${hit ? " hit" : ""}">${h}${hit ? " 的中" : ""}</i>`;
+  if (bs.length) tags.push(tg(`単勝 <b>${bs.map(b => b.no).join("・")}</b>`, r.result && retOf(r) > 0));
+  if (r.oshi) tags.push(tg(`推し <b>${r.oshi.no}</b>`, r.oshi_res && r.oshi_res.hit));
+  if (r.myomi) tags.push(tg(`妙味 <b>${r.myomi.axis.no}×${r.myomi.ana.map(h => h.no).join("・")}</b>`, r.myomi_res && r.myomi_res.ret));
+  if (r.tri && r.tri.bets.length) tags.push(tg(`${src === "nar" ? "3連単中穴" : "3連単"} <b>${r.tri.bets.length}</b>点`, r.tri_res && r.tri_res.ret));
+  if (r.tri && (r.tri.ana || []).length && src === "nar") tags.push(tg(`3連単大穴 <b>${r.tri.ana.length}</b>点`, r.tria_res && r.tria_res.ret));
+  if (r.tri && (r.tri.trio || []).length) tags.push(tg(`3連複 <b>${r.tri.trio.length}</b>点`, r.trio_res && r.trio_res.ret));
   if (r.state === "decided" && triOn()) {
-    const tk = false, nb = r.tri ? (tk ? (r.tri.ana || []) : r.tri.bets).length : 0, nt = r.tri ? (r.tri.trio || []).length : 0;
-    if (!nb && !nt) tags.push(`<span style="color:var(--sub)">三連 見送り</span>`);
-    else if (!nb) tags.push(`<span style="color:var(--sub)">三連単 見送り</span>`);
-    else if (!nt) tags.push(`<span style="color:var(--sub)">三連複 見送り</span>`);
+    const nb = r.tri ? r.tri.bets.length : 0, nt = r.tri ? (r.tri.trio || []).length : 0;
+    if (!nb && !nt) tags.push(`<span class="pl">3連 見送り</span>`);
+    else if (!nb) tags.push(`<span class="pl">3連単 見送り</span>`);
+    else if (!nt) tags.push(`<span class="pl">3連複 見送り</span>`);
   }
-  if (r.oshi) tags.push(`推 ${r.oshi.no}${r.oshi_res ? (r.oshi_res.hit ? '<b class=hm>中</b>' : "") : ""}`);
-  if (bs.length) tags.push(`単 ${bs.map(b => b.no).join("・")}${r.result && retOf(r) > 0 ? '<b class=hm>中</b>' : ""}`);
-  if (r.result) tags.push(`<span style="color:var(--sub)">1着${r.result.first.join("・")}番${r.result.tan ? ` ${(r.result.tan / 100).toFixed(1)}倍` : ""}</span>`);
-  return `<details class="rrow-wrap" data-k="r${r.id}"${opt_id(r)}><summary class="rrow"><div class="rno">${r.R}R</div>
-    <div class="rmid"><div class="n">${showVenue ? esc(r.venue) + " " : ""}${esc(r.name && r.name !== r.venue ? r.name : "")}</div><div class="sub">発走 ${r.post}${tags.map(x => `　<span style="white-space:nowrap">${x}</span>`).join("")}</div></div>
-    <span class="badge ${cls}">${s}</span></summary><div style="padding:4px 0 12px">${raceDetail(r, { noHead: true })}</div></details>`;
+  if (r.result) tags.push(`<span class="pl">1着 ${r.result.first.join("・")}番${r.result.tan ? ` ${(r.result.tan / 100).toFixed(1)}倍` : ""}</span>`);
+  const title = `${showVenue ? esc(r.venue) + " " : ""}${esc(r.name && r.name !== r.venue ? r.name : "")}`.trim();
+  return `<details class="rw${nx ? " nx" : ""}${r.result ? " past" : ""}" data-k="r${r.id}"${nx ? ' id="nextrow"' : ""}><summary class="rrow"><div class="rno">${r.R}<small>R</small><span>${r.post}</span></div>
+    <div class="rmid">${title ? `<div class="t">${title}</div>` : ""}${tags.length ? `<div class="tags">${tags.join("")}</div>` : ""}</div>
+    ${s === "予想前" ? `<span class="st">予想 ${r.decide}</span>` : `<span class="st ${cls}">${s}</span>`}</summary><div class="rd">${raceDetail(r)}</div></details>`;
 }
 
 function viewToday() {
   const venues = [...new Set(D.races.map(r => r.venue))];
-  if (!venue || !venues.includes(venue)) {
-    const nx = D.races.filter(r => r.state !== "out" && t(r.post) > now()).sort((a, b) => t(a.post) - t(b.post))[0];
-    venue = nx ? nx.venue : venues[0];
-  }
+  if (!venue || !venues.includes(venue)) { const nx = upcoming()[0]; venue = nx ? nx.venue : venues[0]; }
   const chips = `<div class="chips">${venues.map(v => `<button data-v="${esc(v)}" class="${v === venue ? "on" : ""}">${esc(v)}</button>`).join("")}</div>`;
   const list = D.races.filter(r => r.venue === venue).sort((a, b) => a.R - b.R);
-  return win5Box() + chips + `<div class="card">${list.map(r => rowHtml(r, false)).join("")}</div>`;
+  return win5Box() + chips + `<section class="sec">${list.map(r => rowHtml(r, false)).join("")}</section>`;
 }
 
-function btCard() {   // 地方の買い目ごとの過去の成績（バックテスト、年ごとの数字の平均。2026-11-11 時点）
-  const rows = [
-    ["単勝", "141%", "7%", "1.4R", "2022〜26（毎年133〜163%）"],
-    ["妙味ワイド", "110%", "40%", "4.6R", "2023〜26（107%・114%）"],
-    ["3連単 中穴", "122%", "9%", "19〜22R", "2020〜26（毎年112〜132%）"],
-    ["3連複", "120%", "22%", "16〜22R", "2020〜26（毎年114〜127%）"],
-    ["3連単 大穴", "141%", "1〜2%", "6〜7R", "2022〜26（109〜175%、宝くじ型）"]];
-  return `<div class="card"><div class="sub" style="margin-bottom:4px">過去の成績（地方・バックテスト）</div>
-    <table><tr><th style="text-align:left">買い目</th><th>回収率</th><th>的中</th><th>1日</th></tr>${rows.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td></tr><tr><td colspan="4" class="sub" style="border-top:0;padding-top:0;text-align:left">${r[4]}</td></tr>`).join("")}</table>
-    <div class="note">期待値の目安＝回収率（100円が平均いくらで戻るか）。発走10分前のオッズで決めた場合の過去の結果（2020〜21年は確定オッズで代用）。2025〜26年は形を選ぶときに何度も見た期間なので、実際はこれより低めに出ると見ておく。</div></div>`;
+// ---------- 結果
+function resRow(x) {   // x: { l=名前, hit="1/6", heads=頭数, spent, ret, text=お金以外の説明 }
+  const hit = x.hit ? `<small>的中 ${x.hit}${x.heads ? `（${x.heads}頭）` : ""}</small>` : "";
+  if (x.spent) { const roi = x.ret / x.spent * 100;
+    return `<div class="rr"><div class="rr1"><span class="rl">${x.l}${hit}</span>${pm(x.ret - x.spent)}</div>
+      <div class="rr2"><span>買い ${yen(x.spent)} → 払戻 ${yen(x.ret)}</span><span>回収率 <b>${roi.toFixed(0)}%</b></span></div>
+      <div class="bar${roi >= 100 ? " up" : ""}"><i style="width:${Math.min(roi, 200) / 2}%"></i></div></div>`; }
+  return `<div class="rr"><div class="rr1"><span class="rl">${x.l}${x.text ? hit : ""}</span></div><div class="rr2"><span>${x.text || "買いなし"}</span></div></div>`;
 }
-function fmtO(b) { const o = b.odds; if (o == null) return b.est ? `<span class="sub">推定${Math.round(b.est)}</span>` : "—"; return Array.isArray(o) ? `${o[0]}〜${o[1]}` : `${o}`; }
 
 function viewResult() {
-  // 結果タブ: いちばん上に「今日のまとめ」（種類ごとに1行）、その下に通算、細かい表は押すと開く
+  // いちばん上に「今日のまとめ」（種類ごとに1行）、その下に通算、細かい表は押すと開く
   const done = D.races.filter(r => r.result && r.state === "decided");
   const pctS = (r_, s_) => s_ ? ((r_ / s_) * 100).toFixed(0) + "%" : "—";
-  const pm = v => `<b style="color:${v > 0 ? "var(--hit)" : "inherit"}">${v > 0 ? "+" : ""}${yen(v)}</b>`;
+  const sum = (list, f) => list.reduce((a, r) => a + f(r), 0);
   const rows = [];
-  // 単勝
-  // 収支の欄: 買った額 → 払戻 → 差し引き・回収率 を全部書く（どれか1つだけだと誤解されるため）
-  const money = (r_, s_) => `<div class="sub">買い ${yen(s_)}<br>→ 払戻 ${yen(r_)}</div>${pm(r_ - s_)}<span class="sub">・回収率 <b>${pctS(r_, s_)}</b></span>`;
   for (const [mm, lb] of [["1", "単勝 標準"], ["2", "単勝 拡大まで"], ["3", "単勝 広めまで"]]) {
     mode = mm;
     const bets = done.filter(r => buysOf(r).length);
-    const spent = bets.reduce((a, r) => a + 100 * buysOf(r).length, 0), ret = bets.reduce((a, r) => a + retOf(r), 0);
-    rows.push([lb, bets.length ? `${bets.filter(r => retOf(r) > 0).length}/${bets.length}<div class="sub" style="font-size:10px">${bets.reduce((a, r) => a + buysOf(r).length, 0)}頭</div>` : "—", spent ? money(ret, spent) : `<span class="sub">買いなし</span>`]);
+    rows.push({ l: lb, hit: bets.length ? `${bets.filter(r => retOf(r) > 0).length}/${bets.length}` : "", heads: sum(bets, r => buysOf(r).length), spent: sum(bets, r => 100 * buysOf(r).length), ret: sum(bets, r => retOf(r)) });
   }
   mode = "3";
-  // 推し
   const od = D.races.filter(r => r.oshi_res);
-  if (D.races.some(r => r.oshi)) rows.push(["推し", `${od.filter(r => r.oshi_res.hit).length}/${od.length}`, `<span class="sub">3着以内に来た数${od.filter(r => r.oshi_res.win).length ? `（1着 ${od.filter(r => r.oshi_res.win).length}）` : ""}</span>`]);
-  // 3連単（地方）
-  const ta_ = D.races.filter(r => r.tria_res && r.tria_res.bet);
-  if (ta_.length) { const ts = ta_.reduce((a, r) => a + r.tria_res.bet, 0), tr = ta_.reduce((a, r) => a + r.tria_res.ret, 0);
-    rows.push(["3連単 大穴", `${ta_.filter(r => r.tria_res.ret).length}/${ta_.length}`, money(tr, ts)]); }
-  const td_ = D.races.filter(r => r.tri_res && r.tri_res.bet);
-  if (td_.length) { const ts = td_.reduce((a, r) => a + r.tri_res.bet, 0), tr = td_.reduce((a, r) => a + r.tri_res.ret, 0);
-    rows.push(["3連単", `${td_.filter(r => r.tri_res.ret).length}/${td_.length}`, money(tr, ts)]); }
-  const to_ = D.races.filter(r => r.trio_res && r.trio_res.bet);
-  if (to_.length) { const ts = to_.reduce((a, r) => a + r.trio_res.bet, 0), tr = to_.reduce((a, r) => a + r.trio_res.ret, 0);
-    rows.push(["3連複", `${to_.filter(r => r.trio_res.ret).length}/${to_.length}`, money(tr, ts)]); }
-  // 妙味ワイド
+  if (D.races.some(r => r.oshi)) rows.push({ l: "推し", hit: `${od.filter(r => r.oshi_res.hit).length}/${od.length}`, text: `3着以内に来た数${od.filter(r => r.oshi_res.win).length ? `（1着 ${od.filter(r => r.oshi_res.win).length}）` : ""}` });
+  const kind = (key, l) => { const z = D.races.filter(r => r[key] && r[key].bet); if (z.length) rows.push({ l, hit: `${z.filter(r => r[key].ret).length}/${z.length}`, spent: sum(z, r => r[key].bet), ret: sum(z, r => r[key].ret) }); };
+  kind("tria_res", "3連単 大穴"); kind("tri_res", src === "nar" ? "3連単 中穴" : "3連単"); kind("trio_res", "3連複");
   const md = D.races.filter(r => r.myomi_res);
-  if (md.length) { const ms = md.reduce((a, r) => a + r.myomi_res.bet, 0), mr = md.reduce((a, r) => a + r.myomi_res.ret, 0);
-    rows.push(["妙味ワイド", `${md.filter(r => r.myomi_res.ret).length}/${md.length}`, money(mr, ms)]); }
-  // 展開予想
+  if (md.length) rows.push({ l: "妙味ワイド", hit: `${md.filter(r => r.myomi_res.ret).length}/${md.length}`, spent: sum(md, r => r.myomi_res.bet), ret: sum(md, r => r.myomi_res.ret) });
   const pr = D.races.filter(r => r.pace_res);
-  if (pr.length) rows.push(["決着予想", `${pr.filter(r => r.pace_res.trio_rank).length}/${pr.length}`, `<span class="sub">3連複が上位3つに入った数</span>`]);
-  // 
+  if (pr.length) rows.push({ l: "決着予想", hit: `${pr.filter(r => r.pace_res.trio_rank).length}/${pr.length}`, text: "3連複が上位3つに入った数" });
   const xd = D.races.filter(r => r.axis_res && r.axis_res[mode] && r.axis_res[mode].bet);
-  if (xd.length) { const xs = xd.reduce((a, r) => a + r.axis_res[mode].bet, 0), xr = xd.reduce((a, r) => a + r.axis_res[mode].ret, 0);
-    rows.push(["3連単", `${xd.filter(r => r.axis_res[mode].ret).length}/${xd.length}`, money(xr, xs)]); }
-  // 
+  if (xd.length) rows.push({ l: "3連単（1着固定）", hit: `${xd.filter(r => r.axis_res[mode].ret).length}/${xd.length}`, spent: sum(xd, r => r.axis_res[mode].bet), ret: sum(xd, r => r.axis_res[mode].ret) });
   const ed = D.races.filter(r => r.exo_res && r.exo_res.bet);
-  if (ed.length) { const es = ed.reduce((a, r) => a + r.exo_res.bet, 0), er = ed.reduce((a, r) => a + r.exo_res.ret, 0);
-    rows.push(["参考の組合せ", `${ed.filter(r => r.exo_res.ret).length}/${ed.length}`, money(er, es)]); }
+  if (ed.length) rows.push({ l: "参考の組合せ", hit: `${ed.filter(r => r.exo_res.ret).length}/${ed.length}`, spent: sum(ed, r => r.exo_res.bet), ret: sum(ed, r => r.exo_res.ret) });
+  if (src === "jra" && D.win5 && D.win5.res) { const w = D.win5.res; rows.push({ l: "WIN5", hit: w.hit ? "1/1" : "0/1", spent: w.bet, ret: w.pay }); }
   const ad = D.races.filter(r => r.asobi_res);
-  if (src === "jra" && D.win5 && D.win5.res) { const w = D.win5.res; rows.push(["WIN5", w.hit ? "1/1" : "0/1", money(w.pay, w.bet)]); }
-  if (ad.length) { const as = ad.reduce((a, r) => a + r.asobi_res.bet, 0), ar = ad.reduce((a, r) => a + r.asobi_res.ret, 0);
-    rows.push(["お楽しみ", `${ad.filter(r => r.asobi_res.hits.length).length}/${ad.length}`, money(ar, as)]); }
-  let html = `<div class="card"><div class="sub" style="margin-bottom:6px">今日 ${D.date_ja} のまとめ（結果が出た ${done.length}/${D.races.filter(r => r.state !== "out").length}レース）</div>
-    <table><tr><th style="text-align:left">種類</th><th style="white-space:nowrap">的中</th><th>収支</th></tr>${rows.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td style="white-space:nowrap">${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table>
-    <div class="note">各100円で買った場合。的中＝当たったレース数/買ったレース数。回収率＝払戻÷買った額（100%で元が戻る）。・・拡大・広めは試験中の買い方です。</div></div>`;
-  // 地方: 結果は翌朝に入るので、今日のまとめは夜まで空。いちばん新しい日（たいてい昨日）のまとめを出す（2026-11-09）
+  if (ad.length) rows.push({ l: "お楽しみ", hit: `${ad.filter(r => r.asobi_res.hits.length).length}/${ad.length}`, spent: sum(ad, r => r.asobi_res.bet), ret: sum(ad, r => r.asobi_res.ret) });
+  let html = `<section class="sec"><div class="sech"><span class="eb">今日 ${esc(D.date_ja)} のまとめ</span><span class="dim">結果が出た ${done.length}/${D.races.filter(r => r.state !== "out").length}レース</span></div>
+    ${rows.map(resRow).join("")}
+    <div class="note" style="border-top:1px solid var(--line)">各100円で買った場合（3連単・3連複・妙味ワイドは期待値で100〜300円）。的中＝当たったレース数／買ったレース数。回収率＝払戻÷買った額。棒のまん中の線が100%（元が戻る）。拡大・広めは試験中の買い方です。</div></section>`;
+  // 地方: いちばん新しい前の日のまとめも出す（今日の分は速報で上に出る）
   if (src === "nar") {
-    const last = H.filter(h => h.date !== D.date.replace(/-/g, "")).slice(-1)[0] || null;   // 今日は上のまとめに速報で出るので、前の日
-    let y = `<div class="note" style="margin:0 0 6px">地方の結果は、レース確定の数分〜10分後に「速報」で入り、翌朝（8:30ごろ）の確定データで付け直します。</div>`;
+    const last = H.filter(h => h.date !== D.date.replace(/-/g, "")).slice(-1)[0] || null;
+    let y = "";
     if (last) {
       const yr = [];
       for (const [mm, lb] of [["1", "単勝 標準"], ["2", "単勝 拡大まで"], ["3", "単勝 広めまで"]]) {
         const e_ = mm !== "1" && last.ext && last.ext[mm] ? last.ext[mm] : { spent: last.spent, ret: last.ret };
-        yr.push([lb, e_.spent ? money(e_.ret, e_.spent) : `<span class="sub">買いなし</span>`]);
+        yr.push({ l: lb, spent: e_.spent, ret: e_.ret });
       }
-      if (last.tria && last.tria.n) yr.push([`3連単 大穴（${last.tria.hit}/${last.tria.n}的中）`, money(last.tria.ret, last.tria.spent)]);
-      if (last.tri && last.tri.n) yr.push([`3連単（${last.tri.hit}/${last.tri.n}的中）`, money(last.tri.ret, last.tri.spent)]);
-      if (last.trio && last.trio.n) yr.push([`3連複（${last.trio.hit}/${last.trio.n}的中）`, money(last.trio.ret, last.trio.spent)]);
-      if (last.myomi && last.myomi.n) yr.push([`妙味ワイド（${last.myomi.hit}/${last.myomi.n}的中）`, money(last.myomi.ret, last.myomi.spent)]);
-      if (last.oshi && last.oshi.n) yr.push(["推し", `${last.oshi.hit}/${last.oshi.n}頭（${pctS(last.oshi.hit, last.oshi.n)}）が3着以内${last.oshi.win ? `（1着 ${last.oshi.win}）` : ""}`]);
-      y += `<div class="sub" style="margin-bottom:6px">${esc(last.date_ja)} のまとめ（地方）</div><table>${yr.map(r => `<tr><td style="text-align:left;white-space:nowrap">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>`;
+      for (const [k, l] of [["tria", "3連単 大穴"], ["tri", "3連単 中穴"], ["trio", "3連複"], ["myomi", "妙味ワイド"]])
+        if (last[k] && last[k].n) yr.push({ l, hit: `${last[k].hit}/${last[k].n}`, spent: last[k].spent, ret: last[k].ret, text: "買いなし" });
+      if (last.oshi && last.oshi.n) yr.push({ l: "推し", hit: `${last.oshi.hit}/${last.oshi.n}頭`, text: `${pctS(last.oshi.hit, last.oshi.n)}が3着以内${last.oshi.win ? `（1着 ${last.oshi.win}）` : ""}` });
+      y = `<div class="sech"><span class="eb">${esc(last.date_ja)} のまとめ（地方）</span><span class="dim">確定</span></div>${yr.map(resRow).join("")}`;
     }
-    html = `<div class="card">${y}</div>` + html;   // 地方は今日のまとめが夜まで空なので、最新の日のまとめを上に
+    html = `<section class="sec">${y}<div class="note"${y ? ' style="border-top:1px solid var(--line)"' : ""}>地方の結果は、レース確定の数分〜10分後に「速報」で入り、翌朝（8:30ごろ）の確定データで付け直します。</div></section>` + html;
   }
   // 通算
-  const tot = [];
-  const hs = h => (h.ext && h.ext["4"] && h.ext["4"].spent) ? h.ext["4"] : { spent: h.spent, ret: h.ret };   // 標準（合格＋馬主）。古い日は合格モデルだけ
-  if (H.length) { const S = H.reduce((a, h) => ({ spent: a.spent + hs(h).spent, ret: a.ret + hs(h).ret }), { spent: 0, ret: 0 }); if (S.spent) tot.push(["単勝（標準）", money(S.ret, S.spent)]); }
+  const tot = [], hs = h => (h.ext && h.ext["4"] && h.ext["4"].spent) ? h.ext["4"] : { spent: h.spent, ret: h.ret };   // 標準（合格＋馬主）。古い日は合格モデルだけ
+  if (H.length) { const S = H.reduce((a, h) => ({ spent: a.spent + hs(h).spent, ret: a.ret + hs(h).ret }), { spent: 0, ret: 0 }); if (S.spent) tot.push({ l: "単勝（標準）", spent: S.spent, ret: S.ret }); }
   for (const [mm, lb] of [["2", "単勝（拡大まで）"], ["3", "単勝（広めまで）"]]) {
     const HE = H.filter(h => h.ext && h.ext[mm] && h.ext[mm].spent);
-    if (HE.length) { const s_ = HE.reduce((a, h) => a + h.ext[mm].spent, 0), r_ = HE.reduce((a, h) => a + h.ext[mm].ret, 0); tot.push([lb, money(r_, s_)]); }
+    if (HE.length) tot.push({ l: lb, spent: sum(HE, h => h.ext[mm].spent), ret: sum(HE, h => h.ext[mm].ret) });
   }
-  const HTA = H.filter(h => h.tria && h.tria.n); if (HTA.length) { const s_ = HTA.reduce((a, h) => a + h.tria.spent, 0), r_ = HTA.reduce((a, h) => a + h.tria.ret, 0), n_ = HTA.reduce((a, h) => a + h.tria.n, 0), h_ = HTA.reduce((a, h) => a + h.tria.hit, 0); tot.push([`3連単 大穴・地方（${h_}/${n_}的中）`, money(r_, s_)]); }
-  const HEX = H.filter(h => h.exo && h.exo.n); if (HEX.length) { const s_ = HEX.reduce((a, h) => a + h.exo.spent, 0), r_ = HEX.reduce((a, h) => a + h.exo.ret, 0), n_ = HEX.reduce((a, h) => a + h.exo.n, 0), h_ = HEX.reduce((a, h) => a + h.exo.hit, 0); tot.push([`参考の組合せ（${h_}/${n_}的中）`, money(r_, s_)]); }
-  const HT = H.filter(h => h.tri && h.tri.n); if (HT.length) { const s_ = HT.reduce((a, h) => a + h.tri.spent, 0), r_ = HT.reduce((a, h) => a + h.tri.ret, 0), n_ = HT.reduce((a, h) => a + h.tri.n, 0), h_ = HT.reduce((a, h) => a + h.tri.hit, 0); tot.push([`3連単・地方（${h_}/${n_}的中）`, money(r_, s_)]); }
-  const HQ = H.filter(h => h.trio && h.trio.n); if (HQ.length) { const s_ = HQ.reduce((a, h) => a + h.trio.spent, 0), r_ = HQ.reduce((a, h) => a + h.trio.ret, 0), n_ = HQ.reduce((a, h) => a + h.trio.n, 0), h_ = HQ.reduce((a, h) => a + h.trio.hit, 0); tot.push([`3連複・地方（${h_}/${n_}的中）`, money(r_, s_)]); }
-  const HM = H.filter(h => h.myomi && h.myomi.n); if (HM.length) { const s_ = HM.reduce((a, h) => a + h.myomi.spent, 0), r_ = HM.reduce((a, h) => a + h.myomi.ret, 0), n_ = HM.reduce((a, h) => a + h.myomi.n, 0), h_ = HM.reduce((a, h) => a + h.myomi.hit, 0); tot.push([`妙味ワイド（${h_}/${n_}的中）`, money(r_, s_)]); }
-  const HO = H.filter(h => h.oshi && h.oshi.n); if (HO.length) { const n_ = HO.reduce((a, h) => a + h.oshi.n, 0), h_ = HO.reduce((a, h) => a + h.oshi.hit, 0); tot.push(["推し", `${h_}/${n_}頭（${pctS(h_, n_)}）が3着以内`]); }
-  const HX = H.filter(h => h.axis && h.axis[mode] && h.axis[mode].spent); if (HX.length) { const s_ = HX.reduce((a, h) => a + h.axis[mode].spent, 0), r_ = HX.reduce((a, h) => a + h.axis[mode].ret, 0); tot.push(["3連単（1着固定）", money(r_, s_)]); }
-  const HW = H.filter(h => h.w5 && h.w5.spent); if (HW.length) { const s_ = HW.reduce((a, h) => a + h.w5.spent, 0), r_ = HW.reduce((a, h) => a + h.w5.ret, 0); tot.push([`WIN5（${HW.filter(h => h.w5.hit).length}/${HW.length}回）`, money(r_, s_)]); }
-  const HA = H.filter(h => h.a_spent); if (HA.length) { const s_ = HA.reduce((a, h) => a + h.a_spent, 0), r_ = HA.reduce((a, h) => a + h.a_ret, 0); tot.push(["お楽しみ", money(r_, s_)]); }
-  if (tot.length) html += `<div class="card"><div class="sub" style="margin-bottom:6px">これまでの通算（${H.length}日）</div><table>${tot.map(r => `<tr><td style="text-align:left">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div>`;
-  // 細かい表
-  html += `<div class="card"><details class="info"><summary>▼ レースごとの結果</summary>
+  for (const [k, l] of [["tria", "3連単 大穴・地方"], ["exo", "参考の組合せ"], ["tri", src === "nar" ? "3連単 中穴・地方" : "3連単"], ["trio", src === "nar" ? "3連複・地方" : "3連複"], ["myomi", "妙味ワイド"]]) {
+    const Z = H.filter(h => h[k] && h[k].n); if (Z.length) tot.push({ l, hit: `${sum(Z, h => h[k].hit)}/${sum(Z, h => h[k].n)}`, spent: sum(Z, h => h[k].spent), ret: sum(Z, h => h[k].ret), text: "買いなし" });
+  }
+  const HO = H.filter(h => h.oshi && h.oshi.n); if (HO.length) { const n_ = sum(HO, h => h.oshi.n), h_ = sum(HO, h => h.oshi.hit); tot.push({ l: "推し", hit: `${h_}/${n_}頭`, text: `${pctS(h_, n_)}が3着以内` }); }
+  const HX = H.filter(h => h.axis && h.axis[mode] && h.axis[mode].spent); if (HX.length) tot.push({ l: "3連単（1着固定）", spent: sum(HX, h => h.axis[mode].spent), ret: sum(HX, h => h.axis[mode].ret) });
+  const HW = H.filter(h => h.w5 && h.w5.spent); if (HW.length) tot.push({ l: "WIN5", hit: `${HW.filter(h => h.w5.hit).length}/${HW.length}回`, spent: sum(HW, h => h.w5.spent), ret: sum(HW, h => h.w5.ret) });
+  const HA = H.filter(h => h.a_spent); if (HA.length) tot.push({ l: "お楽しみ", spent: sum(HA, h => h.a_spent), ret: sum(HA, h => h.a_ret) });
+  if (tot.length) html += `<section class="sec"><div class="sech"><span class="eb">これまでの通算</span><span class="dim">${H.length}日</span></div>${tot.map(resRow).join("")}</section>`;
+  // 細かい表と凡例
+  html += `<section class="sec"><details class="info" data-k="byrace" style="border-top:0"><summary>レースごとの結果</summary><div class="sb">
     <table><tr><th>レース</th><th>1着</th><th>単勝</th><th>推し</th></tr>${done.map(r =>
-      `<tr><td style="text-align:left">${esc(r.venue)}${r.R}R</td><td>${r.result.first.join("・")}</td><td>${buysOf(r).length ? `${buysOf(r).map(b => b.no).join("・")}→${retOf(r) ? `<b style="color:var(--hit)">${yen(retOf(r))}</b>` : "0円"}` : "—"}</td><td>${r.oshi ? `${r.oshi.no}${r.oshi_res ? (r.oshi_res.hit ? '<b class=hm>中</b>' : "×") : ""}` : "—"}</td></tr>`).join("")}</table></details>
-    ${H.length ? `<details class="info"><summary>▼ 日ごとの単勝（合格版）</summary><table><tr><th>日付</th><th>買い</th><th>的中</th><th>回収率</th></tr>${[...H].reverse().map(h => `<tr><td style="text-align:left">${esc(h.date_ja)}</td><td>${h.bets}</td><td>${h.hits}</td><td>${pctS(h.ret, h.spent)}</td></tr>`).join("")}</table></details>` : ""}</div>`;
-  html += `<div class="card"><div class="sub" style="margin-bottom:2px">凡例</div><dl class="leg">
+      `<tr><td>${esc(r.venue)}${r.R}R</td><td>${r.result.first.join("・")}</td><td>${buysOf(r).length ? `${buysOf(r).map(b => b.no).join("・")} → ${retOf(r) ? `<b class="upc">${yen(retOf(r))}</b>` : "0円"}` : "—"}</td><td>${r.oshi ? `${r.oshi.no}${r.oshi_res ? (r.oshi_res.hit ? hm : " ×") : ""}` : "—"}</td></tr>`).join("")}</table></div></details>
+    ${H.length ? `<details class="info" data-k="byday"><summary>日ごとの単勝（合格版）</summary><div class="sb"><table><tr><th>日付</th><th>買い</th><th>的中</th><th>回収率</th></tr>${[...H].reverse().map(h => `<tr><td>${esc(h.date_ja)}</td><td>${h.bets}</td><td>${h.hits}</td><td>${pctS(h.ret, h.spent)}</td></tr>`).join("")}</table></div></details>` : ""}
+    <details class="info" data-k="legend"><summary>凡例（それぞれの買い方の説明）</summary><dl class="leg">
+    <dt>モデルの実績</dt><dd>過去＝バックテストの年ごとの平均（${src === "nar" ? "地方 2020〜26年" : "中央 2018〜26年"}）。本番＝実際に予想を出し始めてからの記録（各100円の想定、お金は賭けていない）。</dd>
     <dt>単勝</dt><dd>勝率×オッズ×変化率＝期待値が基準以上の馬。各100円。標準＝合格モデル＋馬主モデル。拡大・広めは試験中。</dd>
     <dt>推し</dt><dd>4番人気以下、3着以内の見立て40%以上かつ世間より高い馬。1レース1頭。</dd>
     <dt>妙味ワイド（地方・試験中）</dt><dd>軸＝1〜3番人気で勝率が世間の1.2倍以上。穴＝5番人気以下・10倍以上で1.3倍以上。消し＝1〜3番人気で0.85倍未満。過去 1日4.6R、的中約4割、回収107〜114%。</dd>
-    <dt>3連単（試験中）</dt><dd>単勝の馬を1着固定、2・3着は期待値1.2以上を5点まで。過去139〜149%、的中は約70点に1回。</dd>
+    <dt>3連単 1着固定（試験中）</dt><dd>単勝の馬を1着固定、2・3着は期待値1.2以上を5点まで。過去139〜149%、的中は約70点に1回。</dd>
     <dt>3連単・中央（試験中）</dt><dd>地方と同じ作り（中央の3着内モデルで2・3着を直す）。選ぶのは推定オッズ、本物のオッズは表示用。過去 1日16〜19R、的中4〜7%、回収 89〜121%（年でばらつき大、地方より弱い）。</dd>
-    <dt>3連単・地方（試験中）</dt><dd>1着は勝率、2・3着は3着内モデルの「滑り込む力」で直した並び確率×推定オッズ。見立て0.5%以上・推定500倍以下を期待値順に10点まで。期待値0.75以上100円・0.8以上200円・0.85以上300円。過去 1日19R、的中約9%、回収121〜122%。</dd>
+    <dt>3連単 中穴・地方（試験中）</dt><dd>1着は勝率、2・3着は3着内モデルの「滑り込む力」で直した並び確率×推定オッズ。見立て0.5%以上・推定500倍以下を期待値順に10点まで。期待値0.75以上100円・0.8以上200円・0.85以上300円。過去 1日19R、的中約9%、回収121〜122%。</dd>
+    <dt>3連単 大穴・地方（試験中）</dt><dd>1着を単勝の穴モデルの馬（10〜100倍・期待値1.2以上）に固定し、2・3着は滑り込み補正の並び確率×推定オッズで期待値0.8以上を10点まで、各100円。過去 1日6〜7R、的中1〜2%、配当の中央値 約2.5万円、回収 140〜175%（2022年は109%）。数回の大当たりで決まる宝くじ型。</dd>
     <dt>3連複・地方（試験中）</dt><dd>3連単と同じ並び確率を6通り足したもの×推定オッズ。見立て1%以上・推定200倍以下を期待値順に10点まで、金額の濃淡は3連単と同じ。過去 1日16〜17R、平均2点、的中約22%、回収114〜121%。</dd>
-    <dt>速報と確定</dt><dd>地方はレースが確定すると数分〜10分ほどで「速報」の印つきで答え合わせを出し、翌朝の確定データで付け直す（速報と確定は過去の照合で全件一致）。</dd>
-    <dt>表示</dt><dd>右上の「HUD」で近未来風の表示に、「紙面」で元の表示に戻る。端末ごとに覚える。</dd>
-    <dt>3連単 大穴・地方（試験中）</dt><dd>上の「3連単 中穴／大穴」で切り替え。大穴は1着を単勝の穴モデルの馬（10〜100倍・期待値1.2以上）に固定し、2・3着は滑り込み補正の並び確率×推定オッズで期待値0.8以上を10点まで、各100円。過去 1日6〜7R、的中1〜2%、配当の中央値 約2.5万円、回収 140〜175%（2022年は109%）。数回の大当たりで決まる宝くじ型。</dd>
+    <dt>金額の3本線</dt><dd>買い目の右の3本線は金額の濃淡（1本＝100円、2本＝200円、3本＝300円）。</dd>
     <dt>展開</dt><dd>ペース・馬場の内外・荒れ具合で馬がまとめて動くことを入れた全通り計算（10万回シミュレーション相当）。</dd>
     <dt>WIN5（試験中）</dt><dd>勝率と世間の票の偏りから、配当の割に起きやすい組。過去256回で約140%。</dd>
     <dt>お楽しみ</dt><dd>30〜100倍で期待値の高い組。遊び用の別帳簿。過去の回収8〜10割。</dd>
-    <dt>数字</dt><dd>回収率＝払戻÷買った額。地方の結果はレース後に速報、翌朝8:30ごろ確定。</dd></dl></div>`;
+    <dt>速報と確定</dt><dd>地方はレースが確定すると数分〜10分ほどで「速報」の印つきで答え合わせを出し、翌朝の確定データで付け直す（速報と確定は過去の照合で全件一致）。</dd>
+    <dt>数字</dt><dd>回収率＝払戻÷買った額。地方の結果はレース後に速報、翌朝8:30ごろ確定。</dd>
+    <dt>表示</dt><dd>右上の丸いボタンで明るい表示・暗い表示を切り替え（端末ごとに覚える）。上の「更新」の行を押すと、すぐ読み込み直す。</dd></dl></details></section>`;
   return html;
 }
 
+// ---------- 描く
+const OPEN = new Map();   // 開け閉めの記憶（描き直しても、タブを移っても、そのまま）
+let lastHtml = "", lastKey = null;
+function dkey(d, pre) {
+  if (d.dataset.k) return pre + d.dataset.k;
+  const root = d.parentElement.closest("[data-k]"), sm = d.querySelector(":scope > summary");
+  return pre + (root ? root.dataset.k : "v") + "|" + (sm ? sm.textContent.replace(/[0-9０-９,.\-→・:：%円（）()\s]+/g, "").slice(0, 24) : "");
+}
+function fmtLeft(s) { const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), ss = String(s % 60).padStart(2, "0"); return h ? `${h}:${String(m).padStart(2, "0")}:${ss}` : `${m}:${ss}`; }
+let overKey = "";
+function tick(fromRender) {
+  let over = "";
+  document.querySelectorAll("[data-close]").forEach(c => {
+    const left = Math.max(0, Math.floor((new Date(c.dataset.close) - now()) / 1000));
+    c.textContent = fmtLeft(left); c.classList.toggle("soon", left < 600 && left >= 120); c.classList.toggle("now", left < 120);
+    if (c.id === "cd") { const p = $("#prog"); if (p) p.style.width = Math.max(0, Math.min(100, (1 - left / 1800) * 100)) + "%"; }
+    if (!left) over += c.dataset.close;
+  });
+  // 発走時刻を過ぎたら、1秒後に一度だけ描き直して次のレースへ（同じ時刻では二度やらない）
+  if (over && over !== overKey && !fromRender && D && !D.now_override) { overKey = over; setTimeout(render, 1050); }
+}
+function dock() {   // 「次のレース」以外のタブでも、次の発走までの残り時間を上に出す
+  const el = $("#dock"), up = D ? upcoming() : [];
+  if (!up.length || tab === "next") { el.hidden = true; return; }
+  const r = up[0], k = D.date + r.id + r.post;
+  if (el.dataset.k !== k) { el.dataset.k = k; el.innerHTML = `<span class="eb">次</span><b>${esc(r.venue)} ${r.R}R</b><span class="dt">発走 ${r.post}</span><span class="n dc" data-close="${t(r.post).toISOString()}"></span>`; }
+  el.hidden = false;
+}
 function render() {
   if (!D) return;
-  mode = "3"; triKind = "mid";   // 2026-11-11 夕: 切り替えをやめて広めまで全部表示（札で区別）。3連単は中穴・大穴を両方
+  mode = "3";   // 広めまで全部表示（札で区別）
   document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
-  // 描き直しても、開いていた所（レース・・10万回の中身など）と画面の位置はそのまま
-  const open = new Set([...document.querySelectorAll("#view details[open]")].map(dkey)), y = window.scrollY, same = lastTab === tab;
-  $("#view").innerHTML = modeBar() + (tab === "next" ? viewNext() : tab === "today" ? viewToday() : viewResult());
-  document.querySelectorAll(".chips button[data-v]").forEach(b => b.onclick = () => { venue = b.dataset.v; render(); });
-  document.querySelectorAll("button[data-mode]").forEach(b => b.onclick = () => { modeSel = b.dataset.mode; try { localStorage.setItem("mode", modeSel); } catch {} render(); });
-  document.querySelectorAll("button[data-tk]").forEach(b => b.onclick = () => { triKind = b.dataset.tk; try { localStorage.setItem("triKind", triKind); } catch {} render(); });
-  document.querySelectorAll("#view details").forEach(d => { if (open.has(dkey(d))) d.open = true; });
-  if (same) window.scrollTo(0, y);
-  lastTab = tab;
-  rollNumbers();
-}
-
-let lastTab = null;
-function dkey(d) {   // 開閉を覚えるための名前: レース（data-k）＋見出しの文字（数字や結果で変わる部分は除く）
-  if (d.dataset.k) return tab + d.dataset.k;
-  const root = d.parentElement.closest("[data-k]");
-  const sm = d.querySelector(":scope > summary"), sp = sm && (sm.querySelector(":scope > span") || sm);
-  return tab + (root ? root.dataset.k : "v") + "|" + (sp ? sp.textContent.replace(/[0-9０-９,.\-→・:：%円（）()]+/g, "").trim().slice(0, 24) : "");
+  const view = $("#view"), key = src + "/" + tab + "/", nx = upcoming()[0];
+  D.__nx = nx ? nx.id : null;
+  const html = perfStrip() + (tab === "next" ? viewNext() : tab === "today" ? viewToday() : viewResult());
+  dock();
+  if (html === lastHtml && key === lastKey) { tick(true); return; }
+  if (lastKey) view.querySelectorAll("details").forEach(d => OPEN.set(dkey(d, lastKey), d.open));
+  const y = window.scrollY, same = key === lastKey, pf = $("#perf"), px = pf ? pf.scrollLeft : 0;
+  view.classList.toggle("enter", !same); view.classList.add("still");
+  view.innerHTML = html; lastHtml = html; lastKey = key;
+  view.querySelectorAll("details").forEach(d => { const k = dkey(d, key); if (OPEN.has(k)) d.open = OPEN.get(k); });
+  if (same) { window.scrollTo(0, y); if ($("#perf")) $("#perf").scrollLeft = px; }
+  requestAnimationFrame(() => requestAnimationFrame(() => view.classList.remove("still")));
+  tick(true);
 }
 
 async function load() {
+  const dot = document.querySelector("#meta .live"); if (dot) dot.classList.add("spin");
   try {
     const q = "?t=" + Date.now();
     const DEMO = new URLSearchParams(location.search).has("demo");   // ?demo=1 のときは過去の再現（data/demo_*.json）を表示
     const pre = (DEMO ? "demo_" : "") + (src === "nar" ? "nar_" : "");
     D = await (await fetch(`data/${pre}today.json` + q, { cache: "no-store" })).json();
     try { H = await (await fetch(`data/${pre}history.json` + q, { cache: "no-store" })).json(); } catch { H = []; }
-    document.querySelectorAll(".src button").forEach(b => b.classList.toggle("on", b.dataset.src === src));
+    document.querySelectorAll(".seg button").forEach(b => b.classList.toggle("on", b.dataset.src === src));
     const age = (Date.now() - new Date(D.generated.replace(" ", "T") + ":00+09:00")) / 60000;   // 予想係は動いている間10分おきに更新する
     const today = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
     const stale = D.date === today && age > 20 && (new Date().getUTCHours() + 9) % 24 < (src === "nar" ? 22 : 18);
-    $("#meta").textContent = `${D.date_ja} ・ 更新 ${D.generated.slice(11, 16)} ・ 判定 ${lbl()}` + (stale ? ` ・ ${Math.round(age)}分間更新なし` : "");
-    $("#meta").style.color = stale ? "#d33" : "";
+    $("#meta").innerHTML = `<i class="live${stale ? " stale" : ""}"></i>${stale ? `<b>${Math.round(age)}分間更新なし</b> ・ ` : ""}${esc(D.date_ja)} ・ 更新 ${D.generated.slice(11, 16)} ・ 判定 ${esc(lbl())}`;
     const s = $("#sample"); s.hidden = !D.sample; s.textContent = D.sample || "";
     render();
-  } catch (e) { $("#meta").textContent = src === "nar" ? "地方のデータはまだありません" : "データを読み込めませんでした（電波を確認）"; document.querySelectorAll(".src button").forEach(b => b.classList.toggle("on", b.dataset.src === src)); if (src === "nar") { D = null; $("#view").innerHTML = ""; } }
+  } catch (e) {
+    $("#meta").innerHTML = `<i class="live stale"></i>${src === "nar" ? "地方のデータはまだありません" : "データを読み込めませんでした（電波を確認）"}`;
+    document.querySelectorAll(".seg button").forEach(b => b.classList.toggle("on", b.dataset.src === src));
+    if (src === "nar" || !D) { D = null; lastHtml = ""; lastKey = null; $("#dock").hidden = true; $("#sample").hidden = true;
+      $("#view").innerHTML = `<section class="sec"><div class="msg" style="border-top:0;color:var(--ink3)">${src === "nar" ? "地方の今日のデータがまだ届いていません。" : "データを読み込めませんでした。電波のよい所で、上の行を押して読み込み直してください。"}</div></section>`; }
+  }
 }
-document.querySelectorAll(".src button").forEach(b => b.onclick = () => { src = b.dataset.src; localStorage.setItem("src", src); venue = null; load(); });
-document.querySelectorAll("nav button").forEach(b => b.onclick = () => { tab = b.dataset.tab; try { localStorage.setItem("tab", tab); } catch {} render(); window.scrollTo(0, 0);
-  const nr = tab === "today" && document.getElementById("nextrow"); if (nr) nr.scrollIntoView({ block: "center" }); });
-setInterval(() => { const c = $("#cd"); if (c) { const left = Math.max(0, Math.floor((new Date(c.dataset.close) - now()) / 1000)); c.textContent = Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0"); } }, 1000);
+document.querySelectorAll(".seg button").forEach(b => b.onclick = () => { if (src === b.dataset.src) return; src = b.dataset.src; LS.set("src", src); venue = null; $("#dock").dataset.k = ""; load(); });
+function goTab(v) { tab = v; LS.set("tab", tab); render(); window.scrollTo(0, 0);
+  const nr = tab === "today" && document.getElementById("nextrow"); if (nr) nr.scrollIntoView({ block: "center" }); }
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => goTab(b.dataset.tab));
+$("#dock").onclick = () => goTab("next");
+$("#meta").onclick = () => load();
+$("#view").addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (b) { venue = b.dataset.v; render(); } });
+setInterval(() => tick(), 1000);
 setInterval(load, 60000);
 document.addEventListener("visibilitychange", () => { if (!document.hidden) load(); });
-// ---------- 表示の切り替え（紙面 ⇔ 近未来 HUD、2026-11-11）
-let skin = "paper"; try { skin = localStorage.getItem("skin") || "paper"; } catch {}
-const RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-function setSkin(v) {
-  skin = v; document.documentElement.dataset.skin = v;
-  try { localStorage.setItem("skin", v); } catch {}
-  const b = $("#skinb"); if (b) b.textContent = v === "hud" ? "紙面" : "HUD";
-  document.querySelector('meta[name="theme-color"]').content = v === "hud" ? "#05080f" : "#f4f0e6";
-  ROLL.clear(); if (D) render();
-}
-// 数字が回って止まる（値が変わった所だけ。初めて HUD にしたときは全部）
-const ROLL = new Map();
-function rollNumbers() {
-  if (skin !== "hud" || RM) return;
-  const els = [...document.querySelectorAll("#view .kpi b, #view .big, #view .badge.hit, #view .count:not(#cd), #view td b, #view .hm")];
-  els.forEach((el, i) => {
-    const k = tab + i + "|" + (el.closest("[data-k]") || {}).dataset?.k, t = el.textContent;
-    const prev = ROLL.get(k); ROLL.set(k, t);
-    if (prev === t || !/[0-9]/.test(t) || el.dataset.rolling) return;
-    el.dataset.rolling = "1"; el.classList.add("rolling");
-    const t0 = performance.now(), dur = 520 + Math.random() * 380;
-    const step = now_ => {
-      const f = Math.min(1, (now_ - t0) / dur), fix = Math.floor(f * t.length);
-      el.textContent = [...t].map((ch, j) => j < fix || !/[0-9]/.test(ch) ? ch : String(Math.floor(Math.random() * 10))).join("");
-      if (f < 1) requestAnimationFrame(step); else { el.textContent = t; el.classList.remove("rolling"); delete el.dataset.rolling; }
-    };
-    requestAnimationFrame(step);
-  });
-}
-// 奥行き（スクロールで背景のグリッドがずれる）と四隅の計器
-let parQ = false;
-window.addEventListener("scroll", () => { if (skin !== "hud" || RM || parQ) return; parQ = true;
-  requestAnimationFrame(() => { document.documentElement.style.setProperty("--par", (-window.scrollY) + "px"); parQ = false; }); }, { passive: true });
-document.body.insertAdjacentHTML("beforeend", '<div id="hudfx" aria-hidden="true"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><div class="sw"></div><div class="rd" id="hudrd"></div></div>');
-setInterval(() => { if (skin !== "hud" || !D) return; const d = new Date(Date.now() + 9 * 3600000), rs = D.races || [];
-  const dec = rs.filter(r => r.state === "decided").length, res = rs.filter(r => r.result).length, sk_ = rs.filter(r => r.result && r.result.src === "速報").length;
-  $("#hudrd").innerHTML = `<span>SYS ${d.toISOString().slice(11, 19)}</span><span>${src === "nar" ? "NAR" : "JRA"} ● LIVE</span><span>PRED ${dec}/${rs.length}</span><span>RES ${res}${sk_ ? `・速報${sk_}` : ""}</span>`; }, 1000);
-$("#skinb").onclick = () => setSkin(skin === "hud" ? "paper" : "hud");
-setSkin(skin);
+// 上の帯の高さ（会場の切り替えを、その下に貼りつけるため）
+if (window.ResizeObserver) new ResizeObserver(() => document.documentElement.style.setProperty("--hh", document.querySelector("header").offsetHeight + "px")).observe(document.querySelector("header"));
+// 明るい表示・暗い表示（何も選ばなければ端末の設定に合わせる）
+const DARK = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : { matches: false };
+function isDark() { const th = document.documentElement.dataset.theme; return th ? th === "dark" : DARK.matches; }
+function paintTheme() { document.querySelector('meta[name="theme-color"]').content = isDark() ? "#141618" : "#ffffff"; }
+$("#themeb").onclick = () => { const v = isDark() ? "light" : "dark"; document.documentElement.dataset.theme = v; LS.set("theme", v); paintTheme(); };
+if (DARK.addEventListener) DARK.addEventListener("change", paintTheme);
+paintTheme();
+document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
 load();
 // 緊急チェック: 中継サービス ntfy.sh の合言葉チャンネルに合図 → PC の緊急チェック係（code\musu_sos.py）が点検・修正し data/sos.json に結果を出す
 const SOS_TOPIC = "musu-sos-6f1873a77b020c2b";
-function sosShow(h) { const b = $("#sos"); b.hidden = false; b.innerHTML = `<button class="x" onclick="$('#sos').hidden=true">×</button>` + h; }
+function sosShow(h) { const b = $("#sos"); b.hidden = false; b.innerHTML = `<button class="xb" aria-label="閉じる" onclick="$('#sos').hidden=true">×</button>` + h; }
 function sosRes(j) {
-  const head = j.phase === "fixing" ? "直しています…" : j.ok ? "<b class=hm>的中</b> 正常に動いています" : "直りきっていません";
-  return `<b>${head}</b>${j.note ? `<div>${j.note}</div>` : ""}<div class="sub">点検 ${j.checked.slice(11, 16)}</div>` +
+  const head = j.phase === "fixing" ? "直しています…" : j.ok ? `<span class="ok">○</span> 正常に動いています` : "直りきっていません";
+  return `<b>${head}</b>${j.note ? `<div>${j.note}</div>` : ""}<div class="mu">点検 ${j.checked.slice(11, 16)}</div>` +
     j.items.map(x => `<div class="it"><span class="${x.ok ? "ok" : "ng"}">${x.ok ? "○" : "×"} ${x.name}</span>：${x.msg}${x.fix ? `<br>→ ${x.fix}` : ""}</div>`).join("");
 }
 $("#sosb").onclick = async () => {
