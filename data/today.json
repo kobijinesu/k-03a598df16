@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 15:59",
+ "generated": "2026-11-14 16:08",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -18957,6 +18957,20 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -19316,8 +19330,29 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "4-12-15",
+    "trifecta": "4→12→15",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "マーシーラン",
+    "tan": 1050,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140512",
