@@ -1,7 +1,7 @@
 {
  "date": "2026-11-14",
  "date_ja": "11/14（土）",
- "generated": "2026-11-14 11:59",
+ "generated": "2026-11-14 12:08",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -7752,6 +7752,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -8097,8 +8111,29 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "8-9-14",
+    "trifecta": "14→8→9",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     14
+    ],
+    "first_name": "アンジュオレンジ",
+    "tan": 750,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611140505",
