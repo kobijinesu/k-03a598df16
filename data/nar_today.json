@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 15:20",
+ "generated": "2026-11-15 15:26",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -4346,6 +4346,17 @@
      "need": 20.769740231234362
     }
    ],
+   "result": {
+    "first": [
+     3
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -4610,6 +4621,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "3-4-7",
+    "trifecta": "3→4→7",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 9,
@@ -4621,6 +4638,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -4729,6 +4756,21 @@
       "p": 0.10240253335256407
      }
     ]
+   },
+   "tri_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -4783,6 +4825,17 @@
      "need": 13.665302174563625
     }
    ],
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 7,
     "name": "プレアウィン",
@@ -4797,6 +4850,10 @@
      "最近のこのコースで有利な枠・脚質に合う",
      "厩舎の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -5055,6 +5112,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "4-6-7",
+    "trifecta": "4→7→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -5138,6 +5211,21 @@
       "p": 0.08952952393384632
      }
     ]
+   },
+   "tri_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
