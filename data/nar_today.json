@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 12:10",
+ "generated": "2026-11-15 12:17",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -60,6 +60,17 @@
      "need": 22.76931557109939
     }
    ],
+   "result": {
+    "first": [
+     5
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 3,
     "name": "エムワンハールマキ",
@@ -74,6 +85,10 @@
      "馬場状態の得意・不得意が合う",
      "騎手と厩舎のコンビの成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -292,6 +307,22 @@
       "p3": 0.15771553035470035
      }
     ]
+   },
+   "pace_res": {
+    "trio": "2-3-5",
+    "trifecta": "5→2→3",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
