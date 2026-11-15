@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 13:19",
+ "generated": "2026-11-15 13:28",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -11467,6 +11467,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 100,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    },
+    "4": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -11840,8 +11854,29 @@
      "pick": "high"
     }
    },
+   "pace_res": {
+    "trio": "6-7-17",
+    "trifecta": "6→17→7",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     6
+    ],
+    "first_name": "ミラキュラスアース",
+    "tan": 2810,
+    "bet": 100,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611150308",
