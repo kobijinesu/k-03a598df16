@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 13:09",
+ "generated": "2026-11-15 13:18",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -10966,6 +10966,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -10985,6 +10999,10 @@
      "血統（父・母の父）がこの条件に強い",
      "過去の走破タイムがこのメンバーで上位"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -11325,8 +11343,29 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "6-7-8",
+    "trifecta": "7→8→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "バルダンツァ",
+    "tan": 340,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611150807",
