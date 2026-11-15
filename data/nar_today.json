@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 17:15",
+ "generated": "2026-11-15 17:17",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -10594,6 +10594,17 @@
      "need": 14.98833371953041
     }
    ],
+   "result": {
+    "first": [
+     5
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 4,
     "name": "ララハカランダ",
@@ -10608,6 +10619,10 @@
      "これまでの成績が人気の割に良い",
      "近走の内容（着順・好走した格）が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -10894,6 +10909,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "5-6-12",
+    "trifecta": "5→12→6",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -11021,6 +11052,21 @@
       "p": 0.019800100736184555
      }
     ]
+   },
+   "tri_res": {
+    "bet": 2000,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
