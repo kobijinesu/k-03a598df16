@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 12:19",
+ "generated": "2026-11-15 12:23",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -7823,6 +7823,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -8189,8 +8203,29 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "8-10-18",
+    "trifecta": "8→18→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "ルミナレーヌ",
+    "tan": 1500,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611150306",
