@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 15:10",
+ "generated": "2026-11-15 15:20",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -17157,6 +17157,20 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -17509,8 +17523,29 @@
      "pick": "slow"
     }
    },
+   "pace_res": {
+    "trio": "4-7-15",
+    "trifecta": "7→15→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "ゴッドブルービー",
+    "tan": 700,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611150511",
