@@ -138,22 +138,22 @@
   "hits": 0,
   "spent": 100,
   "ret": 0,
-  "a_races": 5,
-  "a_hits": 0,
-  "a_spent": 1900,
-  "a_ret": 0,
+  "a_races": 6,
+  "a_hits": 1,
+  "a_spent": 2300,
+  "a_ret": 2990,
   "ext": {
    "2": {
-    "spent": 200,
-    "ret": 0
+    "spent": 300,
+    "ret": 1310
    },
    "3": {
-    "spent": 600,
-    "ret": 750
+    "spent": 900,
+    "ret": 2060
    },
    "4": {
-    "spent": 200,
-    "ret": 0
+    "spent": 300,
+    "ret": 1310
    }
   },
   "oshi": {
@@ -167,19 +167,19 @@
     "ret": 0
    },
    "2": {
-    "spent": 0,
+    "spent": 200,
     "ret": 0
    },
    "3": {
-    "spent": 0,
+    "spent": 200,
     "ret": 0
    }
   },
   "w5": null,
   "tri": {
-   "n": 5,
+   "n": 6,
    "hit": 0,
-   "spent": 3100,
+   "spent": 3200,
    "ret": 0
   },
   "trio": {
@@ -189,9 +189,9 @@
    "ret": 0
   },
   "exo": {
-   "n": 5,
+   "n": 6,
    "hit": 1,
-   "spent": 3300,
+   "spent": 3900,
    "ret": 1310
   }
  }
