@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 14:44",
+ "generated": "2026-11-15 14:45",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -15597,6 +15597,20 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 200,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -15956,8 +15970,29 @@
      "pick": "slow"
     }
    },
+   "pace_res": {
+    "trio": "7-9-13",
+    "trifecta": "9→7→13",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "ドッビアーコ",
+    "tan": 2230,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611150510",
