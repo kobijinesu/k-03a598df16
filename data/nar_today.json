@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "date_ja": "11/15（日）",
- "generated": "2026-11-15 16:25",
+ "generated": "2026-11-15 16:26",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -6891,6 +6891,17 @@
      "need": 14.100656792488891
     }
    ],
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 1,
     "name": "オーシンホエール",
@@ -6905,6 +6916,10 @@
      "厩舎の最近の成績が良い",
      "斤量・年齢の条件が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -7177,6 +7192,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-8-10",
+    "trifecta": "10→1→8",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -7292,6 +7323,21 @@
       "p": 0.02790581012287707
      }
     ]
+   },
+   "tri_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
