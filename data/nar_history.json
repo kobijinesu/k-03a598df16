@@ -436,18 +436,18 @@
   },
   "ext": {
    "2": {
-    "spent": 100,
+    "spent": 200,
     "ret": 0
    },
    "3": {
-    "spent": 100,
+    "spent": 200,
     "ret": 0
    }
   },
   "myomi": {
-   "n": 0,
+   "n": 1,
    "hit": 0,
-   "spent": 0,
+   "spent": 300,
    "ret": 0
   },
   "tri": {
