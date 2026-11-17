@@ -1,7 +1,7 @@
 {
  "date": "2026-11-17",
  "date_ja": "11/17（火）",
- "generated": "2026-11-17 14:25",
+ "generated": "2026-11-17 14:26",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -2377,6 +2377,17 @@
      "need": 36.45081738948057
     }
    ],
+   "result": {
+    "first": [
+     1
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 10,
     "name": "キーチキング",
@@ -2391,6 +2402,10 @@
      "厩舎の最近の成績が良い",
      "最近のこのコースで有利な枠・脚質に合う"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -2655,6 +2670,22 @@
       "p3": 0.020807438267146615
      }
     ]
+   },
+   "pace_res": {
+    "trio": "1-7-9",
+    "trifecta": "1→9→7",
+    "trio_rank": 1,
+    "tri_rank": 1
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
