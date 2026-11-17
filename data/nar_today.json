@@ -1,7 +1,7 @@
 {
  "date": "2026-11-17",
  "date_ja": "11/17（火）",
- "generated": "2026-11-17 14:00",
+ "generated": "2026-11-17 14:06",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -1924,6 +1924,17 @@
      "need": 20.402977634498786
     }
    ],
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 8,
     "name": "ポップストリート",
@@ -1938,6 +1949,10 @@
      "騎手の最近の成績が良い",
      "厩舎の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -2210,6 +2225,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-3-4",
+    "trifecta": "4→2→3",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -2277,6 +2308,21 @@
       "p": 0.16420412786003794
      }
     ]
+   },
+   "tri_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
