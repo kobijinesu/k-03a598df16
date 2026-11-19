@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "date_ja": "11/19（木）",
- "generated": "2026-11-19 10:55",
+ "generated": "2026-11-19 10:57",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -430,6 +430,17 @@
      "need": 17.39623701748345
     }
    ],
+   "result": {
+    "first": [
+     6
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 5,
     "name": "ニックオブタイム",
@@ -444,6 +455,10 @@
      "近走の内容（着順・好走した格）が良い",
      "スピード指数（走破タイム）がこの条件で高い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -716,6 +731,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-6-10",
+    "trifecta": "6→1→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -858,6 +889,21 @@
       "p": 0.07879979808381829
      }
     ]
+   },
+   "tri_res": {
+    "bet": 1600,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 400,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
