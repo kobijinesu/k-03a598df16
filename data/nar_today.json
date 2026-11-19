@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "date_ja": "11/19（木）",
- "generated": "2026-11-19 13:40",
+ "generated": "2026-11-19 13:46",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -5319,6 +5319,17 @@
      "need": 50.038401232313426
     }
    ],
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 2,
     "name": "ミズノミヤコ",
@@ -5333,6 +5344,10 @@
      "近走の内容（着順・好走した格）が良い",
      "馬場状態の得意・不得意が合う"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -5605,6 +5620,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "4-8-10",
+    "trifecta": "10→8→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -5712,6 +5743,21 @@
       "p": 0.008592761088547151
      }
     ]
+   },
+   "tri_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
