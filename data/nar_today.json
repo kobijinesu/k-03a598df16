@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "date_ja": "11/19（木）",
- "generated": "2026-11-19 14:45",
+ "generated": "2026-11-19 14:46",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -7364,6 +7364,17 @@
      "need": 18.818417858957464
     }
    ],
+   "result": {
+    "first": [
+     3
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -7656,6 +7667,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "3-4-8",
+    "trifecta": "3→8→4",
+    "trio_rank": 1,
+    "tri_rank": 1
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [],
     "total": 0,
@@ -7726,6 +7753,21 @@
       "p": 0.04633197820271542
      }
     ]
+   },
+   "tri_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -7780,6 +7822,17 @@
      "need": 52.238565954360716
     }
    ],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -8044,6 +8097,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "6-8-9",
+    "trifecta": "8→6→9",
+    "trio_rank": 1,
+    "tri_rank": 1
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -8135,6 +8204,25 @@
       "p": 0.026421525107802473
      }
     ]
+   },
+   "tri_res": {
+    "bet": 400,
+    "ret": 420,
+    "hits": [
+     "8→6→9"
+    ]
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 360,
+    "hits": [
+     "6-8-9"
+    ]
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
