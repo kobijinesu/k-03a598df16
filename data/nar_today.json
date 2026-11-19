@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "date_ja": "11/19（木）",
- "generated": "2026-11-19 11:25",
+ "generated": "2026-11-19 11:27",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -1457,6 +1457,17 @@
      "need": 21.00397995469829
     }
    ],
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 5,
     "name": "ポワソンドール",
@@ -1471,6 +1482,10 @@
      "近走の内容（着順・好走した格）が良い",
      "厩舎の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -1743,6 +1758,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "5-6-10",
+    "trifecta": "10→5→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 6,
@@ -1754,6 +1775,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -1893,6 +1924,21 @@
       "p": 0.04411489416765359
      }
     ]
+   },
+   "tri_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
    }
   },
   {
