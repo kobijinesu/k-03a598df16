@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "date_ja": "11/19（木）",
- "generated": "2026-11-19 13:10",
+ "generated": "2026-11-19 13:17",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -4330,6 +4330,17 @@
      "need": 13.591797446216766
     }
    ],
+   "result": {
+    "first": [
+     1
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 8,
     "name": "ツマミグイ",
@@ -4344,6 +4355,10 @@
      "騎手の最近の成績が良い",
      "斤量・年齢の条件が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -4616,6 +4631,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-5-6",
+    "trifecta": "1→5→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -4690,6 +4721,21 @@
       "p": 0.127309552317758
      }
     ]
+   },
+   "tri_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
