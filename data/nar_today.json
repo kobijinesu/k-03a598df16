@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
  "date_ja": "11/19（木）",
- "generated": "2026-11-19 15:57",
+ "generated": "2026-11-19 16:06",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -10750,6 +10750,17 @@
      "need": 13.166144152535415
     }
    ],
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -11035,6 +11046,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "3-5-10",
+    "trifecta": "10→3→5",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -11088,6 +11115,21 @@
       "p": 0.13348915876708162
      }
     ]
+   },
+   "tri_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -11142,6 +11184,17 @@
      "need": 22.568469878197025
     }
    ],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -11427,6 +11480,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "4-7-9",
+    "trifecta": "7→9→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 10,
@@ -11438,6 +11497,16 @@
      "tier": 2
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 100,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": false,
     "axis": {
@@ -11557,6 +11626,11 @@
     ],
     "total": 500
    },
+   "myomi_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
    "tri": {
     "bets": [],
     "total": 0,
@@ -11624,6 +11698,21 @@
       "p": 0.046096964974249074
      }
     ]
+   },
+   "tri_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
    }
   },
   {
