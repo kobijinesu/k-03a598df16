@@ -1,7 +1,7 @@
 {
  "date": "2026-11-20",
  "date_ja": "11/20（金）",
- "generated": "2026-11-20 15:45",
+ "generated": "2026-11-20 15:47",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -9815,6 +9815,17 @@
      "need": 12.445521149678445
     }
    ],
+   "result": {
+    "first": [
+     2
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 1,
     "name": "アイローサ",
@@ -9829,6 +9840,10 @@
      "スピード指数（走破タイム）がこの条件で高い",
      "馬場状態の得意・不得意が合う"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -10079,6 +10094,22 @@
       "p3": 0.02917373389984048
      }
     ]
+   },
+   "pace_res": {
+    "trio": "2-4-5",
+    "trifecta": "2→5→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
