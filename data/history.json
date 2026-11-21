@@ -206,9 +206,9 @@
   "hits": 0,
   "spent": 0,
   "ret": 0,
-  "a_races": 1,
+  "a_races": 2,
   "a_hits": 0,
-  "a_spent": 200,
+  "a_spent": 1100,
   "a_ret": 0,
   "ext": {
    "2": {
@@ -245,22 +245,22 @@
   },
   "w5": null,
   "tri": {
-   "n": 0,
+   "n": 1,
    "hit": 0,
-   "spent": 0,
+   "spent": 100,
    "ret": 0
   },
   "trio": {
-   "n": 0,
+   "n": 1,
    "hit": 0,
-   "spent": 0,
+   "spent": 300,
    "ret": 0
   },
   "exo": {
-   "n": 1,
-   "hit": 0,
-   "spent": 700,
-   "ret": 0
+   "n": 2,
+   "hit": 1,
+   "spent": 1600,
+   "ret": 670
   }
  }
 ]
