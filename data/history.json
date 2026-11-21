@@ -202,25 +202,25 @@
  {
   "date": "20261121",
   "date_ja": "11/21（土）",
-  "bets": 0,
+  "bets": 1,
   "hits": 0,
-  "spent": 0,
+  "spent": 100,
   "ret": 0,
-  "a_races": 8,
+  "a_races": 9,
   "a_hits": 0,
-  "a_spent": 3500,
+  "a_spent": 4100,
   "a_ret": 0,
   "ext": {
    "2": {
-    "spent": 300,
+    "spent": 400,
     "ret": 0
    },
    "3": {
-    "spent": 600,
+    "spent": 800,
     "ret": 1130
    },
    "4": {
-    "spent": 0,
+    "spent": 100,
     "ret": 0
    }
   },
@@ -245,9 +245,9 @@
   },
   "w5": null,
   "tri": {
-   "n": 6,
+   "n": 7,
    "hit": 0,
-   "spent": 3300,
+   "spent": 3400,
    "ret": 0
   },
   "trio": {
@@ -257,10 +257,10 @@
    "ret": 0
   },
   "exo": {
-   "n": 8,
-   "hit": 2,
-   "spent": 5300,
-   "ret": 1200
+   "n": 9,
+   "hit": 3,
+   "spent": 6200,
+   "ret": 2750
   }
  }
 ]
