@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "date_ja": "11/21（土）",
- "generated": "2026-11-21 19:20",
+ "generated": "2026-11-21 19:25",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -7317,6 +7317,17 @@
      "need": 12.73668276903304
     }
    ],
+   "result": {
+    "first": [
+     8
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 1,
     "name": "シンティリオ",
@@ -7331,6 +7342,10 @@
      "近走の内容（着順・好走した格）が良い",
      "厩舎の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -7596,6 +7611,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-5-8",
+    "trifecta": "8→5→1",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 8,
@@ -7607,6 +7628,16 @@
      "tier": 2
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 100,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -7794,6 +7825,21 @@
       "p": 0.030098558340885224
      }
     ]
+   },
+   "tri_res": {
+    "bet": 1300,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
    }
   },
   {
