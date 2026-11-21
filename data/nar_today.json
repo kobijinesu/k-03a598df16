@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "date_ja": "11/21（土）",
- "generated": "2026-11-21 16:55",
+ "generated": "2026-11-21 16:56",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -2817,6 +2817,17 @@
      "need": 10.562010985024424
     }
    ],
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 4,
     "name": "バスターコール",
@@ -2831,6 +2842,10 @@
      "スピード指数（走破タイム）がこの条件で高い",
      "厩舎の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": true
    },
    "pace": {
     "trifecta": [
@@ -3096,6 +3111,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "4-5-9",
+    "trifecta": "4→5→9",
+    "trio_rank": 2,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -3205,6 +3236,21 @@
       "p": 0.15222017661025125
      }
     ]
+   },
+   "tri_res": {
+    "bet": 1000,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
