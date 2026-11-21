@@ -264,6 +264,7 @@ dl.leg{margin:0;padding:0 0 14px;font-size:12px;line-height:1.65}dl.leg dt{font-
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
 @media (min-width:592px){.sec,.chips,.skel{border-inline:1px solid var(--line)}}
+.dnc{color:#c0392b}
 </style>
 </head>
 <body>
@@ -563,12 +564,19 @@ function viewToday() {
 }
 
 // ---------- 結果
+// 2026-11-22: 本線（単勝）の「ふつうの範囲」。過去の実際の買い（中央 2023-26 1,749回・地方 1,859回）を同じ回数で引き直した回収率の10〜90%点（8割はこの中）
+const RANGE = {"jra": [[5, 0, 460], [10, 0, 378], [20, 0, 320], [35, 22, 264], [50, 37, 248], [75, 52, 228], [105, 63, 213], [150, 75, 200], [210, 84, 188], [300, 91, 179], [420, 97, 173], [600, 103, 167], [1000, 110, 158]], "nar": [[5, 0, 486], [10, 0, 445], [20, 0, 358], [35, 0, 329], [50, 23, 309], [75, 40, 287], [105, 54, 263], [150, 65, 244], [210, 76, 226], [300, 85, 215], [420, 94, 204], [600, 102, 195], [1000, 111, 184]]};
+function rangeOf(n) { const t = RANGE[src === "nar" ? "nar" : "jra"]; let r = t[0];
+  for (const x of t) { if (x[0] <= n) r = x; } return r; }
+function rangeLine(x) { const n = Math.round(x.spent / 100); if (!n) return ""; const r = rangeOf(n), roi = x.ret / x.spent * 100;
+  const st = roi < r[1] ? `<b class="dnc">想定より悪い（点検します）</b>` : "想定内";
+  return `<div class="rr2"><span class="mu">この回数（${n}回）なら、ふつうの範囲は ${r[1]}〜${r[2]}%（8割はこの中）</span><span>${st}</span></div>`; }
 function resRow(x) {   // x: { l=名前, hit="1/6", heads=頭数, spent, ret, text=お金以外の説明 }
   const hit = x.hit ? `<small>的中 ${x.hit}${x.heads ? `（${x.heads}頭）` : ""}</small>` : "";
   if (x.spent) { const roi = x.ret / x.spent * 100;
     return `<div class="rr"><div class="rr1"><span class="rl">${x.l}${hit}</span>${pm(x.ret - x.spent)}</div>
       <div class="rr2"><span>買い ${yen(x.spent)} → 払戻 ${yen(x.ret)}</span><span>回収率 <b>${roi.toFixed(0)}%</b></span></div>
-      <div class="bar${roi >= 100 ? " up" : ""}"><i style="width:${Math.min(roi, 200) / 2}%"></i></div></div>`; }
+      ${x.range ? rangeLine(x) : ""}<div class="bar${roi >= 100 ? " up" : ""}"><i style="width:${Math.min(roi, 200) / 2}%"></i></div></div>`; }
   return `<div class="rr"><div class="rr1"><span class="rl">${x.l}${x.text ? hit : ""}</span></div><div class="rr2"><span>${x.text || "買いなし"}</span></div></div>`;
 }
 
@@ -614,7 +622,7 @@ function viewResult() {
   }
   // 通算
   const tot = [], hs = h => (h.ext && h.ext["4"] && h.ext["4"].spent) ? h.ext["4"] : { spent: h.spent, ret: h.ret };   // 標準（合格＋馬主）。古い日は合格モデルだけ
-  if (H.length) { const S = H.reduce((a, h) => ({ spent: a.spent + hs(h).spent, ret: a.ret + hs(h).ret }), { spent: 0, ret: 0 }); if (S.spent) tot.push({ l: "単勝（標準）", spent: S.spent, ret: S.ret }); }
+  if (H.length) { const S = H.reduce((a, h) => ({ spent: a.spent + hs(h).spent, ret: a.ret + hs(h).ret }), { spent: 0, ret: 0 }); if (S.spent) tot.push({ l: "単勝（標準）・本線", spent: S.spent, ret: S.ret, range: true }); }
   for (const [mm, lb] of [["2", "単勝（拡大まで）"], ["3", "単勝（広めまで）"]]) {
     const HE = H.filter(h => h.ext && h.ext[mm] && h.ext[mm].spent);
     if (HE.length) tot.push({ l: lb, spent: sum(HE, h => h.ext[mm].spent), ret: sum(HE, h => h.ext[mm].ret) });
@@ -624,7 +632,7 @@ function viewResult() {
   }
   const HX = H.filter(h => h.axis && h.axis[mode] && h.axis[mode].spent); if (HX.length) tot.push({ l: "3連単（1着固定）", spent: sum(HX, h => h.axis[mode].spent), ret: sum(HX, h => h.axis[mode].ret) });
   const HW = H.filter(h => h.w5 && h.w5.spent); if (HW.length) tot.push({ l: "WIN5", hit: `${HW.filter(h => h.w5.hit).length}/${HW.length}回`, spent: sum(HW, h => h.w5.spent), ret: sum(HW, h => h.w5.ret) });
-  if (tot.length) html += `<section class="sec"><div class="sech"><span class="eb">これまでの通算</span><span class="dim">${H.length}日</span></div>${tot.map(resRow).join("")}</section>`;
+  if (tot.length) html += `<section class="sec"><div class="sech"><span class="eb">これまでの通算</span><span class="dim">${H.length}日</span></div>${tot.slice(0, 1).map(resRow).join("")}${tot.length > 1 ? `<div class="note" style="border-top:1px solid var(--line)">ここから下は試験中（お金を増やす本線ではありません）</div>${tot.slice(1).map(resRow).join("")}` : ""}<div class="note">単勝は当たりが1割未満なので、短い期間では大きくぶれます（中央の過去で、1か月まるごと外れも約8%、最長51連敗）。${src === "nar" ? "地方は売上が小さく、1回5,000円を超えると自分の買いでオッズが下がります。" : ""}</div></section>`;
   // 細かい表と凡例
   html += `<section class="sec"><details class="info" data-k="byrace" style="border-top:0"><summary>レースごとの結果</summary><div class="sb">
     <table><tr><th>レース</th><th>1着</th><th>単勝</th></tr>${done.map(r =>
@@ -643,6 +651,7 @@ function viewResult() {
     <dt>展開</dt><dd>前に行きそうな馬・後ろから行く馬と、ハイペース／スロー、内が有利／外が有利になったときに3着以内の確率が上がる馬・下がる人気馬。</dd>
     <dt>WIN5（試験中）</dt><dd>勝率と世間の票の偏りから、配当の割に起きやすい組。過去256回で約140%。</dd>
     <dt>速報と確定</dt><dd>地方はレースが確定すると数分〜10分ほどで「速報」の印つきで答え合わせを出し、翌朝の確定データで付け直す（速報と確定は過去の照合で全件一致）。</dd>
+    <dt>推定オッズの甘さ</dt><dd>3連単・3連複の「推定オッズ」は、人気の組（300倍以下）で本物より1〜3割高く出ていた（2026-11 の答え合わせ）。これらは当てて楽しむ用。</dd>
     <dt>数字</dt><dd>回収率＝払戻÷買った額。地方の結果はレース後に速報、翌朝8:30ごろ確定。</dd>
     <dt>表示</dt><dd>右上の丸いボタンで明るい表示・暗い表示を切り替え（端末ごとに覚える）。上の「更新」の行を押すと、すぐ読み込み直す。</dd></dl></details></section>`;
   return html;
