@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "date_ja": "11/21（土）",
- "generated": "2026-11-21 12:59",
+ "generated": "2026-11-21 13:03",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -5803,6 +5803,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -5822,6 +5836,10 @@
      "血統（父・母の父）がこの条件に強い",
      "前に行けそうな位置（隊列の予測）"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -6113,8 +6131,24 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "1-5-6",
+    "trifecta": "5→1→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "asobi": [],
+   "result": {
+    "first": [
+     5
+    ],
+    "first_name": "セレクトルビー",
+    "tan": 310,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611210307",
