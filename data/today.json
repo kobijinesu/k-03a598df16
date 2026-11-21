@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "date_ja": "11/21（土）",
- "generated": "2026-11-21 16:19",
+ "generated": "2026-11-21 16:28",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -12937,6 +12937,20 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 200,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -13275,6 +13289,12 @@
      "pick": "high"
     }
    },
+   "pace_res": {
+    "trio": "6-7-8",
+    "trifecta": "6→7→8",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": {
     "bets": [
      {
@@ -13394,6 +13414,21 @@
      }
     ]
    },
+   "tri_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "exo_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -13459,7 +13494,22 @@
      "p": 0.024921868717035212,
      "ev": 1.0317653648852578
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     6
+    ],
+    "first_name": "バルティカ",
+    "tan": 500,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   }
  ],
  "win5": {
