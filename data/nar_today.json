@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "date_ja": "11/21（土）",
- "generated": "2026-11-21 15:45",
+ "generated": "2026-11-21 15:46",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -397,6 +397,17 @@
      "need": 21.003489008250625
     }
    ],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 2,
     "name": "イケビーノ",
@@ -411,6 +422,10 @@
      "騎手の最近の成績が良い",
      "近走の内容（着順・好走した格）が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -690,6 +705,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "4-7-11",
+    "trifecta": "7→11→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": true,
     "axis": {
@@ -778,6 +809,11 @@
      }
     ],
     "total": 500
+   },
+   "myomi_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
    },
    "tri": {
     "bets": [
@@ -923,6 +959,21 @@
       "p": 0.06360351809986624
      }
     ]
+   },
+   "tri_res": {
+    "bet": 1200,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -977,6 +1028,17 @@
      "need": 31.387160871667813
     }
    ],
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -1255,6 +1317,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-9-10",
+    "trifecta": "9→1→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [],
     "total": 0,
@@ -1300,6 +1378,21 @@
       "p": 0.08609622118003711
      }
     ]
+   },
+   "tri_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
