@@ -274,10 +274,10 @@
   "hits": 0,
   "spent": 300,
   "ret": 0,
-  "a_races": 19,
-  "a_hits": 2,
-  "a_spent": 7900,
-  "a_ret": 5470,
+  "a_races": 20,
+  "a_hits": 3,
+  "a_spent": 8100,
+  "a_ret": 13720,
   "ext": {
    "2": {
     "spent": 500,
@@ -325,9 +325,9 @@
    "ret": 0
   },
   "exo": {
-   "n": 20,
+   "n": 21,
    "hit": 1,
-   "spent": 12400,
+   "spent": 12900,
    "ret": 2750
   }
  }
