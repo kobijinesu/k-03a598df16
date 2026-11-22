@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "date_ja": "11/22（日）",
- "generated": "2026-11-22 12:44",
+ "generated": "2026-11-22 12:50",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -6080,6 +6080,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -6439,7 +6453,18 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "1-3-5",
+    "trifecta": "5→3→1",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -6457,7 +6482,22 @@
      "p": 0.014953313582451036,
      "ev": 1.0347692999056117
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     5
+    ],
+    "first_name": "シャドウアリア",
+    "tan": 310,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611220806",
