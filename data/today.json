@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "date_ja": "11/22（日）",
- "generated": "2026-11-22 12:29",
+ "generated": "2026-11-22 12:33",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -5538,6 +5538,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -5855,6 +5869,12 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "2-9-11",
+    "trifecta": "2→9→11",
+    "trio_rank": 1,
+    "tri_rank": 2
+   },
    "tri": {
     "bets": [
      {
@@ -5901,6 +5921,21 @@
      }
     ]
    },
+   "tri_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "exo_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -5910,7 +5945,22 @@
      "p": 0.0292913241755458,
      "ev": 1.0339837433967667
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     2
+    ],
+    "first_name": "アルデオリエンス",
+    "tan": 290,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611220506",
