@@ -270,25 +270,25 @@
  {
   "date": "20261122",
   "date_ja": "11/22（日）",
-  "bets": 0,
+  "bets": 1,
   "hits": 0,
-  "spent": 0,
+  "spent": 100,
   "ret": 0,
-  "a_races": 4,
+  "a_races": 5,
   "a_hits": 2,
-  "a_spent": 2100,
+  "a_spent": 2900,
   "a_ret": 5470,
   "ext": {
    "2": {
-    "spent": 0,
+    "spent": 100,
     "ret": 0
    },
    "3": {
-    "spent": 0,
+    "spent": 100,
     "ret": 0
    },
    "4": {
-    "spent": 0,
+    "spent": 100,
     "ret": 0
    }
   },
@@ -325,10 +325,10 @@
    "ret": 0
   },
   "exo": {
-   "n": 4,
-   "hit": 0,
-   "spent": 1600,
-   "ret": 0
+   "n": 5,
+   "hit": 1,
+   "spent": 2500,
+   "ret": 2750
   }
  }
 ]
