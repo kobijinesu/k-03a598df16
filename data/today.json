@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "date_ja": "11/22（日）",
- "generated": "2026-11-22 15:49",
+ "generated": "2026-11-22 15:50",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -12604,6 +12604,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -12977,8 +12991,29 @@
      "pick": "high"
     }
    },
+   "pace_res": {
+    "trio": "1-2-14",
+    "trifecta": "1→2→14",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     1
+    ],
+    "first_name": "エルデナリ",
+    "tan": 740,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611220512",
@@ -13429,6 +13464,25 @@
    }
   ],
   "n_combo": 3462,
-  "at": "14:14"
+  "at": "14:14",
+  "res": {
+   "hit": false,
+   "pay": 0,
+   "bet": 99800,
+   "kumi": [],
+   "pays": [
+    {
+     "kumi": [
+      14,
+      14,
+      8,
+      9,
+      1
+     ],
+     "pay": 60615270,
+     "hits": 7
+    }
+   ]
+  }
  }
 }
