@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "date_ja": "11/22（日）",
- "generated": "2026-11-22 11:24",
+ "generated": "2026-11-22 11:34",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -3863,6 +3863,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -4187,7 +4201,18 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "4-5-9",
+    "trifecta": "9→5→4",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
+   "exo_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -4197,7 +4222,22 @@
      "p": 0.013574028745687375,
      "ev": 1.030268781797672
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "ドンクベーラ",
+    "tan": 1350,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611220804",
