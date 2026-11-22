@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "date_ja": "11/22（日）",
- "generated": "2026-11-22 14:49",
+ "generated": "2026-11-22 14:55",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -10864,6 +10864,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -11209,7 +11223,18 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "6-9-14",
+    "trifecta": "14→9→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -11219,7 +11244,22 @@
      "p": 0.013986601756089276,
      "ev": 1.0112313069652545
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     14
+    ],
+    "first_name": "デンプシー",
+    "tan": 800,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611220810",
