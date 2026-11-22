@@ -1,7 +1,7 @@
 {
  "date": "2026-11-22",
  "date_ja": "11/22（日）",
- "generated": "2026-11-22 09:54",
+ "generated": "2026-11-22 10:00",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -81,6 +81,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -433,6 +447,12 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "7-8-10",
+    "trifecta": "10→8→7",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": {
     "bets": [
      {
@@ -597,6 +617,21 @@
      }
     ]
    },
+   "tri_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "exo_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -646,7 +681,22 @@
      "p": 0.027124465697542646,
      "ev": 1.0008927842393236
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     10
+    ],
+    "first_name": "サザンキンレンカ",
+    "tan": 1970,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611220801",
