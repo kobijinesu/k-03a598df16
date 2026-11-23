@@ -426,6 +426,29 @@ function axisBox(r) {   // 単勝の買い馬を1着に固定した3連単（検
       return `<tr${h_ ? ' class="hitr"' : ""}><td>${kc(e.kumi, h_)}${h_ ? hm : ""}</td><td>${e.odds ? e.odds.toFixed(1) : "—"}</td><td>${e.ev.toFixed(2)}</td></tr>`; }).join("")}</table></div></details>`;
 }
 
+// 2026-11-23 追加: AIの見解（ユーザーの要望。netkeiba の「AIによるこのレースの見解」のように、展開・馬場・推奨馬を文章で）。予想係は変えず、today.json の pace・top・buys から作る
+function aiView(r) {
+  const v = r.pace || {}, top = r.top || [], sc_ = v.scen || {}; if (!top.length) return "";
+  const nm = h => `<b>${h.no}番</b> ${esc(h.name || "")}`, ls = l => (l || []).map(h => `${h.no}`).join("・");
+  const nf = (v.front || []).length, lines = []; let lean = null;
+  if (nf >= 3) { lines.push(`<b>ハイペースが予想される一戦。</b>前に行きたい馬が${nf}頭（${ls(v.front)}番）。先行争いで流れが速くなりやすく${(v.back || []).length ? `、後ろから行く馬（${ls(v.back)}番）に展開が向きそう` : ""}。`); lean = "high"; }
+  else if (nf === 1) { lines.push(`<b>スローペースが予想される一戦。</b>逃げそうなのは${v.front[0].no}番だけで、楽に先手を取れれば前の馬が残りやすい。`); lean = "slow"; }
+  else if (nf === 0 && (v.back || []).length) { lines.push(`<b>スローペースが予想される一戦。</b>はっきりした逃げ馬が見当たらず、前に行った馬が楽をしやすい。`); lean = "slow"; }
+  else if (nf === 2) lines.push(`<b>平均ペースの見込み。</b>前に行きそうなのは${ls(v.front)}番の2頭。`);
+  const t_ = v.today || {};
+  if (t_.front === "front") lines.push("今日のこの場は、前に行った馬が残っている。");
+  if (t_.front === "back") lines.push("今日のこの場は、後ろからの差しが決まっている。");
+  if (t_.gate === "inner") lines.push("内枠の馬がよく来ている。");
+  if (t_.gate === "outer") lines.push("外枠の馬がよく来ている。");
+  const rec = [`<div>◎ ${nm(top[0])}　勝率 ${pct(top[0].p)}${top[0].odds ? `（${top[0].odds.toFixed(1)}倍）` : ""}</div>`];
+  if (top[1]) rec.push(`<div>○ ${nm(top[1])}　勝率 ${pct(top[1].p)}${top[1].odds ? `（${top[1].odds.toFixed(1)}倍）` : ""}</div>`);
+  const b0 = (r.buys || [])[0];
+  if (b0) rec.push(`<div>☆ ${nm(b0)}　人気以上に勝つ見込み（期待値 ${b0.ev ? b0.ev.toFixed(2) : "—"}）＝単勝の買い</div>`);
+  const up = lean && sc_[lean] && sc_[lean].diff > 0.02 ? sc_[lean] : null;
+  if (up && ![top[0].no, top[1] && top[1].no, b0 && b0.no].includes(up.no)) rec.push(`<div>▲ ${nm(up)}　${lean === "high" ? "流れが速くなれば" : "スローになれば"}浮上（3着以内 ${pct(up.t3)}）</div>`);
+  return `<div class="msg"><b>AIの見解</b>${lines.length ? `<div style="margin:4px 0">${lines.join("")}</div>` : ""}${rec.join("")}<span class="sub2">展開・馬場・勝率から自動で作った見立て（見て楽しむ用）。お金の判断は単勝の買いだけ。</span></div>`;
+}
+
 function paceBox(r) {   // 展開: 位置取りと、ペース・枠の有利不利で動く馬だけ（決着の順位づけ・「10万回」の表は 2026-11-14 に外した）
   const v = r.pace; if (!v) return "";
   const lab2 = { high: "ハイペース", slow: "スロー", inner: "内が有利", outer: "外が有利" };
@@ -472,7 +495,7 @@ function raceDetail(r) {
     const skip = [];
     html += tanBox(r, skip) + myomiBox(r) + triBox(r, false, skip) + (src === "nar" && r.tri && (r.tri.ana || []).length ? triBox(r, true, skip) : "") + trioBox(r, skip) + axisBox(r);
     if (skip.length) html += `<div class="pass">見送り${skip.map(x => `<span>${x}</span>`).join("")}</div>`;
-    html += paceBox(r);
+    html += aiView(r) + paceBox(r);
     let more = "";
     if (r.top && r.top.length) more += `<div class="cap">勝率の高い順</div>${horseRows(r.top, false)}`;
     if (r.exo && r.exo.length) more += `<div class="cap">参考：組合せ馬券（検証中・記録用）</div>
