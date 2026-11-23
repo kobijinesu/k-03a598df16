@@ -1,7 +1,7 @@
 {
  "date": "2026-11-23",
  "date_ja": "11/23（月）",
- "generated": "2026-11-23 16:45",
+ "generated": "2026-11-23 16:51",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -7252,6 +7252,17 @@
      "need": 23.843590703370584
     }
    ],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -7531,6 +7542,22 @@
       "p3": 0.03022701709461771
      }
     ]
+   },
+   "pace_res": {
+    "trio": "5-6-7",
+    "trifecta": "7→5→6",
+    "trio_rank": 1,
+    "tri_rank": 3
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
@@ -7585,6 +7612,17 @@
      "need": 11.472034077544901
     }
    ],
+   "result": {
+    "first": [
+     2
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 5,
     "name": "アラバンサ",
@@ -7599,6 +7637,10 @@
      "近走の内容（着順・好走した格）が良い",
      "馬場状態の得意・不得意が合う"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -7866,6 +7908,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-8-9",
+    "trifecta": "2→8→9",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": true,
     "axis": {
@@ -7968,6 +8026,11 @@
     ],
     "total": 500
    },
+   "myomi_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
    "tri": {
     "bets": [
      {
@@ -8058,6 +8121,21 @@
       "p": 0.0690118450925584
      }
     ]
+   },
+   "tri_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
