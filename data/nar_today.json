@@ -1,7 +1,7 @@
 {
  "date": "2026-11-23",
  "date_ja": "11/23（月）",
- "generated": "2026-11-23 12:55",
+ "generated": "2026-11-23 13:02",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -1004,6 +1004,17 @@
      "need": 26.732592265465854
     }
    ],
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 10,
     "name": "オマタセシマシタ",
@@ -1018,6 +1029,10 @@
      "厩舎の最近の成績が良い",
      "騎手の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -1292,6 +1307,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-4-10",
+    "trifecta": "4→2→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -1414,6 +1445,21 @@
       "p": 0.041778240518658666
      }
     ]
+   },
+   "tri_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
