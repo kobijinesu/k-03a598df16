@@ -1,7 +1,7 @@
 {
  "date": "2026-11-23",
  "date_ja": "11/23（月）",
- "generated": "2026-11-23 10:19",
+ "generated": "2026-11-23 10:23",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -62,7 +62,17 @@
    "state": "missed",
    "buys": [],
    "top": [],
-   "note": "この時間は予想を出していません"
+   "note": "この時間は予想を出していません",
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "ミヤジテン",
+    "tan": 1980,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611230502",
