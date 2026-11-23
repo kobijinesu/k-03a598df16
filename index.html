@@ -430,11 +430,11 @@ function axisBox(r) {   // 単勝の買い馬を1着に固定した3連単（検
 function aiView(r) {
   const v = r.pace || {}, top = r.top || [], sc_ = v.scen || {}; if (!top.length) return "";
   const nm = h => `<b>${h.no}番</b> ${esc(h.name || "")}`, ls = l => (l || []).map(h => `${h.no}`).join("・");
-  const nf = (v.front || []).length, lines = []; let lean = null;
-  if (nf >= 3) { lines.push(`<b>ハイペースが予想される一戦。</b>前に行きたい馬が${nf}頭（${ls(v.front)}番）。先行争いで流れが速くなりやすく${(v.back || []).length ? `、後ろから行く馬（${ls(v.back)}番）に展開が向きそう` : ""}。`); lean = "high"; }
-  else if (nf === 1) { lines.push(`<b>スローペースが予想される一戦。</b>逃げそうなのは${v.front[0].no}番だけで、楽に先手を取れれば前の馬が残りやすい。`); lean = "slow"; }
-  else if (nf === 0 && (v.back || []).length) { lines.push(`<b>スローペースが予想される一戦。</b>はっきりした逃げ馬が見当たらず、前に行った馬が楽をしやすい。`); lean = "slow"; }
-  else if (nf === 2) lines.push(`<b>平均ペースの見込み。</b>前に行きそうなのは${ls(v.front)}番の2頭。`);
+  const lines = []; let lean = null; const pc = v.pace_call, fr = (v.front || []).length ? `前に行きそうなのは${ls(v.front)}番` : "";
+  if (pc === "high") { lines.push(`<b>ハイペースが予想される一戦。</b>前に行きたい馬が多く、先行争いで流れが速くなりやすい${(v.back || []).length ? `。後ろから行く馬（${ls(v.back)}番）に展開が向きそう` : ""}。`); lean = "high"; }
+  else if (pc === "slow") { lines.push(`<b>スローペースが予想される一戦。</b>はっきりした逃げ馬が少なく${fr ? `、${fr}` : ""}。前に行った馬が楽をしやすい。`); lean = "slow"; }
+  else if (pc === "mid") lines.push(`<b>平均ペースの見込み。</b>${fr ? `${fr}。` : ""}`);
+  else if (fr) lines.push(`${fr}。`);
   const t_ = v.today || {};
   if (t_.front === "front") lines.push("今日のこの場は、前に行った馬が残っている。");
   if (t_.front === "back") lines.push("今日のこの場は、後ろからの差しが決まっている。");
