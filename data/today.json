@@ -1,7 +1,7 @@
 {
  "date": "2026-11-23",
  "date_ja": "11/23（月）",
- "generated": "2026-11-23 12:24",
+ "generated": "2026-11-23 12:30",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -3556,6 +3556,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -3574,6 +3588,10 @@
      "馬連の売れ方から、この馬が詳しい人たちに買われている気配",
      "血統（父・母の父）がこの条件に強い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -3907,8 +3925,29 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "4-6-12",
+    "trifecta": "12→4→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": null,
-   "asobi": []
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
+   },
+   "asobi": [],
+   "result": {
+    "first": [
+     12
+    ],
+    "first_name": "ウィンザーグレース",
+    "tan": 390,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611230306",
