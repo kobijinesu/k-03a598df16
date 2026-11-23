@@ -1,7 +1,7 @@
 {
  "date": "2026-11-23",
  "date_ja": "11/23（月）",
- "generated": "2026-11-23 20:40",
+ "generated": "2026-11-23 20:41",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -14044,6 +14044,17 @@
      "need": 10.900274575455779
     }
    ],
+   "result": {
+    "first": [
+     4
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 5,
     "name": "センゴクブショウ",
@@ -14058,6 +14069,10 @@
      "近走の内容（着順・好走した格）が良い",
      "騎手の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -14332,6 +14347,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-4-7",
+    "trifecta": "4→2→7",
+    "trio_rank": 3,
+    "tri_rank": 1
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -14484,6 +14515,23 @@
       "p": 0.008570644078076312
      }
     ]
+   },
+   "tri_res": {
+    "bet": 1700,
+    "ret": 5420,
+    "hits": [
+     "4→2→7"
+    ]
+   },
+   "trio_res": {
+    "bet": 200,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
