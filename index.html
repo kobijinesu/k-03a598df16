@@ -470,12 +470,13 @@ function paceBox(r) {   // 展開: 位置取りと、ペース・枠の有利不
   }
   const nos = l => (l || []).map(h => `<i class="no">${h.no}</i>`).join("");
   const pos = v.front && v.front.length ? `<span class="mu">前</span>${nos(v.front)}${(v.back || []).length ? `<span class="mu" style="margin-left:6px">後ろ</span>${nos(v.back)}` : ""}` : "";
-  if (!pos && !sr) return today;
+  const ai = aiView(r);   // 2026-11-23: AIの見解は展開を開いたときだけ
+  if (!pos && !sr) return today + (ai ? `<details class="slip" data-k="${r.id}:pace"><summary><span class="sl">展開</span><span class="sm"><span class="mu">AIの見解</span></span><span class="sa"></span></summary><div class="sb">${ai}</div></details>` : "");
   const head = `<span class="sl">展開</span><span class="sm">${pos || `<span class="mu">ペース・枠で動く馬</span>`}</span><span class="sa"></span>`;
-  if (!sr) return `${today}<div class="slip"><div class="sum">${head}</div></div>`;
+  if (!sr) return ai ? `${today}<details class="slip" data-k="${r.id}:pace"><summary>${head}</summary><div class="sb">${ai}</div></details>` : `${today}<div class="slip"><div class="sum">${head}</div></div>`;
   return `${today}
     <details class="slip" data-k="${r.id}:pace"><summary>${head}</summary>
-    <div class="sb"><div class="cap" style="margin-top:0">ペースや枠が偏ったら（3着以内の確率の変化）</div>
+    <div class="sb">${ai}<div class="cap"${ai ? "" : ' style="margin-top:0"'}>ペースや枠が偏ったら（3着以内の確率の変化）</div>
       <table class="sim" style="table-layout:fixed"><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><tr><th>もしも〜なら</th><th class="l">浮く馬</th><th class="l">沈む人気馬</th></tr>${sr}</table>
     </div></details>`;
 }
@@ -495,7 +496,7 @@ function raceDetail(r) {
     const skip = [];
     html += tanBox(r, skip) + myomiBox(r) + triBox(r, false, skip) + (src === "nar" && r.tri && (r.tri.ana || []).length ? triBox(r, true, skip) : "") + trioBox(r, skip) + axisBox(r);
     if (skip.length) html += `<div class="pass">見送り${skip.map(x => `<span>${x}</span>`).join("")}</div>`;
-    html += aiView(r) + paceBox(r);
+    html += paceBox(r);
     let more = "";
     if (r.top && r.top.length) more += `<div class="cap">勝率の高い順</div>${horseRows(r.top, false)}`;
     if (r.exo && r.exo.length) more += `<div class="cap">参考：組合せ馬券（検証中・記録用）</div>
