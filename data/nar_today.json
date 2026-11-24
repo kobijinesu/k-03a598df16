@@ -1,7 +1,7 @@
 {
  "date": "2026-11-24",
  "date_ja": "11/24（火）",
- "generated": "2026-11-24 11:50",
+ "generated": "2026-11-24 11:51",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -60,6 +60,17 @@
      "need": 19.191368874741723
     }
    ],
+   "result": {
+    "first": [
+     3
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 2,
     "name": "シングンアーメット",
@@ -74,6 +85,10 @@
      "厩舎の最近の成績が良い",
      "斤量・年齢の条件が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -340,6 +355,22 @@
       "p3": 0.014219199663417751
      }
     ]
+   },
+   "pace_res": {
+    "trio": "1-2-3",
+    "trifecta": "3→1→2",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
