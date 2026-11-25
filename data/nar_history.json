@@ -821,21 +821,21 @@
    }
   },
   "myomi": {
-   "n": 0,
-   "hit": 0,
-   "spent": 0,
-   "ret": 0
+   "n": 1,
+   "hit": 1,
+   "spent": 500,
+   "ret": 720
   },
   "tri": {
-   "n": 9,
+   "n": 10,
    "hit": 0,
-   "spent": 5500,
+   "spent": 6900,
    "ret": 0
   },
   "trio": {
-   "n": 8,
+   "n": 9,
    "hit": 2,
-   "spent": 2600,
+   "spent": 3200,
    "ret": 1190
   },
   "tria": {
