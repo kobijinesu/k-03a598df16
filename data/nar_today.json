@@ -1,7 +1,7 @@
 {
  "date": "2026-11-25",
  "date_ja": "11/25（水）",
- "generated": "2026-11-25 15:25",
+ "generated": "2026-11-25 15:31",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -7068,6 +7068,17 @@
      "need": 17.082536310773055
     }
    ],
+   "result": {
+    "first": [
+     2
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 2,
     "name": "フクチャンダイオウ",
@@ -7082,6 +7093,10 @@
      "斤量・年齢の条件が良い",
      "騎手の最近の成績が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": true
    },
    "pace": {
     "trifecta": [
@@ -7363,6 +7378,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-8-11",
+    "trifecta": "2→8→11",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -7554,6 +7585,21 @@
       "p": 0.04718788844906334
      }
     ]
+   },
+   "tri_res": {
+    "bet": 2400,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 1200,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
