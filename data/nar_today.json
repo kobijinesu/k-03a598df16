@@ -1,7 +1,7 @@
 {
  "date": "2026-11-25",
  "date_ja": "11/25（水）",
- "generated": "2026-11-25 15:15",
+ "generated": "2026-11-25 15:21",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -6561,6 +6561,17 @@
      "need": 15.514249568670875
     }
    ],
+   "result": {
+    "first": [
+     12
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -6848,6 +6859,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-7-12",
+    "trifecta": "12→7→1",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 1,
@@ -6859,6 +6876,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [],
     "total": 0,
@@ -6972,6 +6999,21 @@
       "p": 0.03755082715331285
      }
     ]
+   },
+   "tri_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
    }
   },
   {
