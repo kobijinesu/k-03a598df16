@@ -853,7 +853,7 @@
   "spent": 0,
   "ret": 0,
   "oshi": {
-   "n": 1,
+   "n": 2,
    "hit": 0,
    "win": 0
   },
@@ -863,32 +863,32 @@
     "ret": 0
    },
    "3": {
-    "spent": 400,
+    "spent": 500,
     "ret": 0
    }
   },
   "myomi": {
-   "n": 1,
-   "hit": 0,
-   "spent": 300,
-   "ret": 0
+   "n": 2,
+   "hit": 1,
+   "spent": 600,
+   "ret": 130
   },
   "tri": {
-   "n": 6,
+   "n": 7,
    "hit": 0,
-   "spent": 3400,
+   "spent": 4900,
    "ret": 0
   },
   "trio": {
-   "n": 8,
+   "n": 9,
    "hit": 2,
-   "spent": 1800,
+   "spent": 2100,
    "ret": 1720
   },
   "tria": {
-   "n": 3,
+   "n": 4,
    "hit": 0,
-   "spent": 900,
+   "spent": 1400,
    "ret": 0
   }
  }

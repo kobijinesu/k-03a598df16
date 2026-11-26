@@ -1,7 +1,7 @@
 {
  "date": "2026-11-26",
  "date_ja": "11/26（木）",
- "generated": "2026-11-26 14:20",
+ "generated": "2026-11-26 14:21",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -5078,6 +5078,17 @@
      "need": 48.24578566592457
     }
    ],
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 7,
     "name": "グレイイメル",
@@ -5092,6 +5103,10 @@
      "騎手の最近の成績が良い",
      "馬場状態の得意・不得意が合う"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -5352,6 +5367,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-6-9",
+    "trifecta": "9→6→1",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 3,
@@ -5363,6 +5384,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": false,
     "axis": {
@@ -5451,6 +5482,13 @@
      }
     ],
     "total": 300
+   },
+   "myomi_res": {
+    "bet": 300,
+    "ret": 130,
+    "hits": [
+     "wide 6-9"
+    ]
    },
    "tri": {
     "bets": [
@@ -5592,6 +5630,21 @@
       "p": 0.025967543759912916
      }
     ]
+   },
+   "tri_res": {
+    "bet": 1500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
    }
   },
   {
