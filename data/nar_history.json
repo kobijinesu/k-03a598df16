@@ -874,15 +874,15 @@
    "ret": 0
   },
   "tri": {
-   "n": 1,
+   "n": 2,
    "hit": 0,
-   "spent": 100,
+   "spent": 600,
    "ret": 0
   },
   "trio": {
-   "n": 3,
+   "n": 4,
    "hit": 0,
-   "spent": 300,
+   "spent": 500,
    "ret": 0
   },
   "tria": {
