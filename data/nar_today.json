@@ -1,7 +1,7 @@
 {
  "date": "2026-11-26",
  "date_ja": "11/26（木）",
- "generated": "2026-11-26 14:55",
+ "generated": "2026-11-26 15:01",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -7010,6 +7010,17 @@
      "need": 33.07958637458153
     }
    ],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 9,
     "name": "ウインブリザード",
@@ -7024,6 +7035,10 @@
      "騎手の最近の成績が良い",
      "最近のこのコースで有利な枠・脚質に合う"
     ]
+   },
+   "oshi_res": {
+    "hit": true,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -7291,6 +7306,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-7-9",
+    "trifecta": "7→1→9",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -7420,6 +7451,23 @@
       "p": 0.016157647562436296
      }
     ]
+   },
+   "tri_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 300,
+    "ret": 190,
+    "hits": [
+     "1-7-9"
+    ]
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
