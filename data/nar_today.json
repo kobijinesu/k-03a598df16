@@ -1,7 +1,7 @@
 {
  "date": "2026-11-26",
  "date_ja": "11/26（木）",
- "generated": "2026-11-26 15:40",
+ "generated": "2026-11-26 15:41",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -8663,6 +8663,17 @@
      "need": 39.44485839652885
     }
    ],
+   "result": {
+    "first": [
+     2
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -8929,6 +8940,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-6-8",
+    "trifecta": "2→8→6",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -9095,6 +9122,25 @@
       "p": 0.03198425245090297
      }
     ]
+   },
+   "tri_res": {
+    "bet": 2500,
+    "ret": 3080,
+    "hits": [
+     "2→8→6"
+    ]
+   },
+   "trio_res": {
+    "bet": 1000,
+    "ret": 1020,
+    "hits": [
+     "2-6-8"
+    ]
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
@@ -9149,6 +9195,17 @@
      "need": 18.408952705059928
     }
    ],
+   "result": {
+    "first": [
+     11
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "pace": {
     "trifecta": [
      {
@@ -9436,6 +9493,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "5-10-11",
+    "trifecta": "11→5→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "myomi": {
     "strong": true,
     "axis": {
@@ -9524,6 +9597,11 @@
      }
     ],
     "total": 500
+   },
+   "myomi_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
    },
    "tri": {
     "bets": [
@@ -9622,6 +9700,21 @@
       "p": 0.07234646563109516
      }
     ]
+   },
+   "tri_res": {
+    "bet": 800,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
