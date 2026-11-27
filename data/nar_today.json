@@ -1,7 +1,7 @@
 {
  "date": "2026-11-27",
  "date_ja": "11/27（金）",
- "generated": "2026-11-27 17:00",
+ "generated": "2026-11-27 17:02",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -11616,6 +11616,17 @@
      "need": 10.821095692871031
     }
    ],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 12,
     "name": "オースミサイファー",
@@ -11630,6 +11641,10 @@
      "斤量・年齢の条件が良い",
      "これまでの成績が人気の割に良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -11911,6 +11926,12 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "2-7-8",
+    "trifecta": "7→2→8",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "buys_ext": [
     {
      "no": 9,
@@ -11922,6 +11943,16 @@
      "tier": 3
     }
    ],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 100,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -11975,6 +12006,21 @@
       "p": 0.12462048582265577
      }
     ]
+   },
+   "tri_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
