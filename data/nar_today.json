@@ -1,7 +1,7 @@
 {
  "date": "2026-11-27",
  "date_ja": "11/27（金）",
- "generated": "2026-11-27 14:20",
+ "generated": "2026-11-27 14:21",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -4562,6 +4562,17 @@
      "need": 21.953870025890744
     }
    ],
+   "result": {
+    "first": [
+     7
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 3,
     "name": "フェンリル",
@@ -4576,6 +4587,10 @@
      "馬場状態の得意・不得意が合う",
      "斤量・年齢の条件が良い"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -4842,6 +4857,22 @@
       "p3": 0.02733997688829549
      }
     ]
+   },
+   "pace_res": {
+    "trio": "6-7-10",
+    "trifecta": "7→6→10",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
    }
   },
   {
