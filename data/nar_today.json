@@ -1,7 +1,7 @@
 {
  "date": "2026-11-28",
  "date_ja": "11/28（土）",
- "generated": "2026-11-28 15:30",
+ "generated": "2026-11-28 15:36",
  "decision_min": 10,
  "decision_label": "発走10分前",
  "kind": "nar",
@@ -958,6 +958,17 @@
      "need": 57.33179561328332
     }
    ],
+   "result": {
+    "first": [
+     1
+    ],
+    "first_name": "",
+    "tan": 0,
+    "bet": 0,
+    "ret": 0,
+    "hit": false,
+    "src": "速報"
+   },
    "oshi": {
     "no": 3,
     "name": "ミトノホープ",
@@ -972,6 +983,10 @@
      "斤量・年齢の条件が良い",
      "馬場状態の得意・不得意が合う"
     ]
+   },
+   "oshi_res": {
+    "hit": false,
+    "win": false
    },
    "pace": {
     "trifecta": [
@@ -1239,6 +1254,22 @@
      }
     ]
    },
+   "pace_res": {
+    "trio": "1-8-9",
+    "trifecta": "1→9→8",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "tri": {
     "bets": [
      {
@@ -1292,6 +1323,21 @@
       "p": 0.049474037481672284
      }
     ]
+   },
+   "tri_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 100,
+    "ret": 0,
+    "hits": []
+   },
+   "tria_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
    }
   },
   {
