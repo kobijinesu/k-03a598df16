@@ -1,7 +1,7 @@
 {
  "date": "2026-11-28",
  "date_ja": "11/28（土）",
- "generated": "2026-11-28 16:22",
+ "generated": "2026-11-28 16:23",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -13209,6 +13209,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -13584,6 +13598,12 @@
      "pick": "high"
     }
    },
+   "pace_res": {
+    "trio": "2-5-13",
+    "trifecta": "13→2→5",
+    "trio_rank": 0,
+    "tri_rank": 0
+   },
    "tri": {
     "bets": [
      {
@@ -13684,6 +13704,21 @@
      }
     ]
    },
+   "tri_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 0,
+    "ret": 0,
+    "hits": []
+   },
+   "exo_res": {
+    "bet": 300,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -13717,7 +13752,22 @@
      "p": 0.03329149874598134,
      "ev": 1.0187198616270292
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 400,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     13
+    ],
+    "first_name": "フロムレイブン",
+    "tan": 320,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   }
  ],
  "win5": {
