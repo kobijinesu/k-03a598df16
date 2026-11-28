@@ -1,7 +1,7 @@
 {
  "date": "2026-11-28",
  "date_ja": "11/28（土）",
- "generated": "2026-11-28 10:54",
+ "generated": "2026-11-28 11:00",
  "decision_min": 8,
  "sample": null,
  "races": [
@@ -2586,6 +2586,20 @@
     }
    ],
    "buys_ext": [],
+   "ext_res": {
+    "2": {
+     "bet": 0,
+     "ret": 0
+    },
+    "3": {
+     "bet": 0,
+     "ret": 0
+    },
+    "4": {
+     "bet": 0,
+     "ret": 0
+    }
+   },
    "axis": {
     "1": [],
     "2": [],
@@ -2961,6 +2975,12 @@
      "pick": null
     }
    },
+   "pace_res": {
+    "trio": "6-9-13",
+    "trifecta": "9→6→13",
+    "trio_rank": 3,
+    "tri_rank": 0
+   },
    "tri": {
     "bets": [
      {
@@ -3152,6 +3172,21 @@
      }
     ]
    },
+   "tri_res": {
+    "bet": 900,
+    "ret": 0,
+    "hits": []
+   },
+   "trio_res": {
+    "bet": 500,
+    "ret": 0,
+    "hits": []
+   },
+   "exo_res": {
+    "bet": 700,
+    "ret": 0,
+    "hits": []
+   },
    "asobi": [
     {
      "type": "3連複",
@@ -3201,7 +3236,22 @@
      "p": 0.02429786562569017,
      "ev": 1.0569571547175225
     }
-   ]
+   ],
+   "asobi_res": {
+    "bet": 600,
+    "ret": 0,
+    "hits": []
+   },
+   "result": {
+    "first": [
+     9
+    ],
+    "first_name": "ドナリー",
+    "tan": 580,
+    "bet": 0,
+    "ret": 0,
+    "hit": false
+   }
   },
   {
    "id": "202611280803",
